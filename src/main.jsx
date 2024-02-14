@@ -1,14 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./styles.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LandingPage from './components/LandingPage.jsx';
-import Auth from './components/auth.jsx';
+import "boxicons/css/boxicons.min.css";
+import Login from "./auth/Login.jsx";
+import Register from "./auth/Register.jsx";
+import Home from "./components/Home.jsx";
 
 export const pages = [
-  {path: "/", label: "LandingPage", element: <LandingPage />},
-  {path: "auth", label: "Auth", element: <Auth /> },
-]
+  { path: "/login", label: "Login", element: <Login /> },
+  { path: "register", label: "Register", element: <Register /> },
+  { path: "/", label: "Home", element: <Home /> },
+];
 
 const router = createBrowserRouter([
   {
@@ -18,9 +22,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
-  </React.StrictMode>,
-)
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);

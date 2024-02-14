@@ -10,7 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.10",
+    "@mui/material": "^5.15.10",
+    "boxicons": "^2.1.4",
     "firebase": "^10.7.0",
+    "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3"
@@ -23,6 +29,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
+    "prettier": "^3.2.5",
     "vite": "^5.0.0"
   }
 }
