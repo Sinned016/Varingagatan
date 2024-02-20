@@ -7,43 +7,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import { auth } from "../config/firebase";
 import { getDocs } from "firebase/firestore";
+import useAuthState from "./useAuthState";
 
 export default function Header() {
-  const [signedInUser, setSignedInUser] = useState();
-  const [isAdmin, setIsAdmin] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        setSignedInUser({
-          uid: user.uid,
-          email: user.email,
-        });
-
-        try {
-          const accessToken = await user.getIdToken();
-          if (accessToken) {
-            const decodedToken = jwtDecode(accessToken);
-            console.log(decodedToken);
-            setIsAdmin(decodedToken.admin);
-          } else {
-            console.error("Access token is undefined");
-          }
-        } catch (error) {
-          console.error("Error decoding token:", error);
-        }
-      } else {
-        // User is not logged in
-
-        console.log("You are not logged in");
-        setIsAdmin(false);
-        setSignedInUser(undefined);
-      }
-    });
-
-    return unsubscribe; // Clean up the subscription
-  }, []);
+  const { signedInUser, isAdmin } = useAuthState(); // Use the custom hook to get authentication state
 
   async function logout() {
     try {

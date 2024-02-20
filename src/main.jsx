@@ -7,11 +7,13 @@ import "boxicons/css/boxicons.min.css";
 import Login from "./auth/Login.jsx";
 import Register from "./auth/Register.jsx";
 import Home from "./components/Home.jsx";
+import Bookinfo from "./components/Bookinfo.jsx";
 
 export const pages = [
   { path: "/login", label: "Login", element: <Login /> },
   { path: "register", label: "Register", element: <Register /> },
   { path: "/", label: "Home", element: <Home /> },
+  { path: "book/:id", label: "Book", element: <Bookinfo /> },
 ];
 
 const router = createBrowserRouter([
