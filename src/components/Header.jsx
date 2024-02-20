@@ -4,19 +4,20 @@ import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
 import { getDocs } from "firebase/firestore";
 import useAuthState from "./useAuthState";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-
   const { signedInUser, isAdmin } = useAuthState(); // Use the custom hook to get authentication state
+  const navigate = useNavigate();
 
   async function logout() {
     try {
       await signOut(auth);
+      navigate("/login");
     } catch (e) {
       console.error(e);
     }
