@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, googleProvider } from "../config/firebase";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -36,6 +36,7 @@ export default function Login() {
       const res = await signInWithPopup(auth, googleProvider);
 
       if (res) {
+        //Create an object for the user in the users collection here when logging in with google.
         console.log("You logged in through google", res);
         navigate("/");
       }

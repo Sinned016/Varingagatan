@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { jwtDecode } from "jwt-decode";
-import { auth } from "../config/firebase";
+import { auth, db } from "../config/firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const useAuthState = () => {
   const [signedInUser, setSignedInUser] = useState();
@@ -9,11 +10,23 @@ const useAuthState = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      console.log(user);
       if (user) {
         setSignedInUser({
           uid: user.uid,
           email: user.email,
         });
+
+        const userDocRef = doc(db, "users", user.uid);
+        const userDocSnapshot = await getDoc(userDocRef);
+
+        if (!userDocSnapshot.exists()) {
+          await setDoc(userDocRef, {
+            email: user.email,
+            name: user.displayName,
+            picture: user.photoURL,
+          });
+        }
 
         try {
           const accessToken = await user.getIdToken();

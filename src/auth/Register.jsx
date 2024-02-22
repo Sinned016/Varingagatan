@@ -40,7 +40,7 @@ export default function Register() {
       // Creating a collection with the user and more information inside of it.
       const usersCollectionRef = collection(db, "users");
       const docRef = await addDoc(usersCollectionRef, {
-        userId: userCredential.user.uid,
+        authId: userCredential.user.uid,
         ...formData,
       });
 

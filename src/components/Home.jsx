@@ -18,7 +18,7 @@ export default function Home() {
   useEffect(() => {
     async function getData() {
       const booksCollectionRef = collection(db, "books");
-      const audioBooksCollectionRef = collection(db, "audioBooks");
+      //const audioBooksCollectionRef = collection(db, "audioBooks");
       try {
         const booksData = await getDocs(booksCollectionRef);
         const filteredBooksData = booksData.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
@@ -52,8 +52,9 @@ export default function Home() {
                 <p>{book.author}</p>
               </div>
               <div className="book-price">
-                {/* Make this a link and link to the page where you can buy the books. add the link on the database */}
-                <button>{book.price} kr</button>
+                <Link to={book.linkToPurchase}>
+                  <button>{book.price} kr</button>
+                </Link>
               </div>
             </div>
           ))}
