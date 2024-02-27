@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import { getDocs, collection } from "firebase/firestore";
 import { filterBooksForNewest } from "../functions/filterBooksForNewest";
 import useAuthState from "./useAuthState";
+import homeHeader from "../assets/pictures/homeHeader.jpg";
 
 export default function Home() {
   const [books, setBooks] = useState();
@@ -35,30 +36,66 @@ export default function Home() {
   }, [navigate]);
 
   return (
-    <>
-      <h1 className="title">Newest Releases</h1>
-
-      <div className="books-grid">
-        {books &&
-          books.map((book) => (
-            <div className="book-item" key={book.id}>
-              <div className="book-image-container">
-                <Link to={`/book/${book.id}`}>
-                  <img src={book.image} alt="" className="book-image" />
-                </Link>
-              </div>
-              <div className="book-info">
-                <h3>{book.title}</h3>
-                <p>{book.author}</p>
-              </div>
-              <div className="book-price">
-                <Link to={book.linkToPurchase}>
-                  <button>{book.price} kr</button>
-                </Link>
-              </div>
-            </div>
-          ))}
+    <div className="page-container">
+      <div className="home-header">
+        <img src={homeHeader} alt="" />
       </div>
-    </>
+
+      <div className="books-container">
+        <h2 className="title">Recommended Series</h2>
+
+        <div className="books-grid">
+          {newestBooks &&
+            newestBooks.map((book) => (
+              <div className="book-item" key={book.id}>
+                <div className="book-image-container">
+                  <Link to={`/book/${book.id}`}>
+                    <img src={book.image} alt="" className="book-image" />
+                  </Link>
+                </div>
+                <div className="book-info">
+                  <h3>{book.title}</h3>
+                  <p>{book.author}</p>
+                </div>
+                <div className="book-price">
+                  <Link to={book.linkToPurchase}>
+                    <button>{book.price} kr</button>
+                  </Link>
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
+
+      <div className="books-container">
+        <h2 className="title">Books</h2>
+
+        <div className="books-grid">
+          {books &&
+            books.map((book) => (
+              <div className="book-item" key={book.id}>
+                <div className="book-image-container">
+                  <Link to={`/book/${book.id}`}>
+                    <img src={book.image} alt="" className="book-image" />
+                  </Link>
+                </div>
+                <div className="book-info">
+                  <h3>{book.title}</h3>
+                  <p>{book.author}</p>
+                </div>
+                <div className="book-price">
+                  <Link to={book.linkToPurchase}>
+                    <button>{book.price} kr</button>
+                  </Link>
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
+
+      <div className="books-container">
+        <h2 className="title">Audio Books</h2>
+      </div>
+    </div>
   );
 }

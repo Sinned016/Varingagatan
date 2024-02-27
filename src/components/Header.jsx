@@ -37,29 +37,28 @@ export default function Header() {
             <li>
               <Link to="/info">Books</Link>
             </li>
-            <div className="line-space"></div>
+
             <li>
               <Link to="/contact">Audiobooks</Link>
             </li>
-            <div className="line-space"></div>
+
             <li>
               <Link to="/contact">Shop</Link>
             </li>
-            <div className="line-space"></div>
+
             <li>
               <Link to="/contact">Contact</Link>
             </li>
-            <div className="line-space"></div>
+
             <li>
               <Link to="/contact">About</Link>
             </li>
-            <div className="line-space"></div>
+
             {isAdmin && (
               <>
                 <li>
                   <Link to="/admin">Admin</Link>
                 </li>
-                <div className="line-space"></div>
               </>
             )}
             {signedInUser ? (

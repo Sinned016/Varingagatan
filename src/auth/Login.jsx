@@ -83,7 +83,9 @@ export default function Login() {
               <a href="">Forgot password?</a>
             </div>
 
-            <button className="register-btn">Login</button>
+            <button type="submit" className="register-btn">
+              Login
+            </button>
 
             <div className="register-link">
               <p>
