@@ -1,6 +1,6 @@
-# Varingasagan for Leif Selander.
+# Varingasagan
 
-Working on a forum / book page for my dad.
+Working on a forum / book page for my dad Leif Selander.
 I haven't really thought about the design yet so it's not very pretty but i'll post progress pictures below of hows it's going and how it looks like.
 
 # Progress List
@@ -18,7 +18,7 @@ I haven't really thought about the design yet so it's not very pretty but i'll p
 - #12 Admin page where you can create new data that you want to show on the page.
 - #14 More coming soon...
 
-# Progress Picturee
+# Progress Pictures
 Home page
 ![Picture of the home page](image.png)
 
