@@ -14,8 +14,9 @@ I haven't really thought about the design yet so it's not very pretty but i'll p
 - #8 See more information about specific books when you press on it / it takes to you another page. (useParams) ✅
 - #9 Be able to review a book (Title, content and score). ✅
 - #10 Fetch and show all reviews for a specific book. ✅
-- #11 Filter and search for data / books.
-- #12 Admin page where you can create new data that you want to show on the page.
+- #11 Like and unlike reviews. ✅
+- #12 Filter and search for data / books.
+- #13 Admin page where you can create new data that you want to show on the page.
 - #14 More coming soon...
 
 # Progress Pictures
