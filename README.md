@@ -19,11 +19,14 @@ I haven't really thought about the design yet so it's not very pretty but i'll p
 - #14 More coming soon...
 
 # Progress Pictures
-Home page
+## Home page
 ![Picture of the home page](image.png)
 
-Book Information
+## Book Information
 ![Picture of specific book](image-1.png)
 
-Review
-![Pciture of the review section](image-2.png)
+## Review
+![Picture of the review section](image-2.png)
+
+## Liking reviews
+![Picture of how it looks like to like / unlike a review](image-3.png)

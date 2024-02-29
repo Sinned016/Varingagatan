@@ -4,6 +4,10 @@ import { Link, useParams } from "react-router-dom";
 import { db } from "../config/firebase";
 import useAuthState from "./useAuthState";
 import { Button, Modal, Box, Typography } from "@mui/material";
+import { IconButton } from "@mui/material";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import likeWhite from "../assets/icons/likeWhite.png";
+import likeBlue from "../assets/icons/likeBlue.png";
 
 export default function Bookinfo() {
   let { id } = useParams();
@@ -22,9 +26,6 @@ export default function Bookinfo() {
   //Testing Timestamp, gonna use it later
   // const time = Timestamp.now();
   // console.log(time.toDate());
-
-  console.log(bookInfo);
-  console.log(id);
 
   useEffect(() => {
     async function getData() {
@@ -69,12 +70,16 @@ export default function Bookinfo() {
     e.preventDefault();
 
     const bookDocRef = doc(db, "books", id);
+    const newTimestamp = Timestamp.now();
 
     const payloadData = {
+      userId: signedInUser.uid,
+      reviewId: `email-${signedInUser.email}-title-${reviewTitle}-timestamp-${newTimestamp}`,
       email: signedInUser.email,
       reviewTitle: reviewTitle,
       reviewContent: reviewContent,
-      timestamp: Timestamp.now(),
+      timestamp: newTimestamp,
+      likes: [],
     };
 
     try {
@@ -101,6 +106,46 @@ export default function Bookinfo() {
   const handleShowMoreReviews = () => {
     setDisplayedReviews(displayedReviews + 5);
   };
+
+  async function rateReview(e, reviewId, action) {
+    e.preventDefault();
+    console.log(id);
+    const bookDocRef = doc(db, "books", id);
+    //const newTimestamp = Timestamp.now();
+
+    try {
+      const bookSnapshot = await getDoc(bookDocRef);
+      const bookData = bookSnapshot.data();
+      console.log(bookData);
+      const reviewIndex = bookData.reviews.findIndex((review) => review.reviewId === reviewId);
+
+      // The specific review the user has liked
+      const review = bookData.reviews[reviewIndex];
+
+      if (action === "like") {
+        const userLiked = review.likes.includes(signedInUser.uid);
+
+        if (!userLiked) {
+          bookData.reviews[reviewIndex].likes.push(signedInUser.uid);
+          await updateDoc(bookDocRef, {
+            reviews: bookData.reviews,
+          });
+
+          console.log("You liked the review");
+        } else {
+          const userIndex = review.likes.indexOf(signedInUser.uid);
+          bookData.reviews[reviewIndex].likes.splice(userIndex, 1);
+          await updateDoc(bookDocRef, {
+            reviews: bookData.reviews,
+          });
+          console.log("You unliked the review");
+        }
+      }
+      setSubmitTrigger(!submitTrigger);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   return (
     <div className="page-container">
@@ -197,18 +242,34 @@ export default function Bookinfo() {
             {bookInfo.reviews ? (
               <>
                 {/* Map over only the number of reviews specified by displayedReviews */}
-                {bookInfo.reviews.slice(0, displayedReviews).map((review, i) => (
-                  <div className="review-container" key={i}>
-                    <h3>{review.reviewTitle}</h3>
-                    <div className="email-date">
-                      <p>BY {review.email}</p>
-                      <p>{new Date(review.timestamp.seconds * 1000).toLocaleString()}</p>
+                {bookInfo.reviews.slice(0, displayedReviews).map((review, i) => {
+                  return (
+                    <div className="review-container" key={i}>
+                      <h3>{review.reviewTitle}</h3>
+                      <div className="email-date">
+                        <p>BY {review.email}</p>
+                        <p>{new Date(review.timestamp.seconds * 1000).toLocaleString()}</p>
+                      </div>
+                      <p>{review.score}</p>
+                      <p className="margin-bot">{review.reviewContent}</p>
+
+                      <div className="reviews-rating-container">
+                        <p>{review.likes && review.likes.length > 0 ? review.likes.length : ""}</p>
+                        <div
+                          className={review.likes && review.likes.includes(signedInUser.uid) ? "liked" : "unliked"}
+                          onClick={(e) => rateReview(e, review.reviewId, "like")}
+                        >
+                          {review.likes && review.likes.includes(signedInUser.uid) ? (
+                            <img className="rate-icon" src={likeWhite} alt="" />
+                          ) : (
+                            <img className="rate-icon" src={likeBlue} alt="" />
+                          )}
+                        </div>
+                      </div>
+                      <div className="line-space"></div>
                     </div>
-                    <p>{review.score}</p>
-                    <p className="margin-bot">{review.reviewContent}</p>
-                    <div className="line-space"></div>
-                  </div>
-                ))}
+                  );
+                })}
                 {/* Button to show more reviews */}
                 {bookInfo.reviews.length > displayedReviews && (
                   <button onClick={handleShowMoreReviews} className="show-more-btn">
