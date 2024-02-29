@@ -251,7 +251,7 @@ export default function Bookinfo() {
                         <p>{new Date(review.timestamp.seconds * 1000).toLocaleString()}</p>
                       </div>
                       <p>{review.score}</p>
-                      <p className="margin-bot">{review.reviewContent}</p>
+                      <p className="margin-bot review-content">{review.reviewContent}</p>
 
                       <div className="reviews-rating-container">
                         <p>{review.likes && review.likes.length > 0 ? review.likes.length : ""}</p>

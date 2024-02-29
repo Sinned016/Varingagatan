@@ -4,6 +4,9 @@
     padding: 0;
     font-family: 'Arial', sans-serif;
     color: black;
+    font-family: "Roboto", sans-serif;
+
+
 }
 
 body {
@@ -44,6 +47,7 @@ input, textarea {
 .title {
     text-align: center;
     color: black;
+    margin-bottom: .2em;
 
 }
 
@@ -444,6 +448,7 @@ border: 1px solid black;
 
 .book-information-bottom p{
     color: black;
+    line-height: 1.5; /* 1.5 times the font size */
 }
 
 .submitReview-container {
@@ -510,9 +515,12 @@ textarea {
     margin-bottom: .5em;
 }
 
-.margin-bot {
+.review-content {
     margin-bottom: 1em;
+    line-height: 1.5; /* 1.5 times the font size */
 }
+
+
 
 .line-space {
     background-color: #8f8f8f;
