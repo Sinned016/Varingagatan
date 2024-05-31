@@ -255,16 +255,21 @@ export default function Bookinfo() {
 
                       <div className="reviews-rating-container">
                         <p>{review.likes && review.likes.length > 0 ? review.likes.length : ""}</p>
-                        <div
-                          className={review.likes && review.likes.includes(signedInUser.uid) ? "liked" : "unliked"}
-                          onClick={(e) => rateReview(e, review.reviewId, "like")}
-                        >
-                          {review.likes && review.likes.includes(signedInUser.uid) ? (
-                            <img className="rate-icon" src={likeWhite} alt="" />
-                          ) : (
-                            <img className="rate-icon" src={likeBlue} alt="" />
-                          )}
-                        </div>
+
+                        {signedInUser ? (
+                          <div
+                            className={review.likes && review.likes.includes(signedInUser?.uid) ? "liked" : "unliked"}
+                            onClick={(e) => rateReview(e, review.reviewId, "like")}
+                          >
+                            {review.likes && review.likes.includes(signedInUser.uid) ? (
+                              <img className="rate-icon" src={likeWhite} alt="" />
+                            ) : (
+                              <img className="rate-icon" src={likeBlue} alt="" />
+                            )}
+                          </div>
+                        ) : (
+                          ""
+                        )}
                       </div>
                       <div className="line-space"></div>
                     </div>
