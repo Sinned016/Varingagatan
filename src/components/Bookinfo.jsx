@@ -199,8 +199,12 @@ export default function Bookinfo() {
                 />
 
                 <div className="submitReview-btns">
-                  <button type="submit">Submit</button>
-                  <button onClick={handleCancelReview}>Cancel</button>
+                  <button className="submit-btn" type="submit">
+                    Submit
+                  </button>
+                  <button className="cancel-btn" onClick={handleCancelReview}>
+                    Cancel
+                  </button>
                 </div>
               </form>
             </div>

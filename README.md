@@ -15,9 +15,11 @@ I haven't really thought about the design yet so it's not very pretty but i'll p
 - #9 Be able to review a book (Title, content and score). ✅
 - #10 Fetch and show all reviews for a specific book. ✅
 - #11 Like and unlike reviews. ✅
-- #12 Filter and search for data / books.
-- #13 Admin page where you can create new data that you want to show on the page.
-- #14 More coming soon...
+- #12 Change the Font and the look of the page (colors) maybe layout.
+- #13 Filter and search for data / books.
+- #14 Make all sections work, like: audiobooks, books, etc..
+- #15 Add the total amount of reviews under a book next to the "Reviews" title under each book.
+- #16 Admin page where you can create new data that you want to show on the page.
 
 # Progress Pictures
 ## Home page

@@ -16,11 +16,16 @@ export default function Header() {
 
   async function logout() {
     try {
+      setMenuOpen(false);
       await signOut(auth);
       navigate("/login");
     } catch (e) {
       console.error(e);
     }
+  }
+
+  function closeHeader() {
+    setMenuOpen(false);
   }
 
   return (
@@ -34,39 +39,45 @@ export default function Header() {
       {menuOpen && (
         <nav className="header-nav">
           <ul className="header-ul">
-            <li>
-              <Link to="/info">Books</Link>
-            </li>
+            <Link to="/" className="navLink" onClick={closeHeader}>
+              Home
+            </Link>
 
-            <li>
-              <Link to="/contact">Audiobooks</Link>
-            </li>
+            <Link to="/info" className="navLink" onClick={closeHeader}>
+              Books
+            </Link>
 
-            <li>
-              <Link to="/contact">Shop</Link>
-            </li>
+            <Link to="/audiobooks" className="navLink" onClick={closeHeader}>
+              Audiobooks
+            </Link>
 
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
+            <Link to="/shop" className="navLink" onClick={closeHeader}>
+              Shop
+            </Link>
 
-            <li>
-              <Link to="/contact">About</Link>
-            </li>
+            <Link to="/contact" className="navLink" onClick={closeHeader}>
+              Contact
+            </Link>
+
+            <Link to="/about" className="navLink" onClick={closeHeader}>
+              About
+            </Link>
 
             {isAdmin && (
               <>
-                <li>
-                  <Link to="/admin">Admin</Link>
-                </li>
+                <Link to="/admin" onClick={closeHeader}>
+                  Admin
+                </Link>
               </>
             )}
             {signedInUser ? (
-              <li onClick={logout}>Logout</li>
+              <Link to="/login" className="navLink" onClick={logout}>
+                Logout
+              </Link>
             ) : (
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
+              <Link to="/login" className="navLink" onClick={closeHeader}>
+                Login
+              </Link>
             )}
           </ul>
         </nav>
