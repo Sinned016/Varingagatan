@@ -23,13 +23,9 @@ I haven't really thought about the design yet so it's not very pretty but i'll p
 
 # Progress Pictures
 ## Home page
-![Picture of the home page](image.png)
+![Picture of the Home page](image-4.png)
 
-## Book Information
-![Picture of specific book](image-1.png)
+## Book information
+![Picture of book information page](image-5.png)
 
-## Review
-![Picture of the review section](image-2.png)
-
-## Liking reviews
-![Picture of how it looks like to like / unlike a review](image-3.png)
+![Picture of leaving a Review](image-6.png)
