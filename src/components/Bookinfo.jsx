@@ -258,7 +258,9 @@ export default function Bookinfo() {
                       <p className="margin-bot review-content">{review.reviewContent}</p>
 
                       <div className="reviews-rating-container">
-                        <p>{review.likes && review.likes.length > 0 ? review.likes.length : ""}</p>
+                        <p className="total-reviews">
+                          {review.likes && review.likes.length > 0 ? review.likes.length : ""}
+                        </p>
 
                         {signedInUser ? (
                           <div
