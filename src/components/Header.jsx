@@ -6,7 +6,6 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
-import { getDocs } from "firebase/firestore";
 import useAuthState from "./useAuthState";
 
 export default function Header() {
@@ -43,11 +42,11 @@ export default function Header() {
               Home
             </Link>
 
-            <Link to="/info" className="navLink" onClick={closeHeader}>
+            <Link to="/books" className="navLink" onClick={closeHeader}>
               Books
             </Link>
 
-            <Link to="/audiobooks" className="navLink" onClick={closeHeader}>
+            <Link to="/audioBooks" className="navLink" onClick={closeHeader}>
               Audiobooks
             </Link>
 
