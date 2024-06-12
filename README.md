@@ -28,4 +28,4 @@ I haven't really thought about the design yet so it's not very pretty but i'll p
 ## Book information
 ![Picture of book information page](image-5.png)
 
-![Picture of leaving a Review](image-6.png)
+![Picture of leaving a review](image-7.png)
