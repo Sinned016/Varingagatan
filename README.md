@@ -23,9 +23,9 @@ I haven't really thought about the design yet so it's not very pretty but i'll p
 
 # Progress Pictures
 ## Home page
-![Picture of the Home page](image-4.png)
+![Picture of the Home page](assets/pictures/image-4.png)
 
 ## Book information
-![Picture of book information page](image-5.png)
+![Picture of book information page](assets/pictures/image-5.png)
 
-![Picture of leaving a review](image-7.png)
+![Picture of leaving a review](assets/pictures/image-7.png)
