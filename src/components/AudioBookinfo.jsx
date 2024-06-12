@@ -6,6 +6,8 @@ import useAuthState from "./useAuthState";
 import { Button, Modal, Box, Typography } from "@mui/material";
 import likeWhite from "../assets/icons/likeWhite.png";
 import likeBlue from "../assets/icons/likeBlue.png";
+import StarRating from "./StarRating";
+import FinishedRating from "./FinishedRating";
 
 export default function Bookinfo() {
   let { id } = useParams();
@@ -16,8 +18,10 @@ export default function Bookinfo() {
   const [reviewTitleError, setReviewTitleError] = useState("");
   const [reviewContent, setReviewContent] = useState("");
   const [reviewContentError, setReviewContentError] = useState("");
+  const [reviewRatingError, setReviewRatingError] = useState("");
   const [open, setOpen] = useState(false);
   const [displayedReviews, setDisplayedReviews] = useState(5);
+  const [reviewRating, setReviewRating] = useState(0);
 
   // Trigger to do the useEffect again and fetch all data.
   const [submitTrigger, setSubmitTrigger] = useState(false);
@@ -61,6 +65,13 @@ export default function Bookinfo() {
       setReviewContentError("");
     }
 
+    if (reviewRating === 0) {
+      setReviewRatingError("Please provide a rating before submitting");
+      return;
+    } else {
+      setReviewRatingError("");
+    }
+
     setOpen(true);
   }
 
@@ -76,6 +87,7 @@ export default function Bookinfo() {
       email: signedInUser.email,
       reviewTitle: reviewTitle,
       reviewContent: reviewContent,
+      reviewRating: reviewRating,
       timestamp: newTimestamp,
       likes: [],
     };
@@ -87,6 +99,7 @@ export default function Bookinfo() {
 
       setReviewTitle("");
       setReviewContent("");
+      setReviewRating(0);
       setOpen(false);
       setSubmitTrigger(!submitTrigger);
     } catch (err) {
@@ -185,7 +198,10 @@ export default function Bookinfo() {
                   type="text"
                 />
 
-                {/* Add score here */}
+                <label>Overall Score</label>
+                <p className="error-message">{reviewRatingError}</p>
+
+                <StarRating reviewRating={reviewRating} setReviewRating={setReviewRating} />
 
                 <label>Review Content</label>
                 <p className="error-message">{reviewContentError}</p>
@@ -248,6 +264,9 @@ export default function Bookinfo() {
                   return (
                     <div className="review-container" key={i}>
                       <h3>{review.reviewTitle}</h3>
+
+                      <FinishedRating score={review.reviewRating} />
+
                       <div className="email-date">
                         <p>BY {review.email}</p>
                         <p>{new Date(review.timestamp.seconds * 1000).toLocaleString()}</p>
