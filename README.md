@@ -26,6 +26,6 @@ I haven't really thought about the design yet so it's not very pretty but i'll p
 ![Picture of the Home page](src/assets/pictures/image-4.png)
 
 ## Book information
-![Picture of book information page](src/assets/pictures/image-5.png)
+![Picture of the book information page](src/assets/pictures/image-5.png)
 
-![Picture of leaving a review](src/assets/pictures/image-7.png)
+![Picture of reviews](src/assets/pictures/image-6.png)
