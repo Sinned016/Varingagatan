@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     /* font-family: 'Arial', sans-serif;  */
-    color: #f0f0f0;
     font-family: "Roboto", sans-serif;
 }
 
@@ -26,6 +25,7 @@ body {
     background-position: center; /* This will center the image within the container */
     background-repeat: no-repeat; /* This will prevent the image from repeating */
     background-attachment: fixed;
+    color: #f0f0f0;
 }
 
 #root {
@@ -652,6 +652,14 @@ border-bottom: 1px solid black;
     color: var(--main-clr); 
 }
 
+input[type=radio] {
+    display: none;
+}
+
+.star {
+    cursor: pointer;
+    transition: color 200ms;
+}
 
 /* Footer */
 .footer-container {
