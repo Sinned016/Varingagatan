@@ -65,6 +65,11 @@ input, textarea {
     color: rgb(255, 73, 73);
 }
 
+.no-link {
+    text-decoration: none;
+    color: var(--text-clr);
+}
+
 
 /* Header  */
 .header-container {
@@ -432,6 +437,8 @@ margin-bottom: .7em;
 /* Book page */
 .books-h1 {
     text-align: center;
+    margin-bottom: .3em;
+    color: var(--main-clr);
 }
 
 .books-h2 {
@@ -450,7 +457,7 @@ margin-bottom: .7em;
     
 }
 
-.books-container img {
+.books-img {
     width: 100px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
     object-fit: cover;
@@ -464,6 +471,8 @@ margin-bottom: .7em;
     flex-direction: column;
     
 }
+
+
 
 /* Book info */
 .book-information-container {
@@ -709,6 +718,10 @@ input[type=radio] {
 .star {
     cursor: pointer;
     transition: color 200ms;
+}
+
+.no-rating {
+    color: var(--main-clr);
 }
 
 /* Footer */

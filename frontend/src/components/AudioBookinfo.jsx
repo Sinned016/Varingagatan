@@ -8,6 +8,7 @@ import likeWhite from "../assets/icons/likeWhite.png";
 import likeBlue from "../assets/icons/likeBlue.png";
 import StarRating from "./StarRating";
 import FinishedRating from "./FinishedRating";
+import { calculateAverageRating } from "../functions/calculateAverageRating";
 
 export default function Bookinfo() {
   let { id } = useParams();
@@ -22,6 +23,7 @@ export default function Bookinfo() {
   const [open, setOpen] = useState(false);
   const [displayedReviews, setDisplayedReviews] = useState(5);
   const [reviewRating, setReviewRating] = useState(0);
+  const [averageRating, setAverageRating] = useState(null);
 
   // Trigger to do the useEffect again and fetch all data.
   const [submitTrigger, setSubmitTrigger] = useState(false);
@@ -36,8 +38,12 @@ export default function Bookinfo() {
         const booksData = await getDoc(audioBookDocRef);
 
         if (booksData.exists()) {
-          // Check if the document exists
-          setAudioBookInfo(booksData.data()); // Set bookInfo state with the data of the document
+          const data = booksData.data();
+          setAudioBookInfo(data); // Set bookInfo state with the data of the document
+
+          const averageRating = calculateAverageRating(data.reviews);
+          console.log(averageRating);
+          setAverageRating(averageRating);
         } else {
           console.log("No such document!");
         }
@@ -165,9 +171,12 @@ export default function Bookinfo() {
           <div className="book-information-container">
             <div className="book-information-top">
               <img src={audioBookInfo.image} alt="" />
-              <div>
-                <h1>{audioBookInfo.title}</h1>
-                <p>{audioBookInfo.author}</p>
+              <div className="book-information">
+                <h2 style={{ marginBottom: "10px" }}>{audioBookInfo.title}</h2>
+
+                <FinishedRating score={averageRating} size={25} />
+
+                <p style={{ marginTop: "10px" }}>{audioBookInfo.author}</p>
                 <p>{audioBookInfo.language}</p>
                 <p>{audioBookInfo.price} kr</p>
               </div>
@@ -265,7 +274,7 @@ export default function Bookinfo() {
                     <div className="review-container" key={i}>
                       <h3>{review.reviewTitle}</h3>
 
-                      <FinishedRating score={review.reviewRating} />
+                      <FinishedRating score={review.reviewRating} size={25} />
 
                       <div className="email-date">
                         <p>BY {review.email}</p>

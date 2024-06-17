@@ -16,16 +16,21 @@ I haven't really thought about the design yet so it's not very pretty but i'll p
 - #10 Fetch and show all reviews for a specific book. ✅
 - #11 Like and unlike reviews. ✅
 - #12 Change the Font and the look of the page (colors) maybe layout. ✅
-- #13 Filter and search for data / books.
-- #14 Make all sections work, like: audiobooks, books, etc..
-- #15 Add the total amount of reviews under a book next to the "Reviews" title under each book.
-- #16 Admin page where you can create new data that you want to show on the page.
+- #13 Create a section for all books and all audiobooks where the design is different compared to the home page. ✅
+- #14 Calculate and show the average rating of books ✅
+- #15 Create admin account and check if the logged in user in an admin. ✅
+- #16 Create functions that only admins can access like delete comments.
+- #16 Create an admin page where admins can add new books/audiobooks and delete books/audiobooks.
+- #17 Filter and search for data / books.
 
 # Progress Pictures
 ## Home page
 ![Picture of the Home page](frontend/src/assets/pictures/progress-pic-1.png)
 
-## Book information
+## Book information page
 ![Picture of the book information page](frontend/src/assets/pictures/progress-pic-2.png)
 
 ![Picture of reviews](frontend/src/assets/pictures/progress-pic-3.png)
+
+## Books page
+![Picture of the books page](frontend/src/assets/pictures/progress-pic-4.png)

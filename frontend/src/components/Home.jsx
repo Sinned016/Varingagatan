@@ -103,7 +103,7 @@ export default function Home() {
       </div>
 
       <div className="home-container">
-        <h2 className="title">Audio Books</h2>
+        <h2 className="title">Audiobooks</h2>
 
         <div className="books-grid">
           {audioBooks &&

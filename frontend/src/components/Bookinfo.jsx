@@ -172,12 +172,13 @@ export default function Bookinfo() {
             <div className="book-information-top">
               <img src={bookInfo.image} alt="" />
               <div className="book-information">
-                <h1>{bookInfo.title}</h1>
-                <p>{bookInfo.author}</p>
+                <h2 style={{ marginBottom: "10px" }}>{bookInfo.title}</h2>
+
+                <FinishedRating score={averageRating} size={25} />
+
+                <p style={{ marginTop: "10px" }}>{bookInfo.author}</p>
                 <p>{bookInfo.language}</p>
                 <p>{bookInfo.price}</p>
-
-                <FinishedRating score={averageRating} />
               </div>
             </div>
 
@@ -273,7 +274,7 @@ export default function Bookinfo() {
                     <div className="review-container" key={i}>
                       <h3>{review.reviewTitle}</h3>
 
-                      <FinishedRating score={review.reviewRating} />
+                      <FinishedRating score={review.reviewRating} size={25} />
 
                       <div className="email-date">
                         <p>BY {review.email}</p>

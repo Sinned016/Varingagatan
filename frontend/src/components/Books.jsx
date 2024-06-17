@@ -31,6 +31,7 @@ export default function Books() {
   }, []);
   return (
     <div className="page-container">
+      {/* Maybe change this to another banner */}
       <h1 className="books-h1">Books</h1>
 
       {books &&
@@ -38,22 +39,24 @@ export default function Books() {
           const averageRating = calculateAverageRating(book.reviews);
 
           return (
-            <div className="books-container" key={index}>
-              <img src={book.image} alt="" />
+            <Link className="no-link" key={index} to={`/book/${book.id}`}>
+              <div className="books-container">
+                <img className="books-img" src={book.image} alt="" />
 
-              <div className="books-container-info">
-                <h2 className="books-h2">{book.title}</h2>
-                <FinishedRating score={averageRating} size={25} />
+                <div className="books-container-info">
+                  <h2 className="books-h2">{book.title}</h2>
+                  <FinishedRating score={averageRating} size={25} />
 
-                {/* Add emotes here instead of a text like "price:" */}
-                <div style={{ marginTop: "10px" }}>
-                  <p>{book.author}</p>
-                  <p>{book.language}</p>
-                  <p>Price: {book.price} kr</p>
-                  <p>Pages: {book.pages}</p>
+                  {/* Add emotes here instead of a text like "price:" */}
+                  <div style={{ marginTop: "10px" }}>
+                    <p>{book.author}</p>
+                    <p>{book.language}</p>
+                    <p>Price: {book.price} kr</p>
+                    <p>Pages: {book.pages}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
     </div>
