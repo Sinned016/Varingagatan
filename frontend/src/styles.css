@@ -313,7 +313,6 @@ input, textarea {
 
 
 /* Home */
-
 .home-header {
 margin-bottom: .7em;
 }
@@ -328,7 +327,7 @@ margin-bottom: .7em;
     padding: 1em;
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1000px) {
     .page-container {
         width: 60%;
     }
@@ -340,7 +339,7 @@ margin-bottom: .7em;
     }
 } 
 
-.books-container {
+.home-container {
     background-color: var(--header-clr);
     border: 1px solid var(--border-clr);
     margin-bottom: 1em;
@@ -370,7 +369,7 @@ margin-bottom: .7em;
     justify-content: center;
     width: 100%; /* Set the desired width for the container */
     height: 220px; /* Set the desired height for the container */
-    overflow: hidden; /* Hide any content that overflows the container */
+    
 }
 
 @media (max-width: 400px) {
@@ -384,9 +383,21 @@ margin-bottom: .7em;
 } 
 
 .book-image {
-    height: 100%;
-    width: 100%;
-    display: block;
+    width: 100%; /* Adjust the width as needed */
+    height: 150px; 
+    object-fit: cover;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    margin-right: 20px;
+}
+
+.audiobook-image {
+    width: 100%; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    margin-right: 20px;
 }
 
 .book-info {
@@ -416,6 +427,43 @@ margin-bottom: .7em;
     color: var(--text-clr);
 }
 
+
+
+/* Book page */
+.books-h1 {
+    text-align: center;
+}
+
+.books-h2 {
+    margin-bottom: 10px;
+}
+
+.books-container {
+    background-color: var(--header-clr);
+    border: 1px solid var(--border-clr);
+    margin-bottom: .5rem;
+    padding: 1em;
+
+    display: flex;
+    flex-direction: row;
+    
+    
+}
+
+.books-container img {
+    width: 100px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    margin-right: 20px;
+}
+
+.books-container-info {
+    display: flex;
+    flex-direction: column;
+    
+}
 
 /* Book info */
 .book-information-container {
@@ -494,7 +542,6 @@ margin-bottom: .7em;
     justify-content: center;
 
 }
-
 
 .submitReview-form > * {
     margin-bottom: .2em; /* Adjust the margin as needed */
@@ -577,8 +624,6 @@ textarea {
     margin-bottom: 1em;
     line-height: 1.5; /* 1.5 times the font size */
 }
-
-
 
 .line-space {
     background-color: #8f8f8f;

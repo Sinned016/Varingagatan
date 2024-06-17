@@ -50,7 +50,7 @@ export default function Home() {
         <img src={homeHeader} alt="" />
       </div>
 
-      <div className="books-container">
+      <div className="home-container">
         <h2 className="title">Recommended Series</h2>
 
         <div className="books-grid">
@@ -76,7 +76,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="books-container">
+      <div className="home-container">
         <h2 className="title">Books</h2>
 
         <div className="books-grid">
@@ -102,7 +102,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="books-container">
+      <div className="home-container">
         <h2 className="title">Audio Books</h2>
 
         <div className="books-grid">
@@ -111,7 +111,7 @@ export default function Home() {
               <div className="book-item" key={book.id}>
                 <div className="book-image-container">
                   <Link to={`/audioBook/${book.id}`}>
-                    <img src={book.image} alt="" className="book-image" />
+                    <img src={book.image} alt="" className="audiobook-image" />
                   </Link>
                 </div>
                 <div className="book-info">
