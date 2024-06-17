@@ -3,7 +3,7 @@ import PropTypes from "prop-types"; // Import PropTypes
 
 export default function FinishedRating({ score }) {
   return (
-    <div>
+    <div className="finished-rating">
       {[...Array(score)].map((star, index) => (
         <span key={index}>
           <FaStar className="star" color="#ffc107" size={30} />

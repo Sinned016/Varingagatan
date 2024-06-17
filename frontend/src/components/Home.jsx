@@ -42,7 +42,7 @@ export default function Home() {
       }
     }
     getData();
-  }, [navigate]);
+  }, []);
 
   return (
     <div className="page-container">

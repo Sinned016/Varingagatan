@@ -439,7 +439,7 @@ margin-bottom: .7em;
     border: 3px solid rgb(214, 214, 214);
 }
 
-.book-information-top div{
+.book-information{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -447,7 +447,7 @@ margin-bottom: .7em;
     width: 100%;
 } 
 
-.book-information-top div h1{
+.book-information h1{
     text-align: center;
     color: var(--text-clr);
 }
@@ -650,6 +650,11 @@ border-bottom: 1px solid black;
 /* Doesnt work? */
 .total-reviews {
     color: var(--main-clr); 
+}
+
+.finished-rating {
+    display: flex;
+    flex-direction: row;
 }
 
 input[type=radio] {
