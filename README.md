@@ -22,6 +22,7 @@ I haven't really thought about the design yet so it's not very pretty but i'll p
 - #16 Create functions that only admins can access like delete comments.
 - #16 Create an admin page where admins can add new books/audiobooks and delete books/audiobooks.
 - #17 Filter and search for data / books.
+- #18 Add more icons.
 
 # Progress Pictures
 ## Home page
