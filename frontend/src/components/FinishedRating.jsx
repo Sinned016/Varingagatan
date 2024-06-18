@@ -2,7 +2,6 @@ import { FaStar } from "react-icons/fa";
 import PropTypes from "prop-types"; // Import PropTypes
 
 export default function FinishedRating({ score, size }) {
-  console.log(score);
   return (
     <div className="finished-rating">
       {score ? (
@@ -20,4 +19,5 @@ export default function FinishedRating({ score, size }) {
 
 FinishedRating.propTypes = {
   score: PropTypes.number.isRequired,
+  size: PropTypes.number,
 };

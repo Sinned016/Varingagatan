@@ -1,14 +1,15 @@
-import { Timestamp, arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
+import { Timestamp, arrayRemove, arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { db } from "../config/firebase";
 import useAuthState from "./useAuthState";
 import { Button, Modal, Box, Typography } from "@mui/material";
 import likeWhite from "../assets/icons/likeWhite.png";
-import likeBlue from "../assets/icons/likeBlue.png";
+import likeBlack from "../assets/icons/likeBlack.png";
 import StarRating from "./StarRating";
 import FinishedRating from "./FinishedRating";
 import { calculateAverageRating } from "../functions/calculateAverageRating";
+import { FaTrash } from "react-icons/fa";
 
 export default function Bookinfo() {
   let { id } = useParams();
@@ -21,6 +22,8 @@ export default function Bookinfo() {
   const [reviewContentError, setReviewContentError] = useState("");
   const [reviewRatingError, setReviewRatingError] = useState("");
   const [open, setOpen] = useState(false);
+  const [openDeleteReview, setOpenDeleteReview] = useState(false);
+  const [reviewIdToDelete, setReviewIdToDelete] = useState(null);
   const [displayedReviews, setDisplayedReviews] = useState(5);
   const [reviewRating, setReviewRating] = useState(0);
   const [averageRating, setAverageRating] = useState(null);
@@ -42,7 +45,7 @@ export default function Bookinfo() {
           setAudioBookInfo(data); // Set bookInfo state with the data of the document
 
           const averageRating = calculateAverageRating(data.reviews);
-          console.log(averageRating);
+
           setAverageRating(averageRating);
         } else {
           console.log("No such document!");
@@ -126,14 +129,14 @@ export default function Bookinfo() {
 
   async function rateReview(e, reviewId, action) {
     e.preventDefault();
-    console.log(id);
-    const bookDocRef = doc(db, "books", id);
+
+    const audioBookDocRef = doc(db, "audioBooks", id);
     //const newTimestamp = Timestamp.now();
 
     try {
-      const bookSnapshot = await getDoc(bookDocRef);
+      const bookSnapshot = await getDoc(audioBookDocRef);
       const bookData = bookSnapshot.data();
-      console.log(bookData);
+
       const reviewIndex = bookData.reviews.findIndex((review) => review.reviewId === reviewId);
 
       // The specific review the user has liked
@@ -144,23 +147,64 @@ export default function Bookinfo() {
 
         if (!userLiked) {
           bookData.reviews[reviewIndex].likes.push(signedInUser.uid);
-          await updateDoc(bookDocRef, {
+          await updateDoc(audioBookDocRef, {
             reviews: bookData.reviews,
           });
-
-          console.log("You liked the review");
         } else {
           const userIndex = review.likes.indexOf(signedInUser.uid);
           bookData.reviews[reviewIndex].likes.splice(userIndex, 1);
-          await updateDoc(bookDocRef, {
+          await updateDoc(audioBookDocRef, {
             reviews: bookData.reviews,
           });
-          console.log("You unliked the review");
         }
       }
       setSubmitTrigger(!submitTrigger);
     } catch (err) {
       console.error(err);
+    }
+  }
+
+  async function handleDeleteReviewModal(reviewId) {
+    setReviewIdToDelete(reviewId);
+    setOpenDeleteReview(true);
+  }
+
+  //Create a function that works with both audio books and books, now i have 2 functions which kinda looks the same.
+  async function deleteReview() {
+    if (isAdmin) {
+      try {
+        // Get a reference to the book document
+        const audioBookDocRef = doc(db, "audioBooks", id);
+
+        // Fetch the book document
+        const audioBookDocSnap = await getDoc(audioBookDocRef);
+
+        if (audioBookDocSnap.exists()) {
+          const bookData = audioBookDocSnap.data();
+          const reviews = bookData.reviews;
+
+          // Find the review to remove
+          const reviewToRemove = reviews.find((review) => review.reviewId === reviewIdToDelete);
+
+          if (reviewToRemove) {
+            // Update the book document to remove the review from the array
+            await updateDoc(audioBookDocRef, {
+              reviews: arrayRemove(reviewToRemove),
+            });
+
+            console.log("Review deleted successfully");
+          } else {
+            console.log("Review not found");
+          }
+        } else {
+          console.log("Book not found");
+        }
+      } catch (err) {
+        console.error("Error deleting review: ", err);
+      }
+      setSubmitTrigger(!submitTrigger);
+      setReviewIdToDelete(null);
+      setOpenDeleteReview(false);
     }
   }
 
@@ -213,7 +257,9 @@ export default function Bookinfo() {
                 <StarRating reviewRating={reviewRating} setReviewRating={setReviewRating} />
 
                 <label>Review Content</label>
+
                 <p className="error-message">{reviewContentError}</p>
+
                 <textarea
                   value={reviewContent}
                   onChange={(e) => setReviewContent(e.target.value)}
@@ -284,6 +330,14 @@ export default function Bookinfo() {
                       <p className="margin-bot review-content">{review.reviewContent}</p>
 
                       <div className="reviews-rating-container">
+                        {isAdmin && (
+                          <FaTrash
+                            className="trash-icon"
+                            size="22"
+                            onClick={() => handleDeleteReviewModal(review.reviewId)}
+                          />
+                        )}
+
                         <p className="total-reviews">
                           {review.likes && review.likes.length > 0 ? review.likes.length : ""}
                         </p>
@@ -296,7 +350,7 @@ export default function Bookinfo() {
                             {review.likes && review.likes.includes(signedInUser.uid) ? (
                               <img className="rate-icon" src={likeWhite} alt="" />
                             ) : (
-                              <img className="rate-icon" src={likeBlue} alt="" />
+                              <img className="rate-icon" src={likeBlack} alt="" />
                             )}
                           </div>
                         ) : (
@@ -317,6 +371,33 @@ export default function Bookinfo() {
             ) : (
               "No reviews"
             )}
+          </div>
+
+          <div>
+            <Modal open={openDeleteReview} onClose={() => setOpenDeleteReview(false)}>
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: 400,
+                  bgcolor: "background.paper",
+                  boxShadow: 24,
+                  p: 4,
+                }}
+              >
+                <Typography variant="h5" sx={{ color: "black", mb: 2 }}>
+                  Are you sure you want to delete this review?
+                </Typography>
+                <Button variant="contained" sx={{ mr: 1 }} onClick={deleteReview}>
+                  Yes
+                </Button>
+                <Button variant="contained" onClick={() => setOpen(false)}>
+                  No
+                </Button>
+              </Box>
+            </Modal>
           </div>
         </div>
       ) : (
