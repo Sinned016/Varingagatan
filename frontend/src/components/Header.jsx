@@ -29,6 +29,14 @@ export default function Header() {
     setMenuOpen(false);
   }
 
+  function handleSearch(e) {
+    const title = e.target.value;
+    if (e.key === "Enter") {
+      setMenuOpen(false);
+      navigate(`books/search?title=${title}`);
+    }
+  }
+
   return (
     <div className="header-container">
       <h2 className="header-title">
@@ -40,6 +48,10 @@ export default function Header() {
       {menuOpen && (
         <nav className="header-nav">
           <ul className="header-ul">
+            <div className="search-container">
+              <input className="search-input" type="text" placeholder="Search title..." onKeyDown={handleSearch} />
+            </div>
+
             <Link to="/" className="navLink" onClick={closeHeader}>
               Home
             </Link>

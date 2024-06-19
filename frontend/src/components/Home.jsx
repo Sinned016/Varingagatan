@@ -12,6 +12,7 @@ export default function Home() {
   const [books, setBooks] = useState();
   const [newestBooks, setNewestBooks] = useState();
   const [audioBooks, setAudioBooks] = useState();
+
   const navigate = useNavigate();
 
   //const { signedInUser, isAdmin } = useAuthState(); // Use the custom hook to get authentication state
@@ -20,27 +21,26 @@ export default function Home() {
     async function getData() {
       const booksCollectionRef = collection(db, "books");
       const audioBooksCollectionRef = collection(db, "audioBooks");
+
       try {
+        // Fetch books
         const booksData = await getDocs(booksCollectionRef);
         const filteredBooksData = booksData.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-        console.log(filteredBooksData);
         setBooks(filteredBooksData);
 
+        // Fetch audiobooks
+        const audioBooksData = await getDocs(audioBooksCollectionRef);
+        const filteredAudioBooksData = audioBooksData.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        setAudioBooks(filteredAudioBooksData);
+
+        // Filter and set state for newest books
         const newestBooks = filterBooksForNewest(filteredBooksData);
         setNewestBooks(newestBooks);
       } catch (err) {
         console.error(err);
       }
-
-      try {
-        const audioBooksData = await getDocs(audioBooksCollectionRef);
-        const filteredAudioBooksData = audioBooksData.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-        console.log(filteredAudioBooksData);
-        setAudioBooks(filteredAudioBooksData);
-      } catch (err) {
-        console.error(err);
-      }
     }
+
     getData();
   }, []);
 

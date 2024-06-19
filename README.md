@@ -19,10 +19,16 @@ I haven't really thought about the design yet so it's not very pretty but i'll p
 - #13 Create a section for all books and all audiobooks where the design is different compared to the home page. ✅
 - #14 Calculate and show the average rating of books ✅
 - #15 Create admin account and check if the logged in user in an admin. ✅
-- #16 Create functions that only admins can access like delete comments.
-- #16 Create an admin page where admins can add new books/audiobooks and delete books/audiobooks.
-- #17 Filter and search for data / books.
-- #18 Add more icons.
+- #16 Create functions that only admins can access like delete comments. ✅
+- #17 Filter and search for data / books. ✅
+- #18 Create a search page (after pressing enter while searching you get taken to another page, Use query parameters). ✅
+- #19 Fix it so admins can add new books.
+- #20 Fix it so admins can delete books.
+- #21 Create an about page.
+- #22 Add more icons.
+- #23 Add more animation / transitions.
+
+- #?? Cleanup code (make more components, delete logs etc...).
 
 # Progress Pictures
 ## Home page

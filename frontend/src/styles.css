@@ -128,7 +128,29 @@ input, textarea {
     border-top: 1px solid var(--border-clr);
 }
 
+.search-container {
+    border-bottom: 1px solid var(--border-clr);
+    padding: 1em;
+}
+.search-input {
+    padding: .7em;
+    background-color: var(--background-clr);
+    border: none;
+    color: var(--text-clr);
+    width: 100%;
+}
 
+.search-input-page {
+    padding: .7em;
+    background-color: var(--header-clr);
+    border: none;
+    color: var(--text-clr);
+    width: 100%;
+}
+
+.search-input::placeholder {
+   
+}
 
 
 /* Register / login */
