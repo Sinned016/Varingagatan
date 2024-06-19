@@ -3,6 +3,12 @@
 Working on a forum / book page for my dad Leif Selander.
 I haven't really thought about the design yet so it's not very pretty but i'll post progress pictures below of hows it's going and how it looks like.
 
+Programming stack with this project:
+React,
+Firebase,
+Node.JS,
+CSS
+
 # Progress List
 - #1 Setting up a project with React router. ✅
 - #2 Setting up Firebase. ✅
