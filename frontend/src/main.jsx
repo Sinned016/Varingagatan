@@ -12,16 +12,18 @@ import AudioBookinfo from "./components/AudioBookinfo.jsx";
 import Books from "./components/Books.jsx";
 import AudioBooks from "./components/AudioBooks.jsx";
 import SearchPage from "./components/SearchPage.jsx";
+import About from "./components/About.jsx";
 
 export const pages = [
   { path: "/login", label: "Login", element: <Login /> },
-  { path: "register", label: "Register", element: <Register /> },
+  { path: "/register", label: "Register", element: <Register /> },
   { path: "/", label: "Home", element: <Home /> },
   { path: "/books", label: "Books", element: <Books /> },
   { path: "/audioBooks", label: "Audiobooks", element: <AudioBooks /> },
-  { path: "book/:id", label: "Book", element: <Bookinfo /> },
-  { path: "audioBook/:id", label: "Audiobook", element: <AudioBookinfo /> },
-  { path: "books/search", label: "Search", element: <SearchPage /> },
+  { path: "/book/:id", label: "Book", element: <Bookinfo /> },
+  { path: "/audioBook/:id", label: "Audiobook", element: <AudioBookinfo /> },
+  { path: "/books/search", label: "Search", element: <SearchPage /> },
+  { path: "/about", label: "About", element: <About /> },
 ];
 
 const router = createBrowserRouter([

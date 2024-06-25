@@ -754,7 +754,59 @@ input[type=radio] {
     cursor: pointer;
 }
 
+
+
+
+/* About */
+
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Ensure items are stacked vertically */
+
+    /* max-width: 800px; 
+    width: 100%; 
+    margin: 0 auto;  */
+
+    padding: 1em;
+    background-color: var(--header-clr);
+}
+
+/* Choose size of the about information here */
+.about-info {
+    max-width: 100%; 
+    box-sizing: border-box;
+}
+
+.about-info > * {
+    margin-bottom: .2em;
+    color: var(--text-clr);
+}
+
+.about-info h1, .about-info h2 {
+    color: var(--main-clr)
+}
+
+
+.about-info p {
+    line-height: 1.5; /* 1.5 times the font size */
+}
+
+.about-img {
+    max-width: 100%; /* Ensure image scales within its container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.about-link a {
+    color: var(--text-clr)
+}
+
+
+
+
 /* Footer */
+
 .footer-container {
     background-color: #1d1d1d;
     padding: 1em;

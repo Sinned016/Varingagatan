@@ -64,14 +64,6 @@ export default function Header() {
               Audiobooks
             </Link>
 
-            <Link to="/shop" className="navLink" onClick={closeHeader}>
-              Shop
-            </Link>
-
-            <Link to="/contact" className="navLink" onClick={closeHeader}>
-              Contact
-            </Link>
-
             <Link to="/about" className="navLink" onClick={closeHeader}>
               About
             </Link>
@@ -81,6 +73,7 @@ export default function Header() {
                 Admin
               </Link>
             )}
+
             {signedInUser ? (
               <Link to="/login" className="navLink" onClick={logout}>
                 Logout
