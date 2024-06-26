@@ -53,7 +53,7 @@ export default function Home() {
       <div className="home-container">
         <h2 className="title">Recommended Series</h2>
 
-        <div className="books-grid">
+        <div className="recommended-books-grid">
           {newestBooks &&
             newestBooks.map((book) => (
               <div className="book-item" key={book.id}>
@@ -62,14 +62,15 @@ export default function Home() {
                     <img src={book.image} alt="" className="book-image" />
                   </Link>
                 </div>
-                <div className="book-info">
-                  <h3>{book.title}</h3>
-                  <p>{book.author}</p>
-                </div>
-                <div className="book-price">
-                  <Link to={book.linkToPurchase}>
-                    <button>{book.price} kr</button>
-                  </Link>
+
+                <div className="book-info-container">
+                  <div className="book-info">
+                    <h3>{book.title}</h3>
+                  </div>
+
+                  <div className="book-author">
+                    <p>{book.author}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -88,14 +89,15 @@ export default function Home() {
                     <img src={book.image} alt="" className="book-image" />
                   </Link>
                 </div>
-                <div className="book-info">
-                  <h3>{book.title}</h3>
-                  <p>{book.author}</p>
-                </div>
-                <div className="book-price">
-                  <Link to={book.linkToPurchase}>
-                    <button>{book.price} kr</button>
-                  </Link>
+
+                <div className="book-info-container">
+                  <div className="book-info">
+                    <h3>{book.title}</h3>
+                  </div>
+
+                  <div className="book-author">
+                    <p>{book.author}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -105,24 +107,25 @@ export default function Home() {
       <div className="home-container">
         <h2 className="title">Audiobooks</h2>
 
-        <div className="books-grid">
+        <div className="audiobook-grid">
           {audioBooks &&
             audioBooks.map((book) => (
-              <div className="book-item" key={book.id}>
-                <div className="book-image-container">
-                  <Link to={`/audioBook/${book.id}`}>
+              <div className="audiobook-item" key={book.id}>
+                <Link to={`/audioBook/${book.id}`}>
+                  <div className="audiobook-image-container">
                     <img src={book.image} alt="" className="audiobook-image" />
-                  </Link>
-                </div>
-                <div className="book-info">
-                  <h3>{book.title}</h3>
-                  <p>{book.author}</p>
-                </div>
-                <div className="book-price">
-                  <Link to={book.linkToPurchase}>
-                    <button>{book.price} kr</button>
-                  </Link>
-                </div>
+                  </div>
+
+                  <div className="book-info-container">
+                    <div className="book-info">
+                      <h3>{book.title}</h3>
+                    </div>
+
+                    <div className="book-author">
+                      <p>{book.author}</p>
+                    </div>
+                  </div>
+                </Link>
               </div>
             ))}
         </div>

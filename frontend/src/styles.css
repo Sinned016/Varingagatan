@@ -373,69 +373,125 @@ margin-bottom: .7em;
     padding: 1em;
 }
 
-.books-grid {
+.recommended-books-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    
-    /* background-color: blue; */
+}
+
+.books-grid {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .book-item {
-    flex: 1 0 auto; /* Let items grow and shrink equally */
-    margin: 5px;
-    width: 150px;
-    max-width: 150px;
-    
-    
+    box-sizing: border-box;
+    padding: 10px 10px;
+    width: 33.3333333333%;
+}
+
+.book-info-container {
+    margin-top: 1em;
 }
 
 .book-image-container {
+    border: 1px solid #ddd;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding-top: 150%; /* Adjust the aspect ratio (height / width * 100) */
+}
+
+.book-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Makes sure images cover the container while maintaining aspect ratio */
+}
+
+
+
+.audiobook-grid {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%; /* Set the desired width for the container */
-    height: 220px; /* Set the desired height for the container */
+    flex-wrap: wrap;
+}
+
+.audiobook-item {
+    box-sizing: border-box;
+    padding: 10px 10px;
+    width: 33.3333333333%;
     
 }
 
-@media (max-width: 400px) {
-    .book-item {
-        max-width: calc(33.33% - 10px);
-    }
-
-    .book-image-container {
-        height: 150px;
-    }
-} 
-
-.book-image {
-    width: 100%; /* Adjust the width as needed */
-    height: 150px; 
-    object-fit: cover;
+.audiobook-image-container {
     border: 1px solid #ddd;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-    margin-right: 20px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* Adjust the aspect ratio (height / width * 100) */
 }
 
 .audiobook-image {
-    width: 100%; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover;
-    border: 1px solid #ddd;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-    margin-right: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Makes sure images cover the container while maintaining aspect ratio */
 }
+
+
+@media (min-width: 600px) {
+    .book-item {
+        width: 25%;
+    }
+
+    .audiobook-item {
+        width: 25%;
+    }
+} 
+
+@media (min-width: 800px) {
+    .book-item {
+        width: 20%;
+    }
+
+    .audiobook-item {
+        width: 20%;
+    }
+} 
+
+@media (min-width: 1600px) {
+    .book-item {
+        width: 16.6666666667%;
+    }
+
+    .audiobook-item {
+        width: 16.6666666667%;
+    }
+    
+}
+
 
 .book-info {
     text-align: center; /* Optionally center align the book info */
-    height: 5em;
+    margin-top: .2em;
 
 }
 
 .book-info > *{
-  color: var(--main-clr);
+  color: var(--text-clr);
+  font-size: .9em;
 
+}
+
+.book-author {
+    text-align: center;
+    font-size: .9em;
 }
 
 .book-price {
