@@ -393,7 +393,13 @@ export default function Bookinfo() {
                 <Button variant="contained" sx={{ mr: 1 }} onClick={deleteReview}>
                   Yes
                 </Button>
-                <Button variant="contained" onClick={() => setOpen(false)}>
+                <Button
+                  variant="contained"
+                  onClick={() => {
+                    setOpenDeleteReview(false);
+                    setReviewIdToDelete(null);
+                  }}
+                >
                   No
                 </Button>
               </Box>

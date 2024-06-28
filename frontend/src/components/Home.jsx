@@ -57,21 +57,21 @@ export default function Home() {
           {newestBooks &&
             newestBooks.map((book) => (
               <div className="book-item" key={book.id}>
-                <div className="book-image-container">
-                  <Link to={`/book/${book.id}`}>
+                <Link to={`/book/${book.id}`}>
+                  <div className="book-image-container">
                     <img src={book.image} alt="" className="book-image" />
-                  </Link>
-                </div>
-
-                <div className="book-info-container">
-                  <div className="book-info">
-                    <h3>{book.title}</h3>
                   </div>
 
-                  <div className="book-author">
-                    <p>{book.author}</p>
+                  <div className="book-info-container">
+                    <div className="book-info">
+                      <h3>{book.title}</h3>
+                    </div>
+
+                    <div className="book-author">
+                      <p>{book.author}</p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
         </div>
@@ -84,21 +84,21 @@ export default function Home() {
           {books &&
             books.map((book) => (
               <div className="book-item" key={book.id}>
-                <div className="book-image-container">
-                  <Link to={`/book/${book.id}`}>
+                <Link to={`/book/${book.id}`}>
+                  <div className="book-image-container">
                     <img src={book.image} alt="" className="book-image" />
-                  </Link>
-                </div>
-
-                <div className="book-info-container">
-                  <div className="book-info">
-                    <h3>{book.title}</h3>
                   </div>
 
-                  <div className="book-author">
-                    <p>{book.author}</p>
+                  <div className="book-info-container">
+                    <div className="book-info">
+                      <h3>{book.title}</h3>
+                    </div>
+
+                    <div className="book-author">
+                      <p>{book.author}</p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
         </div>

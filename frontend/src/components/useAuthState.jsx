@@ -7,10 +7,10 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 const useAuthState = () => {
   const [signedInUser, setSignedInUser] = useState();
   const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true); // Add a loading state
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      console.log(user);
       if (user) {
         setSignedInUser({
           uid: user.uid,
@@ -32,7 +32,6 @@ const useAuthState = () => {
           const accessToken = await user.getIdToken();
           if (accessToken) {
             const decodedToken = jwtDecode(accessToken);
-            console.log(decodedToken);
             setIsAdmin(decodedToken.admin);
           } else {
             console.error("Access token is undefined");
@@ -42,16 +41,16 @@ const useAuthState = () => {
         }
       } else {
         // User is not logged in
-        console.log("You are not logged in");
         setIsAdmin(false);
         setSignedInUser(undefined);
       }
+      setLoading(false); // Set loading to false once the state is determined
     });
 
     return unsubscribe; // Clean up the subscription
   }, []);
 
-  return { signedInUser, isAdmin };
+  return { signedInUser, isAdmin, loading }; // Return loading state
 };
 
 export default useAuthState;

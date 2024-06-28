@@ -18,6 +18,6 @@ export default function FinishedRating({ score, size }) {
 }
 
 FinishedRating.propTypes = {
-  score: PropTypes.number.isRequired,
+  score: PropTypes.number,
   size: PropTypes.number,
 };

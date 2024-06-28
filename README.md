@@ -30,9 +30,11 @@ CSS
 - #18 Create a search page (after pressing enter while searching you get taken to another page, Use query parameters). ✅
 - #19 Fix it so admins can add new books.
 - #20 Fix it so admins can delete books.
-- #21 Create an about page.
-- #22 Add more icons.
-- #23 Add more animation / transitions.
+- #21 Fix it so admins can edit books.
+- #22 Create an about page.
+- #23 Add more icons.
+- #24 Add more animations / transitions.
+- #25 When showing books, create ternaries to check if the data exists or not, if it doesnt show nothing.
 
 - #?? Cleanup code (make more components, delete logs etc...).
 

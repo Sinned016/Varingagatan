@@ -13,6 +13,8 @@ import Books from "./components/Books.jsx";
 import AudioBooks from "./components/AudioBooks.jsx";
 import SearchPage from "./components/SearchPage.jsx";
 import About from "./components/About.jsx";
+import AdminHome from "./components/AdminHome.jsx";
+import AdminEdit from "./components/AdminEdit.jsx";
 
 export const pages = [
   { path: "/login", label: "Login", element: <Login /> },
@@ -24,6 +26,8 @@ export const pages = [
   { path: "/audioBook/:id", label: "Audiobook", element: <AudioBookinfo /> },
   { path: "/books/search", label: "Search", element: <SearchPage /> },
   { path: "/about", label: "About", element: <About /> },
+  { path: "/admin", label: "Admin", element: <AdminHome /> },
+  { path: "/admin/data/:id", label: "Admin data", element: <AdminEdit /> },
 ];
 
 const router = createBrowserRouter([
