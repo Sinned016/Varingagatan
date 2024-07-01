@@ -920,20 +920,6 @@ input[type=radio] {
     border-radius: .5em;  
 }
 
-.admin-add-content > * {
-    margin-bottom: .5em;
-}
-
-.admin-add-content label {
-    margin-bottom: .5em;
-}
-
-.admin-add-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .admin-add-choice-container {
     position: relative;
 }
@@ -944,13 +930,119 @@ input[type=radio] {
     flex-direction: column;
 }
 
-.admin-add-book {
-   width: 100%;
+.admin-add-book-btn {
+    width: 100%;
 }
 
-.admin-add-audiobook {
-   width: 100%;
+.admin-add-book {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    background-color: #333;
+    box-shadow: 24;
+    padding: 1em;
+    border-radius: 10px;
 }
+
+.admin-add-content {
+    overflow: auto;
+    max-height: 60vh; /* Adjust this value as needed */
+    padding-right: 1em; 
+    padding-left: 1em; 
+    margin-bottom: 1em;
+    scrollbar-width: thin;
+    scrollbar-color: #8b8b8b transparent;
+}
+
+.admin-add-content label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.2em;
+    color: var(--text-clr);
+}
+
+.admin-content-input {
+    width: 100%;
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    font-size: 1em;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-bottom: 1em;
+}
+
+.admin-content-input:focus {
+    box-shadow: 5px 5px 5px rgba(37, 37, 37, 1);
+    outline: none;
+}
+
+.admin-content-input::placeholder {
+    font-style: italic;
+}
+
+.error-input {
+    width: 100%;
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 1px solid red;
+    background-color: #f9f9f9;
+    font-size: 1em;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-bottom: .5em;
+}
+
+.error-input:focus {
+    box-shadow: 5px 5px 5px rgba(37, 37, 37, 1);
+    outline: none;
+}
+
+.error-input::placeholder {
+    font-style: italic;
+}
+
+.admin-add-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.admin-add-buttons button {
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.admin-add-buttons .admin-add-cancel {
+    background-color: #ccc;
+    color: #333;
+}
+
+.admin-add-buttons .admin-add-confirm {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.admin-add-buttons button:hover {
+    background-color: darken(#ccc, 10%);
+}
+
+.admin-add-buttons .admin-add-confirm:hover {
+    background-color: #218838;
+}
+
+.admin-add-buttons button:focus {
+    box-shadow: 0 0 5px rgba(102, 102, 102, 0.5);
+}
+
+
 
 .admin-add-close {
     position: absolute;
@@ -966,6 +1058,8 @@ input[type=radio] {
     transition: .3s;
     color: white;
 }
+
+
 
 
 

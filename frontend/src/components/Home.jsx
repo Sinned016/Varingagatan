@@ -51,7 +51,7 @@ export default function Home() {
       </div>
 
       <div className="home-container">
-        <h2 className="title">Recommended Series</h2>
+        <h2 className="title">Väringasagan Series</h2>
 
         <div className="recommended-books-grid">
           {newestBooks &&

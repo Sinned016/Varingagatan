@@ -13,8 +13,8 @@ import Books from "./components/Books.jsx";
 import AudioBooks from "./components/AudioBooks.jsx";
 import SearchPage from "./components/SearchPage.jsx";
 import About from "./components/About.jsx";
-import AdminHome from "./components/AdminHome.jsx";
-import AdminEdit from "./components/AdminEdit.jsx";
+import AdminHome from "./components/Admin/AdminHome.jsx";
+import AdminEdit from "./components/Admin/AdminEdit.jsx";
 
 export const pages = [
   { path: "/login", label: "Login", element: <Login /> },
