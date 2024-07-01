@@ -28,10 +28,10 @@ CSS
 - #16 Create functions that only admins can access like delete comments. ✅
 - #17 Filter and search for data / books. ✅
 - #18 Create a search page (after pressing enter while searching you get taken to another page, Use query parameters). ✅
-- #19 Fix it so admins can add new books.
-- #20 Fix it so admins can delete books.
-- #21 Fix it so admins can edit books.
-- #22 Create an about page.
+- #19 Create a admin page where admins can add new books. ✅
+- #20 On the admin page they should be able to delete books. ✅
+- #21 Fix it so admins can edit information about the books.
+- #22 Create an about page and write about Leif Selander . ✅
 - #23 Add more icons.
 - #24 Add more animations / transitions.
 - #25 When showing books, create ternaries to check if the data exists or not, if it doesnt show nothing.
@@ -49,3 +49,8 @@ CSS
 
 ## Books page
 ![Picture of the books page](frontend/src/assets/pictures/progress-pic-4.png)
+
+## Admin Page
+![Picture of the admin home page](frontend/src/assets/pictures/progress-pic-5.png)
+
+![Picture of modal where admins can add books 7 audiobooks](frontend/src/assets/pictures/progress-pic-6.png)
