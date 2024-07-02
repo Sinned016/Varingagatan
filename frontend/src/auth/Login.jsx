@@ -46,59 +46,57 @@ export default function Login() {
   }
 
   return (
-    <>
-      <div className="signin-container">
-        <div className="register-wrapper">
-          <form onSubmit={handleLogin}>
-            <h1 className="title">Sign In</h1>
+    <div className="signin-container">
+      <div className="register-wrapper">
+        <form onSubmit={handleLogin}>
+          <h1 className="title">Sign In</h1>
 
-            <div className="error-box">
-              <p>{formError}</p>
-            </div>
+          <div className="error-box">
+            <p>{formError}</p>
+          </div>
 
-            <div className="input-box">
-              <input required type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-              <i className="bx bxs-user"></i>
-            </div>
+          <div className="input-box">
+            <input required type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+            <i className="bx bxs-user"></i>
+          </div>
 
-            <div className="input-box">
-              <input
-                required
-                type="password"
-                placeholder="Password"
-                minLength={8}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <i className="bx bxs-lock-alt"></i>
-            </div>
+          <div className="input-box">
+            <input
+              required
+              type="password"
+              placeholder="Password"
+              minLength={8}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <i className="bx bxs-lock-alt"></i>
+          </div>
 
-            <div className="remember-forgot">
-              {/* Dont know how to get this to work rn, might continue in the future  */}
-              {/* <div>
+          <div className="remember-forgot">
+            {/* Dont know how to get this to work rn, might continue in the future  */}
+            {/* <div>
                 <input type="checkbox" onChange={() => setRememberMe(!rememberMe)}></input>
                 <label>Remember me</label>
               </div> */}
-              <div></div>
+            <div></div>
 
-              <a href="">Forgot password?</a>
-            </div>
+            <a href="">Forgot password?</a>
+          </div>
 
-            <button type="submit" className="register-btn">
-              Login
-            </button>
+          <button type="submit" className="register-btn">
+            Login
+          </button>
 
-            <div className="register-link">
-              <p>
-                Dont have an account? <Link to={"/register"}>Sign Up</Link>
-              </p>
-            </div>
+          <div className="register-link">
+            <p>
+              Dont have an account? <Link to={"/register"}>Sign Up</Link>
+            </p>
+          </div>
 
-            <div className="google-box">
-              <button onClick={signInWithGoogle}>Sign In with google</button>
-            </div>
-          </form>
-        </div>
+          <div className="google-box">
+            <button onClick={signInWithGoogle}>Sign In with google</button>
+          </div>
+        </form>
       </div>
-    </>
+    </div>
   );
 }

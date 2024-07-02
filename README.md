@@ -8,6 +8,7 @@ React,
 Firebase,
 Node.JS,
 CSS
+MUI
 
 # Progress List
 - #1 Setting up a project with React router. ✅
@@ -30,11 +31,13 @@ CSS
 - #18 Create a search page (after pressing enter while searching you get taken to another page, Use query parameters). ✅
 - #19 Create a admin page where admins can add new books. ✅
 - #20 On the admin page they should be able to delete books. ✅
-- #21 Fix it so admins can edit information about the books.
+- #21 Fix it so admins can edit information about the books. ✅
 - #22 Create an about page and write about Leif Selander . ✅
 - #23 Add more icons.
 - #24 Add more animations / transitions.
 - #25 When showing books, create ternaries to check if the data exists or not, if it doesnt show nothing.
+- #26 Update the log in page so it looks better.
+- #27 Create media querys for desktop view.
 
 - #?? Cleanup code (make more components, delete logs etc...).
 

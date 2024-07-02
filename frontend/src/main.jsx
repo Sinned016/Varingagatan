@@ -27,7 +27,7 @@ export const pages = [
   { path: "/books/search", label: "Search", element: <SearchPage /> },
   { path: "/about", label: "About", element: <About /> },
   { path: "/admin", label: "Admin", element: <AdminHome /> },
-  { path: "/admin/data/:id", label: "Admin data", element: <AdminEdit /> },
+  { path: "/admin/:type/:id", label: "Admin data", element: <AdminEdit /> },
 ];
 
 const router = createBrowserRouter([

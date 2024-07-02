@@ -162,30 +162,20 @@ a {
 
 /* Register / login */
 .register-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - (4em + 6em + 2em));
-    margin-bottom: 2em;
-    margin-top: 1.5em;
+    width: 100%;
+    padding: 1em;
+    
 }
 
+/* Change this width to like 30% on fullscreen desktop */
 .signin-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - (4em + 6em + 2em));
+    width: 100%;
+    padding: 1em;
+    
 }
 
 .register-wrapper {
-    min-width: 20em;
-    background-color: var(--header-clr);
-    border: 2px solid var(--border-clr);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    color: var(--text-clr);
-    border-radius: 10px;
-    padding: 20px; 
+    padding: 1em;
 }
 
 .register-wrapper h1{
@@ -362,18 +352,6 @@ margin-bottom: .7em;
     position: relative;
 }
 
-@media (min-width: 1000px) {
-    .page-container {
-        width: 60%;
-    }
-}  
-
-@media (max-width: 1000px) {
-    .page-container {
-        width: 100%;
-    }
-} 
-
 .home-container {
     background-color: var(--header-clr);
     border: 1px solid var(--border-clr);
@@ -421,8 +399,6 @@ margin-bottom: .7em;
     object-fit: cover; /* Makes sure images cover the container while maintaining aspect ratio */
 }
 
-
-
 .audiobook-grid {
     display: flex;
     flex-wrap: wrap;
@@ -455,36 +431,7 @@ margin-bottom: .7em;
 }
 
 
-@media (min-width: 600px) {
-    .book-item {
-        width: 25%;
-    }
 
-    .audiobook-item {
-        width: 25%;
-    }
-} 
-
-@media (min-width: 800px) {
-    .book-item {
-        width: 20%;
-    }
-
-    .audiobook-item {
-        width: 20%;
-    }
-} 
-
-@media (min-width: 1600px) {
-    .book-item {
-        width: 16.6666666667%;
-    }
-
-    .audiobook-item {
-        width: 16.6666666667%;
-    }
-    
-}
 
 
 .book-info {
@@ -965,11 +912,10 @@ input[type=radio] {
 
 .admin-content-input {
     width: 100%;
-    padding: 0.5em;
+    padding: 0.2em;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
-    font-size: 1em;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: border-color 0.3s, box-shadow 0.3s;
     margin-bottom: 1em;
@@ -1059,6 +1005,28 @@ input[type=radio] {
     color: white;
 }
 
+.admin-edit-container {
+    background-color: var(--header-clr);
+    padding: 1em;
+}
+
+.admin-edit-information {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-edit-information h2{
+    color: var(--main-clr);
+    margin-bottom: .5em;
+}
+
+.admin-edit-information label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.2em;
+    color: var(--text-clr);
+}
+
 
 
 
@@ -1076,8 +1044,45 @@ input[type=radio] {
 
 
 /* Media query for smaller screens */
-/* @media (max-width: 1200px) {
-    .register-wrapper {
-        padding: 20px; 
+@media (min-width: 1000px) {
+    .page-container {
+        width: 60%;
     }
-} */
+}  
+
+@media (max-width: 1000px) {
+    .page-container {
+        width: 100%;
+    }
+} 
+
+@media (min-width: 600px) {
+    .book-item {
+        width: 25%;
+    }
+
+    .audiobook-item {
+        width: 25%;
+    }
+} 
+
+@media (min-width: 800px) {
+    .book-item {
+        width: 20%;
+    }
+
+    .audiobook-item {
+        width: 20%;
+    }
+} 
+
+@media (min-width: 1600px) {
+    .book-item {
+        width: 16.6666666667%;
+    }
+
+    .audiobook-item {
+        width: 16.6666666667%;
+    }
+    
+}

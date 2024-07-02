@@ -152,7 +152,7 @@ export default function AdminHome() {
           return (
             <div key={index} className="admin-data-container">
               {/* Add a Trashcan icon here */}
-              <Link className="books-container" key={index} to={`/admin/data/${data.id}`}>
+              <Link className="books-container" key={index} to={`/admin/${data.type}/${data.id}`}>
                 <img className="books-img" src={data.image} alt="" />
 
                 <div className="books-container-info">
