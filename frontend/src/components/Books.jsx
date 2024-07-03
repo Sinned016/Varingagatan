@@ -45,6 +45,7 @@ export default function Books() {
 
                 <div className="books-container-info">
                   <h2 className="books-h2">{book.title}</h2>
+
                   <FinishedRating score={averageRating} size={25} />
 
                   {/* Add emotes here instead of a text like "price:" */}

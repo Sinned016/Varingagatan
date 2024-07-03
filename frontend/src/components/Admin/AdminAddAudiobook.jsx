@@ -19,17 +19,19 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
     image: "", // required
   };
 
-  const [formValues, setFormValues] = useState(initialFormValues);
-  const [errors, setErrors] = useState({
+  const initialErrors = {
     title: false,
     author: false,
     description: false,
     language: false,
-    reader: false,
     price: false,
     linkToPurchase: false,
     image: false,
-  });
+    pages: false,
+  };
+
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [errors, setErrors] = useState(initialErrors);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -60,6 +62,7 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
 
       setAddAudioBook(false);
       setFormValues(initialFormValues);
+      setErrors(initialErrors);
       setTrigger((prev) => !prev);
     }
   }
@@ -71,6 +74,7 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
         onClose={() => {
           setAddAudioBook(false);
           setFormValues(initialFormValues);
+          setErrors(initialErrors);
         }}
       >
         <Box className="admin-add-book">
@@ -81,7 +85,6 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
             <input
               className={errors.title ? "error-input" : "admin-content-input"}
               name="title"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Title..."
               value={formValues.title}
@@ -92,7 +95,6 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
             <input
               className="admin-content-input"
               name="secondTitle"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Second title..."
               value={formValues.secondTitle}
@@ -103,7 +105,6 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
             <input
               className={errors.author ? "error-input" : "admin-content-input"}
               name="author"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Author..."
               value={formValues.author}
@@ -114,7 +115,6 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
             <textarea
               className={errors.description ? "error-input" : "admin-content-input"}
               name="description"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Description..."
               value={formValues.description}
@@ -125,7 +125,6 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
             <input
               className={errors.language ? "error-input" : "admin-content-input"}
               name="language"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Language..."
               value={formValues.language}
@@ -136,7 +135,6 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
             <input
               className={errors.reader ? "error-input" : "admin-content-input"}
               name="reader"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Reader..."
               value={formValues.reader}
@@ -147,7 +145,6 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
             <input
               className={errors.price ? "error-input" : "admin-content-input"}
               name="price"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Price..."
               value={formValues.price}
@@ -158,7 +155,6 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
             <input
               className="admin-content-input"
               name="time"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Time..."
               value={formValues.time}
@@ -169,7 +165,6 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
             <input
               className="admin-content-input"
               name="size"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Size..."
               value={formValues.size}
@@ -180,7 +175,6 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
             <input
               className="admin-content-input"
               name="releaseDate"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Release date..."
               value={formValues.releaseDate}
@@ -191,7 +185,6 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
             <input
               className="admin-content-input"
               name="publisher"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Publisher..."
               value={formValues.publisher}
@@ -202,7 +195,6 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
             <input
               className={errors.linkToPurchase ? "error-input" : "admin-content-input"}
               name="linkToPurchase"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Link to purchase..."
               value={formValues.linkToPurchase}
@@ -213,7 +205,6 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
             <input
               className={errors.image ? "error-input" : "admin-content-input"}
               name="image"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Link to audiobook image..."
               value={formValues.image}
@@ -227,6 +218,7 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
               onClick={() => {
                 setAddAudioBook(false);
                 setFormValues(initialFormValues);
+                setErrors(initialErrors);
               }}
             >
               Cancel

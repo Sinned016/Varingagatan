@@ -9,7 +9,7 @@ import likeBlack from "../assets/icons/likeBlack.png";
 import StarRating from "./StarRating";
 import FinishedRating from "./FinishedRating";
 import { calculateAverageRating } from "../functions/calculateAverageRating";
-import { FaTrash } from "react-icons/fa";
+import { FaTimes, FaTrash } from "react-icons/fa";
 
 export default function Bookinfo() {
   let { id } = useParams();
@@ -291,20 +291,33 @@ export default function Bookinfo() {
                   left: "50%",
                   transform: "translate(-50%, -50%)",
                   width: 400,
-                  bgcolor: "background.paper",
+                  bgcolor: "#333",
                   boxShadow: 24,
                   p: 4,
+                  borderRadius: "1em",
+                  overflow: "auto",
+                  outline: "none",
                 }}
               >
-                <Typography variant="h5" sx={{ color: "black", mb: 2 }}>
-                  Are you sure you want to post this review?
-                </Typography>
-                <Button variant="contained" sx={{ mr: 1 }} onClick={handleSubmitReview}>
-                  Submit
-                </Button>
-                <Button variant="contained" onClick={() => setOpen(false)}>
-                  Close
-                </Button>
+                <div>
+                  <h1 className="modal-title">Post Review?</h1>
+                  <p className="modal-text">Are you sure you want to post this review?</p>
+
+                  <div className="modal-button-container">
+                    <button
+                      style={{ marginBottom: ".5em" }}
+                      className="modal-button-delete"
+                      onClick={handleSubmitReview}
+                    >
+                      Submit
+                    </button>
+                    <button className="modal-button" onClick={() => setOpen(false)}>
+                      Close
+                    </button>
+                  </div>
+
+                  <FaTimes className="modal-close" size="25" onClick={() => setOpen(false)} />
+                </div>
               </Box>
             </Modal>
           </div>

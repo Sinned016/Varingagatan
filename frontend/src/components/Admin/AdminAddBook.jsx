@@ -18,8 +18,7 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
     image: "", // required
   };
 
-  const [formValues, setFormValues] = useState(initialFormValues);
-  const [errors, setErrors] = useState({
+  const initialErrors = {
     title: false,
     author: false,
     description: false,
@@ -28,7 +27,10 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
     linkToPurchase: false,
     image: false,
     pages: false,
-  });
+  };
+
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [errors, setErrors] = useState(initialErrors);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -59,6 +61,7 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
 
       setAddBook(false);
       setFormValues(initialFormValues);
+      setErrors(initialErrors);
       setTrigger((prev) => !prev);
     }
   }
@@ -70,10 +73,11 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
         onClose={() => {
           setAddBook(false);
           setFormValues(initialFormValues);
+          setErrors(initialErrors);
         }}
       >
-        <Box className="admin-add-book">
-          <h1 style={{ textAlign: "center", marginBottom: ".5em" }}>Add New Book</h1>
+        <div className="admin-add-book">
+          <h1 style={{ textAlign: "center", marginTop: ".5em", marginBottom: ".5em" }}>Add New Book</h1>
 
           <div className="admin-add-content">
             <label htmlFor="">Title</label>
@@ -81,7 +85,6 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
             <input
               className={errors.title ? "error-input" : "admin-content-input"}
               name="title"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Title..."
               value={formValues.title}
@@ -92,7 +95,6 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
             <input
               className="admin-content-input"
               name="secondTitle"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Second title..."
               value={formValues.secondTitle}
@@ -103,7 +105,6 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
             <input
               className={errors.author ? "error-input" : "admin-content-input"}
               name="author"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Author..."
               value={formValues.author}
@@ -114,7 +115,6 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
             <textarea
               className={errors.description ? "error-input" : "admin-content-input"}
               name="description"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Description..."
               value={formValues.description}
@@ -125,7 +125,6 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
             <input
               className={errors.language ? "error-input" : "admin-content-input"}
               name="language"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Language..."
               value={formValues.language}
@@ -136,7 +135,6 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
             <input
               className={errors.price ? "error-input" : "admin-content-input"}
               name="price"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Price..."
               value={formValues.price}
@@ -147,7 +145,6 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
             <input
               className={errors.pages ? "error-input" : "admin-content-input"}
               name="pages"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Pages..."
               value={formValues.pages}
@@ -158,7 +155,6 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
             <input
               className="admin-content-input"
               name="weight"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Weight..."
               value={formValues.weight}
@@ -169,7 +165,6 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
             <input
               className="admin-content-input"
               name="releaseDate"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Release date..."
               value={formValues.releaseDate}
@@ -180,7 +175,6 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
             <input
               className="admin-content-input"
               name="publisher"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Publisher..."
               value={formValues.publisher}
@@ -191,7 +185,6 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
             <input
               className={errors.linkToPurchase ? "error-input" : "admin-content-input"}
               name="linkToPurchase"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Link to purchase..."
               value={formValues.linkToPurchase}
@@ -202,7 +195,6 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
             <input
               className={errors.image ? "error-input" : "admin-content-input"}
               name="image"
-              style={{ padding: ".3em", width: "100%" }}
               type="text"
               placeholder="Link to book image..."
               value={formValues.image}
@@ -216,6 +208,7 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
               onClick={() => {
                 setAddBook(false);
                 setFormValues(initialFormValues);
+                setErrors(initialErrors);
               }}
             >
               Cancel
@@ -224,7 +217,7 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
               Add
             </button>
           </div>
-        </Box>
+        </div>
       </Modal>
     </div>
   );

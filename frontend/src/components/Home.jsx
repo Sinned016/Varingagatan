@@ -7,6 +7,8 @@ import { getDocs, collection } from "firebase/firestore";
 import { filterBooksForNewest } from "../functions/filterBooksForNewest";
 import useAuthState from "./useAuthState";
 import homeHeader from "../assets/pictures/homeHeader.jpg";
+import { calculateAverageRating } from "../functions/calculateAverageRating";
+import FinishedRating from "./FinishedRating";
 
 export default function Home() {
   const [books, setBooks] = useState();
@@ -55,25 +57,33 @@ export default function Home() {
 
         <div className="recommended-books-grid">
           {newestBooks &&
-            newestBooks.map((book) => (
-              <div className="book-item" key={book.id}>
-                <Link to={`/book/${book.id}`}>
-                  <div className="book-image-container">
-                    <img src={book.image} alt="" className="book-image" />
-                  </div>
+            newestBooks.map((book) => {
+              const averageRating = calculateAverageRating(book.reviews);
 
-                  <div className="book-info-container">
-                    <div className="book-info">
-                      <h3>{book.title}</h3>
+              return (
+                <div className="book-item" key={book.id}>
+                  <Link to={`/book/${book.id}`}>
+                    <div className="book-image-container">
+                      <img src={book.image} alt="" className="book-image" />
                     </div>
 
-                    <div className="book-author">
-                      <p>{book.author}</p>
+                    <div className="book-info-container">
+                      <div className="book-info">
+                        <h3>{book.title}</h3>
+                      </div>
+
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <FinishedRating score={averageRating} size={17} />
+                      </div>
+
+                      <div className="book-author">
+                        <p>{book.author}</p>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
+                  </Link>
+                </div>
+              );
+            })}
         </div>
       </div>
 
@@ -82,25 +92,32 @@ export default function Home() {
 
         <div className="books-grid">
           {books &&
-            books.map((book) => (
-              <div className="book-item" key={book.id}>
-                <Link to={`/book/${book.id}`}>
-                  <div className="book-image-container">
-                    <img src={book.image} alt="" className="book-image" />
-                  </div>
-
-                  <div className="book-info-container">
-                    <div className="book-info">
-                      <h3>{book.title}</h3>
+            books.map((book) => {
+              const averageRating = calculateAverageRating(book.reviews);
+              return (
+                <div className="book-item" key={book.id}>
+                  <Link to={`/book/${book.id}`}>
+                    <div className="book-image-container">
+                      <img src={book.image} alt="" className="book-image" />
                     </div>
 
-                    <div className="book-author">
-                      <p>{book.author}</p>
+                    <div className="book-info-container">
+                      <div className="book-info">
+                        <h3>{book.title}</h3>
+                      </div>
+
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <FinishedRating score={averageRating} size={17} />
+                      </div>
+
+                      <div className="book-author">
+                        <p>{book.author}</p>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
+                  </Link>
+                </div>
+              );
+            })}
         </div>
       </div>
 
@@ -109,25 +126,32 @@ export default function Home() {
 
         <div className="audiobook-grid">
           {audioBooks &&
-            audioBooks.map((book) => (
-              <div className="audiobook-item" key={book.id}>
-                <Link to={`/audioBook/${book.id}`}>
-                  <div className="audiobook-image-container">
-                    <img src={book.image} alt="" className="audiobook-image" />
-                  </div>
-
-                  <div className="book-info-container">
-                    <div className="book-info">
-                      <h3>{book.title}</h3>
+            audioBooks.map((book) => {
+              const averageRating = calculateAverageRating(book.reviews);
+              return (
+                <div className="audiobook-item" key={book.id}>
+                  <Link to={`/audioBook/${book.id}`}>
+                    <div className="audiobook-image-container">
+                      <img src={book.image} alt="" className="audiobook-image" />
                     </div>
 
-                    <div className="book-author">
-                      <p>{book.author}</p>
+                    <div className="book-info-container">
+                      <div className="book-info">
+                        <h3>{book.title}</h3>
+                      </div>
+
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <FinishedRating score={averageRating} size={17} />
+                      </div>
+
+                      <div className="book-author">
+                        <p>{book.author}</p>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
+                  </Link>
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>

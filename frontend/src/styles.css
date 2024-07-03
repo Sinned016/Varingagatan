@@ -10,12 +10,15 @@
 :root {
     --main-clr: #d3c082;
     --text-clr: #f0f0f0;
-    --button-clr: #862626;
-    --button-hover-clr: #6b1d1d;
+    --hover-text-clr: #f0f0f0d8;
+    --button-clr: #a32d2d;
+    --button-hover-clr: #8d1d1d;
     --border-clr: #7e7e7e;
     --header-clr: #1f1f1f;
     --darker-clr: #141414;
     --background-clr: #333;
+    --success-clr: #28a745;
+    --hover-success-clr: #28a746d3;
 }
 
 body {
@@ -40,12 +43,6 @@ main {
     align-items: center;
     flex: 1;
     background-color: var(--darker-clr);
-}
-
-button {
-    color: #333;
-    cursor: pointer;
-    padding: .5em 1em;
 }
 
 input, textarea {
@@ -377,7 +374,7 @@ margin-bottom: .7em;
 }
 
 .book-info-container {
-    margin-top: 1em;
+    margin-top: .6em;
 }
 
 .book-image-container {
@@ -430,19 +427,15 @@ margin-bottom: .7em;
     object-fit: cover; /* Makes sure images cover the container while maintaining aspect ratio */
 }
 
-
-
-
-
 .book-info {
-    text-align: center; /* Optionally center align the book info */
+    text-align: center;
     margin-top: .2em;
-
+    margin-bottom: .2em;
 }
 
 .book-info > *{
   color: var(--text-clr);
-  font-size: .9em;
+  font-size: 1em;
 
 }
 
@@ -711,10 +704,10 @@ border-bottom: 1px solid black;
     border: none;
 }
 
-.liked:hover {
+/* .liked:hover {
     transition: .3s;
     background-color: var(--button-hover-clr);
-}
+} */
 
 .unliked {
     padding: .5em .7em .3em .7em;
@@ -724,10 +717,10 @@ border-bottom: 1px solid black;
     border: none;
 }
 
-.unliked:hover {
+/* .unliked:hover {
     transition: .3s;
     background-color: var(--button-clr);
-}
+} */
 
 .rate-icon {
     width: 15px;
@@ -877,7 +870,7 @@ input[type=radio] {
     flex-direction: column;
 }
 
-.admin-add-book-btn {
+.admin-add-choice-btn {
     width: 100%;
 }
 
@@ -886,7 +879,7 @@ input[type=radio] {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90%;
+    width: 400px;
     background-color: #333;
     box-shadow: 24;
     padding: 1em;
@@ -912,8 +905,8 @@ input[type=radio] {
 
 .admin-content-input {
     width: 100%;
-    padding: 0.2em;
-    border-radius: 5px;
+    padding: .5em;
+    border-radius: .5em;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -932,14 +925,13 @@ input[type=radio] {
 
 .error-input {
     width: 100%;
-    padding: 0.5em;
-    border-radius: 5px;
+    padding: 0.2em;
+    border-radius: .5em;
     border: 1px solid red;
     background-color: #f9f9f9;
-    font-size: 1em;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: border-color 0.3s, box-shadow 0.3s;
-    margin-bottom: .5em;
+    margin-bottom: 1em;
 }
 
 .error-input:focus {
@@ -958,12 +950,12 @@ input[type=radio] {
 }
 
 .admin-add-buttons button {
-    padding: 0.5em 1em;
     border: none;
     border-radius: 5px;
+    padding: .7em 1em ;
+    border: none;
+    border-radius: .2em;
     cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .admin-add-buttons .admin-add-cancel {
@@ -972,7 +964,7 @@ input[type=radio] {
 }
 
 .admin-add-buttons .admin-add-confirm {
-    background-color: #28a745;
+    background-color: var(--success-clr);
     color: #fff;
 }
 
@@ -981,28 +973,15 @@ input[type=radio] {
 }
 
 .admin-add-buttons .admin-add-confirm:hover {
-    background-color: #218838;
+    background-color: var(--hover-success-clr);
+}
+
+.admin-add-buttons .admin-add-cancel:hover {
+    background-color: #afafaf;
 }
 
 .admin-add-buttons button:focus {
     box-shadow: 0 0 5px rgba(102, 102, 102, 0.5);
-}
-
-
-
-.admin-add-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    margin-top: 1em;
-    margin-right: 1em;
-}
-
-.admin-add-close:hover {
-    cursor: pointer;
-    transition: .3s;
-    color: white;
 }
 
 .admin-edit-container {
@@ -1040,6 +1019,93 @@ input[type=radio] {
 
 .footer-container h2, p {
     color: var(--text-clr)
+}
+
+
+
+/* Modal Styling */
+
+.modal-title {
+    text-align: center;
+    margin-bottom: .3em;
+    
+}
+
+.modal-text {
+    text-align: center;
+    margin-bottom: 1em;
+    
+}
+
+.modal-button-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal-button {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: .5em;
+    padding: .6em;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    background-color: var(--text-clr);
+    font-weight: bold;
+}
+
+.modal-button:hover {
+    transition: .3s;
+    background-color: var(--hover-text-clr);
+    cursor: pointer;
+}
+
+.modal-button-approve {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: .5em;
+    padding: .6em;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    font-weight: bold;
+    background-color: var(--success-clr);
+    color: var(--text-clr);
+}
+
+.modal-button-approve:hover {
+    transition: .3s;
+    background-color: var(--hover-success-clr);
+    cursor: pointer;
+}
+
+.modal-button-delete {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: .5em;
+    padding: .6em;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    font-weight: bold;
+    background-color: var(--button-clr);
+    color: var(--text-clr);
+}
+
+.modal-button-delete:hover {
+    transition: .3s;
+    background-color: var(--button-hover-clr);
+    cursor: pointer;
+}
+
+.modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    margin-top: 1em;
+    margin-right: 1em;
+}
+
+.modal-close:hover {
+    cursor: pointer;
+    transition: .3s;
+    color: white;
 }
 
 

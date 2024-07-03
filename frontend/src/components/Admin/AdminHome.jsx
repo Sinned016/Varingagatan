@@ -183,26 +183,40 @@ export default function AdminHome() {
               left: "50%",
               transform: "translate(-50%, -50%)",
               width: 400,
-              bgcolor: "background.paper",
+              bgcolor: "#333",
               boxShadow: 24,
               p: 4,
+              borderRadius: "1em",
+              overflow: "auto",
+              outline: "none",
             }}
           >
-            <Typography variant="h5" sx={{ color: "black", mb: 2 }}>
-              Are you sure you want to delete this?
-            </Typography>
-            <Button variant="contained" sx={{ mr: 1 }} onClick={() => deleteData()}>
-              Delete
-            </Button>
-            <Button
-              variant="contained"
+            <h1 className="modal-title">Delete</h1>
+            <p className="modal-text">Are you sure you want to delete this?</p>
+
+            <div className="modal-button-container">
+              <button style={{ marginBottom: ".5em" }} className="modal-button-delete" onClick={() => deleteData()}>
+                Delete
+              </button>
+              <button
+                className="modal-button"
+                onClick={() => {
+                  setOpenDeleteData(false);
+                  setDataToDelete(null);
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+
+            <FaTimes
+              className="modal-close"
+              size="25"
               onClick={() => {
                 setOpenDeleteData(false);
                 setDataToDelete(null);
               }}
-            >
-              Cancel
-            </Button>
+            />
           </Box>
         </Modal>
       </div>
@@ -215,8 +229,7 @@ export default function AdminHome() {
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
-              width: "90%",
-              maxHeight: 600,
+              width: 400,
               bgcolor: "#333",
               boxShadow: 24,
               p: 4,
@@ -226,20 +239,24 @@ export default function AdminHome() {
             }}
           >
             <div>
-              <h1 style={{ textAlign: "center" }}>Add new Content</h1>
-              <p style={{ textAlign: "center", marginBottom: ".5em" }}>What Type of book do you want to add?</p>
+              <h1 className="modal-title">Add new Content</h1>
+              <p className="modal-text">What Type of book do you want to add?</p>
 
-              <div className="admin-add-choice">
-                <button className="admin-add-book-btn" onClick={() => handleCreateData("book")}>
+              <div className="modal-button-container">
+                <button
+                  style={{ marginBottom: ".5em" }}
+                  className="modal-button"
+                  onClick={() => handleCreateData("book")}
+                >
                   Book
                 </button>
-                <button className="admin-add-book-btn" onClick={() => handleCreateData("audiobook")}>
+                <button className="modal-button" onClick={() => handleCreateData("audiobook")}>
                   Audiobook
                 </button>
               </div>
 
               <FaTimes
-                className="admin-add-close"
+                className="modal-close"
                 size="25"
                 onClick={() => {
                   setOpenAddNew(false);
