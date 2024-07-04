@@ -1,17 +1,18 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { jwtDecode } from "jwt-decode";
-import { useEffect, useState } from "react";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
 import useAuthState from "./useAuthState";
+import { FaBars, FaTimes, FaHome, FaBook, FaInfoCircle, FaPlayCircle, FaSearch } from "react-icons/fa";
+import { CiLogout, CiLogin } from "react-icons/ci";
+import { RiAdminLine } from "react-icons/ri";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { signedInUser, isAdmin } = useAuthState(); // Use the custom hook to get authentication state
   const navigate = useNavigate();
+  const navRef = useRef();
 
   console.log(isAdmin);
 
@@ -19,7 +20,6 @@ export default function Header() {
     try {
       setMenuOpen(false);
       await signOut(auth);
-      navigate("/login");
     } catch (e) {
       console.error(e);
     }
@@ -37,54 +37,72 @@ export default function Header() {
     }
   }
 
+  function showNavBar() {
+    navRef.current.classList.toggle("responsive_nav");
+  }
+
   return (
     <div className="header-container">
       <h2 className="header-title">
         <Link to="/">Väringasagan</Link>
       </h2>
 
-      <i onClick={() => setMenuOpen(!menuOpen)} className="bx bx-menu"></i>
+      <nav ref={navRef} className="header-nav">
+        <Link to="/" onClick={closeHeader}>
+          <FaHome /> <span className="nav-icon-margin">Home</span>
+        </Link>
 
-      {menuOpen && (
-        <nav className="header-nav">
-          <ul className="header-ul">
-            <div className="search-container">
-              <input className="search-input" type="text" placeholder="Search title..." onKeyDown={handleSearch} />
-            </div>
+        <Link to="/books" onClick={closeHeader}>
+          <FaBook /> <span className="nav-icon-margin">Books</span>
+        </Link>
 
-            <Link to="/" className="navLink" onClick={closeHeader}>
-              Home
-            </Link>
+        <Link to="/audioBooks" onClick={closeHeader}>
+          <FaPlayCircle /> <span className="nav-icon-margin">Audiobooks</span>
+        </Link>
 
-            <Link to="/books" className="navLink" onClick={closeHeader}>
-              Books
-            </Link>
+        <Link to="/about" onClick={closeHeader}>
+          <FaInfoCircle />
+          <span className="nav-icon-margin">About</span>
+        </Link>
 
-            <Link to="/audioBooks" className="navLink" onClick={closeHeader}>
-              Audiobooks
-            </Link>
+        {isAdmin && (
+          <Link to="/admin" onClick={closeHeader}>
+            <RiAdminLine /> <span className="nav-icon-margin">Admin</span>
+          </Link>
+        )}
 
-            <Link to="/about" className="navLink" onClick={closeHeader}>
-              About
-            </Link>
+        {signedInUser ? (
+          <button className="nav-logout" onClick={logout}>
+            <CiLogout /> <span className="nav-icon-margin">Logout</span>
+          </button>
+        ) : (
+          <Link to="/login" className="nav-login" onClick={closeHeader}>
+            <CiLogin /> <span className="nav-icon-margin">Login</span>
+          </Link>
+        )}
 
-            {isAdmin && (
-              <Link to="/admin" className="navLink" onClick={closeHeader}>
-                Admin
-              </Link>
-            )}
+        <div className="search-container">
+          <FaSearch className="search-icon" />
+          <input className="search-input" type="text" placeholder="Search title..." onKeyDown={handleSearch} />
+        </div>
 
-            {signedInUser ? (
-              <Link to="/login" className="navLink" onClick={logout}>
-                Logout
-              </Link>
-            ) : (
-              <Link to="/login" className="navLink" onClick={closeHeader}>
-                Login
-              </Link>
-            )}
-          </ul>
-        </nav>
+        <button className="nav-btn nav-close-btn" onClick={showNavBar}>
+          <FaTimes />
+        </button>
+      </nav>
+
+      <button className="nav-btn nav-menu-btn" onClick={showNavBar}>
+        <FaBars />
+      </button>
+
+      {signedInUser ? (
+        <button className="nav-logout-desktop" onClick={logout}>
+          <CiLogout /> <span className="nav-icon-margin">Logout</span>
+        </button>
+      ) : (
+        <Link to="/login" className="nav-login-desktop" onClick={closeHeader}>
+          <CiLogin /> <span className="nav-icon-margin">Login</span>
+        </Link>
       )}
     </div>
   );

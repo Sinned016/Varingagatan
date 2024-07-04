@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { db } from "../config/firebase";
 import FinishedRating from "./FinishedRating";
 import { calculateAverageRating } from "../functions/calculateAverageRating";
+import { FaSearch } from "react-icons/fa";
 
 export default function SearchPage() {
   const [combinedData, setCombinedData] = useState();
@@ -61,15 +62,10 @@ export default function SearchPage() {
 
   return (
     <div className="page-container">
-      <input
-        style={{ marginBottom: "1em" }}
-        className="search-input-page"
-        type="text"
-        placeholder="Search title..."
-        value={search}
-        onChange={handleSearch}
-        onKeyDown={handleSearch}
-      />
+      <div className="search-input-page-container">
+        <FaSearch className="search-icon" />
+        <input className="search-input" type="text" placeholder="Search title..." onKeyDown={handleSearch} />
+      </div>
 
       {combinedData &&
         combinedData.map((data, index) => {

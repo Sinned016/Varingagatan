@@ -5,7 +5,7 @@ import { collection, deleteDoc, doc, getDoc, getDocs } from "firebase/firestore"
 import { db } from "../../config/firebase";
 import FinishedRating from "../FinishedRating";
 import { calculateAverageRating } from "../../functions/calculateAverageRating";
-import { FaTrash } from "react-icons/fa";
+import { FaSearch, FaTrash } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import { Box, Button, Modal, Typography } from "@mui/material";
@@ -135,10 +135,11 @@ export default function AdminHome() {
 
       <FaPlus className="admin-add" size="30" onClick={() => setOpenAddNew(true)} />
 
-      <div className="admin-search-container">
+      <div className="search-input-page-container">
+        <FaSearch className="search-icon" />
         <input
+          className="search-input"
           value={searchData}
-          className="admin-search-input"
           type="text"
           placeholder="Search title..."
           onChange={(e) => handleSearch(e.target.value)}
