@@ -224,8 +224,8 @@ export default function Bookinfo() {
                 <FinishedRating score={averageRating} size={25} />
 
                 <p style={{ marginTop: "10px" }}>{bookInfo.author}</p>
-                <p>{bookInfo.language}</p>
-                <p>{bookInfo.price}</p>
+                {/* <p>{bookInfo.language}</p> */}
+                {/* <p>{bookInfo.price}</p> */}
               </div>
             </div>
 

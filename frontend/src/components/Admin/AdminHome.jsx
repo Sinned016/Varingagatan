@@ -157,7 +157,9 @@ export default function AdminHome() {
                 <img className="books-img" src={data.image} alt="" />
 
                 <div className="books-container-info">
-                  <h2 className="books-h2">{data.title}</h2>
+                  <h2 className="books-h2">
+                    {data.title} - {data.type}
+                  </h2>
                   <FinishedRating score={averageRating} size={25} />
 
                   {/* Add emotes here instead of a text like "price:" and "pages:" */}
@@ -165,7 +167,6 @@ export default function AdminHome() {
                     <p>Author: {data.author}</p>
                     <p>Language: {data.language}</p>
                     <p>Price: {data.price} kr</p>
-                    <p>Type: {data.type}</p>
                   </div>
                 </div>
               </Link>

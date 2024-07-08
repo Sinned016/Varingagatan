@@ -258,7 +258,13 @@ export default function AdminEdit() {
           </div>
 
           <div className="admin-add-buttons">
-            <button className="admin-add-cancel" onClick={() => setData(initalData)}>
+            <button
+              className="admin-add-cancel"
+              onClick={() => {
+                setData(initalData);
+                navigate("/admin");
+              }}
+            >
               Cancel
             </button>
             <button className="admin-add-confirm" onClick={() => saveData()}>
