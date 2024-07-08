@@ -218,6 +218,7 @@ export default function Bookinfo() {
           <div className="book-information-container">
             <div className="book-information-top">
               <img src={bookInfo.image} alt="" />
+
               <div className="book-information">
                 <h2 style={{ marginBottom: "10px" }}>{bookInfo.title}</h2>
 
