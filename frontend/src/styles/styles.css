@@ -1,0 +1,211 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* font-family: 'Arial', sans-serif;  */
+    font-family: "Roboto", sans-serif;
+}
+
+/* CSS VARIABLES */
+:root {
+    --main-clr: #d3c082;
+    --text-clr: #f0f0f0;
+    --hover-text-clr: #f0f0f0d8;
+    --button-clr: #a32d2d;
+    --button-hover-clr: #8d1d1d;
+    --border-clr: #7e7e7e;
+    --header-clr: #1f1f1f;
+    --darker-clr: #141414;
+    --background-clr: #333;
+    --success-clr: #28a745;
+    --hover-success-clr: #28a746d3;
+}
+
+body {
+    background: url("../assets/pictures/wood-floor1920.jpg") no-repeat center center/ cover; 
+    /* background: linear-gradient(to bottom right, #c9c9c9, #3e2723); 
+    background-size: cover; /* This will scale the image proportionally to cover the entire container */
+    background-position: center; /* This will center the image within the container */
+    background-repeat: no-repeat; /* This will prevent the image from repeating */
+    background-attachment: fixed;
+    color: #f0f0f0;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+  
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+input, textarea {
+    color: black;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-clr)
+}
+
+
+/* General css */
+.title {
+    text-align: center;
+    color: var(--main-clr);
+    margin-bottom: .2em;
+
+}
+
+.error-message {
+    color: rgb(255, 73, 73);
+}
+
+.no-link {
+    text-decoration: none;
+    color: var(--text-clr);
+}
+
+
+
+/* Modal Styling */
+.modal-title {
+    text-align: center;
+    margin-bottom: .3em;
+    
+}
+
+.modal-text {
+    text-align: center;
+    margin-bottom: 1em;
+    
+}
+
+.modal-button-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal-button {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: .5em;
+    padding: .6em;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    background-color: var(--text-clr);
+    font-weight: bold;
+}
+
+.modal-button:hover {
+    transition: .3s;
+    background-color: var(--hover-text-clr);
+    cursor: pointer;
+}
+
+.modal-button-approve {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: .5em;
+    padding: .6em;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    font-weight: bold;
+    background-color: var(--success-clr);
+    color: var(--text-clr);
+}
+
+.modal-button-approve:hover {
+    transition: .3s;
+    background-color: var(--hover-success-clr);
+    cursor: pointer;
+}
+
+.modal-button-delete {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: .5em;
+    padding: .6em;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    font-weight: bold;
+    background-color: var(--button-clr);
+    color: var(--text-clr);
+}
+
+.modal-button-delete:hover {
+    transition: .3s;
+    background-color: var(--button-hover-clr);
+    cursor: pointer;
+}
+
+.modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    margin-top: 1em;
+    margin-right: 1em;
+}
+
+.modal-close:hover {
+    cursor: pointer;
+    transition: .3s;
+    color: white;
+}
+
+
+
+/* Media query for smaller screens */
+@media (min-width: 1000px) {
+    .page-container {
+        width: 60%;
+    }
+}  
+
+@media (max-width: 1000px) {
+    .header-container {
+        margin-bottom: 0em;
+    }
+    
+
+    .page-container {
+        width: 100%;
+        margin-bottom: 0em;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    }
+} 
+
+@media (min-width: 600px) {
+    .book-item {
+        width: 25%;
+    }
+
+    .audiobook-item {
+        width: 25%;
+    }
+} 
+
+@media (min-width: 800px) {
+    .book-item {
+        width: 20%;
+    }
+
+    .audiobook-item {
+        width: 20%;
+    }
+} 
+
+@media (min-width: 1600px) {
+    .book-item {
+        width: 16.6666666667%;
+    }
+
+    .audiobook-item {
+        width: 16.6666666667%;
+    }
+    
+}
