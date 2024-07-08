@@ -14,10 +14,13 @@
     margin-bottom: 1em;
 }
 
+
+
 /* Choose size of the about information here */
 .about-info {
     max-width: 100%; 
     box-sizing: border-box;
+    color: red;
 }
 
 .about-info > * {
