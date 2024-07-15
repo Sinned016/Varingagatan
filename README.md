@@ -37,10 +37,10 @@ test
 - #22 Create an about page and write about Leif Selander . ✅
 - #23 Add more icons.
 - #24 Add more animations / transitions.
-- #25 When showing books, create ternaries to check if the data exists or not, if it doesnt show nothing.
+- #25 When showing books, create ternaries to check if the data exists or not, if it doesnt show nothing. ✅
 - #26 Update the log in page so it looks better.
-- #27 Create media querys for desktop view.
-- #28 Update / work on the design of the home page (doesn't look good enough).
+- #27 Create media querys for desktop view. ✅
+- #28 Update / work on the design of the home page (doesn't look good enough). ✅
 
 - #?? Cleanup code (make more components, delete logs etc...).
 

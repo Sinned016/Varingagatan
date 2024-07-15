@@ -46,7 +46,7 @@ export default function Login() {
   }
 
   return (
-    <div className="signin-container">
+    <div className="register-container">
       <div className="register-wrapper">
         <form onSubmit={handleLogin}>
           <h1 className="title">Sign In</h1>

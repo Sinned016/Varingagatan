@@ -68,75 +68,70 @@ export default function Register() {
   }
 
   return (
-    <>
-      <div className="register-container">
-        <div className="register-wrapper">
-          <form onSubmit={handleRegister}>
-            <h1 className="title">Sign Up</h1>
+    <div className="register-container">
+      <div className="register-wrapper">
+        <form onSubmit={handleRegister}>
+          <h1 className="title">Sign Up</h1>
 
-            <div className="error-box">
-              <p>{formError}</p>
-            </div>
-            <div className="input-box">
-              <input
-                {...formDefaults("email", "Email", { type: "email" })}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
+          <div className="error-box">
+            <p>{formError}</p>
+          </div>
+          <div className="input-box">
+            <input {...formDefaults("email", "Email", { type: "email" })} onChange={(e) => setEmail(e.target.value)} />
+          </div>
 
-            <div className="input-box">
-              <input {...formDefaults("username", "Username")} onChange={(e) => setUsername(e.target.value)} />
-            </div>
+          <div className="input-box">
+            <input {...formDefaults("username", "Username")} onChange={(e) => setUsername(e.target.value)} />
+          </div>
 
-            <div className="input-box">
-              <input
-                {...formDefaults("phoneNumber", "Phone Number", { type: "tel" })}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-              />
-            </div>
+          <div className="input-box">
+            <input
+              {...formDefaults("phoneNumber", "Phone Number", { type: "tel" })}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+          </div>
 
-            <div className="input-box">
-              <input {...formDefaults("country", "Country")} onChange={(e) => setCountry(e.target.value)} />
-            </div>
+          <div className="input-box">
+            <input {...formDefaults("country", "Country")} onChange={(e) => setCountry(e.target.value)} />
+          </div>
 
-            <div className="input-box">
-              <input {...formDefaults("age", "Age", { type: "number" })} onChange={(e) => setAge(e.target.value)} />
-            </div>
+          <div className="input-box">
+            <input {...formDefaults("age", "Age", { type: "number" })} onChange={(e) => setAge(e.target.value)} />
+          </div>
 
-            <p className="password-error">{passwordFormError}</p>
+          <p className="password-error">{passwordFormError}</p>
 
-            <div className="input-box">
-              <input
-                {...formDefaults("password", "Choose a password", { minLength: 8, type: "password" })}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+          <div className="input-box">
+            <input
+              {...formDefaults("password", "Choose a password", { minLength: 8, type: "password" })}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
 
-            <div className="select-box">
-              <select
-                {...formDefaults("HowDidYouhear", "", { required: false })}
-                className="register-select"
-                onChange={(e) => setHowDidYouhear(e.target.value)}
-              >
-                <option value=""> How did you hear about us?</option>
-                <option>From a friend</option>
-                <option>On an internet forum</option>
-                <option>Somewhere else</option>
-              </select>
-            </div>
+          <div className="select-box">
+            <select
+              {...formDefaults("HowDidYouhear", "", { required: false })}
+              className="register-select"
+              onChange={(e) => setHowDidYouhear(e.target.value)}
+            >
+              <option value=""> How did you hear about us?</option>
+              <option>From a friend</option>
+              <option>On an internet forum</option>
+              <option>Somewhere else</option>
+            </select>
+          </div>
 
-            <button className="register-btn" type="submit">
-              Register
-            </button>
+          <button className="register-btn" type="submit">
+            Register
+          </button>
 
-            <div className="register-link">
-              <p>
-                Already have an account? <Link to={"/login"}>Sign in</Link>
-              </p>
-            </div>
-          </form>
-        </div>
+          <div className="register-link">
+            <p>
+              Already have an account? <Link to={"/login"}>Sign in</Link>
+            </p>
+          </div>
+        </form>
       </div>
-    </>
+    </div>
   );
 }
