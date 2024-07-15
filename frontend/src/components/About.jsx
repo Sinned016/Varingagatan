@@ -25,8 +25,6 @@ export default function About() {
             i väringagardet. Den romerska kejsarens elit- och livaktsgarde.
           </p>
 
-          <p>hellooooo</p>
-
           <h2>More about Leif Selander</h2>
 
           <div style={{ marginBottom: "1em" }} className="about-link">
