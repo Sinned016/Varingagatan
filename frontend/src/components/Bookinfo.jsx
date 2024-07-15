@@ -5,7 +5,7 @@ import { db } from "../config/firebase";
 import useAuthState from "./useAuthState";
 import { Button, Modal, Box, Typography } from "@mui/material";
 import likeWhite from "../assets/icons/likeWhite.png";
-import likeBlack from "../assets/icons/likeBlack.png";
+import likeRed from "../assets/icons/likeRed.png";
 import StarRating from "./StarRating";
 import FinishedRating from "./FinishedRating";
 import { calculateAverageRating } from "../functions/calculateAverageRating";
@@ -429,7 +429,7 @@ export default function Bookinfo() {
                             {review.likes && review.likes.includes(signedInUser.uid) ? (
                               <img className="rate-icon" src={likeWhite} alt="" />
                             ) : (
-                              <img className="rate-icon" src={likeBlack} alt="" />
+                              <img className="rate-icon" src={likeRed} alt="" />
                             )}
                           </div>
                         ) : (

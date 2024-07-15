@@ -38,7 +38,7 @@ MUI
 - #25 Update the login page so it looks better. ✅
 - #26 Create media querys for desktop view. ✅
 - #27 Update / work on the design of the home page (doesn't look good enough). ✅
-- #28 Add a red thumb icon when you haven't liked a review.
+- #28 Add a red thumb icon when you haven't liked a review. ✅
 
 - #?? Cleanup code (make more components, delete logs etc...).
 
