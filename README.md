@@ -45,7 +45,7 @@ MUI
 # Progress Pictures
 
 # Phone View
-### Home page
+## Home Page
 ### 1
 ![First picture of the homepage](frontend/src/assets/pictures/progress-pic-home-1.png)
 
@@ -56,17 +56,46 @@ MUI
 ![Third picture of the homepage](frontend/src/assets/pictures/progress-pic-home-3.png)
 
 
-## Book information page
-![Picture of the book information page](frontend/src/assets/pictures/progress-pic-2.png)
+## Book Information Page
+### 1
+![First picture of the book information page](frontend/src/assets/pictures/progress-pic-info-1.png)
 
-![Picture of reviews](frontend/src/assets/pictures/progress-pic-3.png)
+### 2
+![Second picture of the book information page](frontend/src/assets/pictures/progress-pic-info-2.png)
 
-## Books page
-![Picture of the books page](frontend/src/assets/pictures/progress-pic-4.png)
+### 3
+![Third picture of the book information page](frontend/src/assets/pictures/progress-pic-info-3.png)
+
+### 4
+![First picture of reviews](frontend/src/assets/pictures/progress-pic-review-1.png)
+
+### 5
+![Second picture of reviews](frontend/src/assets/pictures/progress-pic-review-2.png)
+
+
+## Books Page
+![Picture of the books page](frontend/src/assets/pictures/progress-pic-books-1.png)
 
 ## Admin Page
-![Picture of the admin home page](frontend/src/assets/pictures/progress-pic-5.png)
+### 1
+![Picture of the admin home page](frontend/src/assets/pictures/progress-pic-admin-home-1.png)
 
-![Picture of modal where admins can add books 7 audiobooks](frontend/src/assets/pictures/progress-pic-6.png)
+### 2
+![Picture of modal where admins can add books / audiobooks](frontend/src/assets/pictures/progress-pic-admin-add-1.png)
+
+### 3
+![Picture of admin edit book page](frontend/src/assets/pictures/progress-pic-admin-edit-1.png)
+
 
 # Desktop View
+## Home Page
+![Desktop picture of the homepage](frontend/src/assets/pictures/progress-pic-desktop-home-1.png)
+
+## Book Information Page
+![Desktop picture of the book information page](frontend/src/assets/pictures/progress-pic-desktop-info-1.png)
+
+## Admin Page
+![Desktop picture of the admin page](frontend/src/assets/pictures/progress-pic-desktop-admin-1.png)
+
+## About Page
+![Desktop picture of the about page](frontend/src/assets/pictures/progress-pic-desktop-about-1.png)
