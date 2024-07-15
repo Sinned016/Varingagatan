@@ -7,10 +7,12 @@ export default function About() {
       <div className="about-container">
         <div className="about-info">
           <h1 style={{ textAlign: "center" }}>Leif Selander</h1>
-          <img className="about-img" src={leifSelander} alt="" />
+          <div style={{ marginBottom: "1em" }} className="about-img-container">
+            <img className="about-img" src={leifSelander} alt="" />
+          </div>
 
           <h2>About</h2>
-          <p>
+          <p style={{ marginBottom: "1em" }}>
             Leif Selander är född i Örnsköldsvik och bor nu i Eskilstuna tillsammans med sin familj. Intresset för
             historia föddes tidigt i hans liv. Historia, religion, konst och gymnastik tillhörde de ämnen med högst
             betyg. Intresset för antikens historia ledde honom till arbetet som rundtursguide i Turkiet. Där besöktes
@@ -25,7 +27,7 @@ export default function About() {
 
           <h2>More about Leif Selander</h2>
 
-          <div className="about-link">
+          <div style={{ marginBottom: "1em" }} className="about-link">
             <Link to="https://www.radioovik.se/leif-selander/">Semesterprat i Radio Övik</Link>
           </div>
 

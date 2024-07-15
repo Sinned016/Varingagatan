@@ -36,14 +36,29 @@
     line-height: 1.5; /* 1.5 times the font size */
 }
 
+.about-img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .about-img {
     max-width: 100%; /* Ensure image scales within its container */
     height: auto; /* Maintain aspect ratio */
 }
 
 .about-link a {
-    color: var(--text-clr)
+    color: rgb(206, 95, 206);
+}
+
+.about-link a:hover {
+    text-decoration: underline;
 }
 
 
-
+@media (min-width: 600px) {
+    .about-img {
+        max-width: 50%; /* Ensure image scales within its container */
+        height: auto; /* Maintain aspect ratio */
+    }
+}
