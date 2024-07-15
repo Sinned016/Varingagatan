@@ -45,7 +45,7 @@ MUI
 # Progress Pictures
 
 # Phone View
-## Home page
+### Home page
 ### 1
 ![First picture of the homepage](frontend/src/assets/pictures/progress-pic-home-1.png)
 
