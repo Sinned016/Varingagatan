@@ -10,8 +10,6 @@ Node.JS,
 CSS
 MUI
 
-test
-
 # Progress List
 - #1 Setting up a project with React router. ✅
 - #2 Setting up Firebase. ✅
@@ -35,18 +33,28 @@ test
 - #20 On the admin page they should be able to delete books. ✅
 - #21 Fix it so admins can edit information about the books. ✅
 - #22 Create an about page and write about Leif Selander . ✅
-- #23 Add more icons.
-- #24 Add more animations / transitions.
-- #25 When showing books, create ternaries to check if the data exists or not, if it doesnt show nothing. ✅
-- #26 Update the log in page so it looks better.
-- #27 Create media querys for desktop view. ✅
-- #28 Update / work on the design of the home page (doesn't look good enough). ✅
+- #23 Add icons. ✅
+- #24 When showing books, create ternaries to check if the data exists or not, if it doesnt show nothing. ✅
+- #25 Update the login page so it looks better. ✅
+- #26 Create media querys for desktop view. ✅
+- #27 Update / work on the design of the home page (doesn't look good enough). ✅
+- #28 Add a red thumb icon when you haven't liked a review.
 
 - #?? Cleanup code (make more components, delete logs etc...).
 
 # Progress Pictures
+
+# Phone View
 ## Home page
-![Picture of the Home page](frontend/src/assets/pictures/progress-pic-1.png)
+### 1
+![First picture of the homepage](frontend/src/assets/pictures/progress-pic-home-1.png)
+
+### 2
+![Second picture of the homepage](frontend/src/assets/pictures/progress-pic-home-2.png)
+
+### 3
+![Third picture of the homepage](frontend/src/assets/pictures/progress-pic-home-3.png)
+
 
 ## Book information page
 ![Picture of the book information page](frontend/src/assets/pictures/progress-pic-2.png)
@@ -60,3 +68,5 @@ test
 ![Picture of the admin home page](frontend/src/assets/pictures/progress-pic-5.png)
 
 ![Picture of modal where admins can add books 7 audiobooks](frontend/src/assets/pictures/progress-pic-6.png)
+
+# Desktop View
