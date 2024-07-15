@@ -1,12 +1,9 @@
 import { db, auth } from "../config/firebase";
 import { Link, useNavigate } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode";
 import { getDocs, collection } from "firebase/firestore";
 import { filterBooksForNewest } from "../functions/filterBooksForNewest";
-import useAuthState from "./useAuthState";
-import homeHeader from "../assets/pictures/homeHeader.jpg";
+import homeHeader from "../assets/pictures/homeheader.jpg";
 import { calculateAverageRating } from "../functions/calculateAverageRating";
 import FinishedRating from "./FinishedRating";
 
