@@ -154,7 +154,9 @@ export default function AdminHome() {
             <div key={index} className="admin-data-container">
               {/* Add a Trashcan icon here */}
               <Link className="books-container" key={index} to={`/admin/${data.type}/${data.id}`}>
-                <img className="books-img" src={data.image} alt="" />
+                <div className="books-img-container">
+                  <img className="books-img" src={data.image} alt="" />
+                </div>
 
                 <div className="books-container-info">
                   <h2 className="books-h2">
@@ -163,10 +165,25 @@ export default function AdminHome() {
                   <FinishedRating score={averageRating} size={25} />
 
                   {/* Add emotes here instead of a text like "price:" and "pages:" */}
-                  <div style={{ marginTop: "10px" }}>
-                    <p>Author: {data.author}</p>
-                    <p>Language: {data.language}</p>
-                    <p>Price: {data.price} kr</p>
+                  <div className="books-info" style={{ marginTop: "10px" }}>
+                    <div>
+                      <p>Author: {data.author}</p>
+                      <p>Language: {data.language}</p>
+                      {data.secondTitle && <p>Second Title: {data.secondTitle}</p>}
+                      {data.reader && <p>Reader: {data.reader}</p>}
+                    </div>
+                    <div className="books-info-hide">
+                      <p>Price: {data.price} kr</p>
+                      {data.pages && <p>Pages: {data.pages}</p>}
+                      {data.weight && <p>Weight: {data.weight}</p>}
+                      {data.time && <p>Time: {data.time}</p>}
+                      {data.size && <p>Size: {data.size}</p>}
+                    </div>
+                    <div className="books-info-hide">
+                      {data.releaseDate && <p>Release Date: {data.releaseDate}</p>}
+                      {data.publisher && <p>Publisher: {data.publisher}</p>}
+                      <p>Type: {data.type}</p>
+                    </div>
                   </div>
                 </div>
               </Link>

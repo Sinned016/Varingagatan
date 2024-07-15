@@ -10,7 +10,7 @@
 }
 
 .page-container {
-    background-color: var(--background-clr); 
+    background-color: rgba(51, 51, 51, 1); 
     padding: 1em 1em 0em 1em;
     position: relative;
     margin-bottom: 1em;

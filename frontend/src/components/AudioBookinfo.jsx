@@ -221,20 +221,86 @@ export default function Bookinfo() {
                 <FinishedRating score={averageRating} size={25} />
 
                 <p style={{ marginTop: "10px" }}>{audioBookInfo.author}</p>
-                <p>{audioBookInfo.language}</p>
-                <p>{audioBookInfo.price} kr</p>
+                {/* <p>{audioBookInfo.language}</p>
+                <p>{audioBookInfo.price} kr</p> */}
               </div>
             </div>
 
             <div className="book-information-middle">
               <Link to={audioBookInfo.linkToPurchase}>
-                <button>Purchase</button>
+                <button className="purchase-btn">Purchase</button>
               </Link>
             </div>
 
-            <div className="book-information-bottom">
+            <div style={{ marginBottom: "1em" }} className="book-information-bottom">
               <h2>Description</h2>
               <p>{audioBookInfo.description}</p>
+            </div>
+
+            <div className="book-information-bottom">
+              <h2>Information</h2>
+
+              <div className="book-details">
+                <div className="book-details-item">
+                  <h3>Author</h3>
+                  <p>{audioBookInfo.author}</p>
+                </div>
+
+                <div className="book-details-item">
+                  <h3>Language</h3>
+                  <p>{audioBookInfo.language}</p>
+                </div>
+
+                {audioBookInfo.releaseDate && (
+                  <div className="book-details-item">
+                    <h3>Second Title</h3>
+                    <p>{audioBookInfo.secondTitle}</p>
+                  </div>
+                )}
+
+                <div className="book-details-item">
+                  <h3>Reader</h3>
+                  <p>{audioBookInfo.reader}</p>
+                </div>
+
+                <div className="book-details-item">
+                  <h3>Price</h3>
+                  <p>{audioBookInfo.price} sek</p>
+                </div>
+
+                {audioBookInfo.time && (
+                  <div className="book-details-item">
+                    <h3>Time</h3>
+                    <p>{audioBookInfo.time}</p>
+                  </div>
+                )}
+
+                {audioBookInfo.size && (
+                  <div className="book-details-item">
+                    <h3>Size</h3>
+                    <p>{audioBookInfo.size}</p>
+                  </div>
+                )}
+
+                {audioBookInfo.publisher && (
+                  <div className="book-details-item">
+                    <h3>Publisher</h3>
+                    <p>{audioBookInfo.publisher}</p>
+                  </div>
+                )}
+
+                {audioBookInfo.releaseDate && (
+                  <div className="book-details-item">
+                    <h3>Release Date</h3>
+                    <p>{audioBookInfo.releaseDate}</p>
+                  </div>
+                )}
+
+                <div className="book-details-item">
+                  <h3>Type</h3>
+                  <p>{audioBookInfo.type}</p>
+                </div>
+              </div>
             </div>
           </div>
 

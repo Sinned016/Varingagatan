@@ -225,6 +225,7 @@ export default function Bookinfo() {
                 <FinishedRating score={averageRating} size={25} />
 
                 <p style={{ marginTop: "10px" }}>{bookInfo.author}</p>
+
                 {/* <p>{bookInfo.language}</p> */}
                 {/* <p>{bookInfo.price}</p> */}
               </div>
@@ -232,13 +233,74 @@ export default function Bookinfo() {
 
             <div className="book-information-middle">
               <Link to={bookInfo.linkToPurchase}>
-                <button>Purchase</button>
+                <button className="purchase-btn">Purchase</button>
               </Link>
             </div>
 
-            <div className="book-information-bottom">
+            <div style={{ marginBottom: "1em" }} className="book-information-bottom">
               <h2>Description</h2>
               <p>{bookInfo.description}</p>
+            </div>
+
+            <div className="book-information-bottom">
+              <h2>Information</h2>
+
+              <div className="book-details">
+                <div className="book-details-item">
+                  <h3>Author</h3>
+                  <p>{bookInfo.author}</p>
+                </div>
+
+                <div className="book-details-item">
+                  <h3>Language</h3>
+                  <p>{bookInfo.language}</p>
+                </div>
+
+                {bookInfo.secondTitle && (
+                  <div className="book-details-item">
+                    <h3>Second Title</h3>
+                    <p>{bookInfo.secondTitle}</p>
+                  </div>
+                )}
+
+                <div className="book-details-item">
+                  <h3>Price</h3>
+                  <p>{bookInfo.price} sek</p>
+                </div>
+
+                {bookInfo.pages && (
+                  <div className="book-details-item">
+                    <h3>Pages</h3>
+                    <p>{bookInfo.pages}</p>
+                  </div>
+                )}
+
+                {bookInfo.publisher && (
+                  <div className="book-details-item">
+                    <h3>Publisher</h3>
+                    <p>{bookInfo.publisher}</p>
+                  </div>
+                )}
+
+                {bookInfo.releaseDate && (
+                  <div className="book-details-item">
+                    <h3>Release Date</h3>
+                    <p>{bookInfo.releaseDate}</p>
+                  </div>
+                )}
+
+                <div className="book-details-item">
+                  <h3>Type</h3>
+                  <p>{bookInfo.type}</p>
+                </div>
+
+                {bookInfo.weight && (
+                  <div className="book-details-item">
+                    <h3>Weight</h3>
+                    <p>{bookInfo.weight}</p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 

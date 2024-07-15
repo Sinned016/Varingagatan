@@ -13,7 +13,7 @@ export async function addContentToDatabase(typeOfBook, formValues) {
             };
 
             await addDoc(booksCollectionRef, bookData)
-        } else if (typeOfBook === "audioBook") {
+        } else if (typeOfBook === "audioBooks") {
             const audioBookData = {
                 ...formValues,
                 type: 'Audiobook',

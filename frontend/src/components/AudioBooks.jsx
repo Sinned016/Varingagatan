@@ -40,17 +40,34 @@ export default function AudioBooks() {
           return (
             <Link className="no-link" key={index} to={`/audioBook/${book.id}`}>
               <div className="books-container" key={index}>
-                <img className="books-img" src={book.image} alt="" />
+                <div className="audiobooks-img-container">
+                  <img className="audiobooks-img" src={book.image} alt="" />
+                </div>
 
                 <div className="books-container-info">
                   <h2 className="books-h2">{book.title}</h2>
                   <FinishedRating score={averageRating} size={25} />
 
                   {/* Add emotes here instead of a text like "price:" */}
-                  <div style={{ marginTop: "10px" }}>
-                    <p>{book.author}</p>
-                    <p>{book.language}</p>
-                    <p>Price: {book.price} kr</p>
+                  <div className="books-info" style={{ marginTop: "10px" }}>
+                    <div>
+                      <p>Author: {book.author}</p>
+                      <p>Language: {book.language}</p>
+                      {book.secondTitle && <p>Second Title: {book.secondTitle}</p>}
+                      {book.reader && <p>Reader: {book.reader}</p>}
+                    </div>
+                    <div className="books-info-hide">
+                      <p>Price: {book.price} kr</p>
+                      {book.pages && <p>Pages: {book.pages}</p>}
+                      {book.weight && <p>Weight: {book.weight}</p>}
+                      {book.time && <p>Time: {book.time}</p>}
+                      {book.size && <p>Size: {book.size}</p>}
+                    </div>
+                    <div className="books-info-hide">
+                      {book.releaseDate && <p>Release Date: {book.releaseDate}</p>}
+                      {book.publisher && <p>Publisher: {book.publisher}</p>}
+                      <p>Type: {book.type}</p>
+                    </div>
                   </div>
                 </div>
               </div>
