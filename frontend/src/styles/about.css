@@ -48,11 +48,12 @@
 }
 
 .about-link a {
-    color: rgb(206, 95, 206);
+    color: var(--text-clr2);
 }
 
 .about-link a:hover {
     text-decoration: underline;
+    color: var(--text-clr);
 }
 
 

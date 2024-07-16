@@ -49,8 +49,8 @@
     justify-content: center;
 }
 
-.book-info-container {
-    margin-top: .6em;
+.book-item:hover .book-image-container {
+    transform: scale(1.05); /* Scale up the image container slightly */
 }
 
 .book-image-container {
@@ -72,6 +72,12 @@
     object-fit: cover; /* Makes sure images cover the container while maintaining aspect ratio */
 }
 
+.book-info-container {
+    margin-top: .6em;
+}
+
+
+
 .audiobook-grid {
     display: flex;
     flex-wrap: wrap;
@@ -81,7 +87,6 @@
     box-sizing: border-box;
     padding: 10px 10px;
     width: 33.3333333333%;
-    
 }
 
 .audiobook-item a{
@@ -89,6 +94,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.audiobook-item:hover .audiobook-image-container {
+    transform: scale(1.05); /* Scale up the image container slightly */
 }
 
 .audiobook-image-container {

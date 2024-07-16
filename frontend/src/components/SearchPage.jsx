@@ -7,7 +7,7 @@ import { calculateAverageRating } from "../functions/calculateAverageRating";
 import { FaSearch } from "react-icons/fa";
 
 export default function SearchPage() {
-  const [combinedData, setCombinedData] = useState();
+  const [combinedData, setCombinedData] = useState([]);
   const [search, setSearch] = useState("");
 
   console.log(combinedData);
@@ -55,19 +55,23 @@ export default function SearchPage() {
   function handleSearch(e) {
     const title = e.target.value;
     setSearch(title);
-    if (e.key === "Enter") {
-      navigate(`?title=${title}`);
-    }
+    navigate(`?title=${title}`);
   }
 
   return (
     <div className="page-container">
       <div className="search-input-page-container">
         <FaSearch className="search-icon" />
-        <input className="search-input" type="text" placeholder="Search title..." onKeyDown={handleSearch} />
+        <input
+          value={search}
+          className="search-input"
+          type="text"
+          placeholder="Search title..."
+          onChange={handleSearch}
+        />
       </div>
 
-      {combinedData &&
+      {combinedData && combinedData.length > 0 ? (
         combinedData.map((data, index) => {
           const averageRating = calculateAverageRating(data.reviews);
 
@@ -95,7 +99,10 @@ export default function SearchPage() {
               </div>
             </Link>
           );
-        })}
+        })
+      ) : (
+        <h2 style={{ marginBottom: "1em", textAlign: "center" }}>No book with that title</h2>
+      )}
     </div>
   );
 }

@@ -10,8 +10,7 @@
 :root {
     --main-clr: #d3c082;
     --text-clr: #f0f0f0;
-    --text-hover-clr: #bbb;
-    --hover-text-clr: #f0f0f0d8;
+    --text-clr2: #bbb;
     --button-clr: #a32d2d;
     --button-hover-clr: #8d1d1d;
     --border-clr: #7e7e7e;
@@ -105,7 +104,7 @@ a {
 
 .modal-button:hover {
     transition: .3s;
-    background-color: var(--hover-text-clr);
+    background-color: var(--text-clr2);
     cursor: pointer;
 }
 

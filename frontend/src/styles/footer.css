@@ -27,7 +27,7 @@
   
   .footer-section p, .footer-section a {
     font-size: 14px;
-    color: var(--text-hover-clr);
+    color: var(--text-clr2);
     text-decoration: none;
     margin-bottom: 5px;
     display: block;

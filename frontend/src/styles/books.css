@@ -21,6 +21,14 @@
     position: relative;
 }
 
+.books-container:hover .books-img-container {
+    transform: scale(1.05); /* Scale up the image container slightly */
+}
+
+.books-container:hover {
+    background-color: var(--darker-clr);
+}
+
 .books-img-container {
     flex-shrink: 0; /* Prevent the image container from shrinking */
     display: flex;
@@ -41,6 +49,10 @@
     display: flex;
     flex-direction: column;
     
+}
+
+.books-container:hover .audiobooks-img-container {
+    transform: scale(1.05); /* Scale up the image container slightly */
 }
 
 .audiobooks-img-container {
@@ -110,6 +122,12 @@
     background-color: var(--button-clr);
     color: var(--text-clr);
     cursor: pointer;
+}
+
+.purchase-btn:hover {
+
+    background-color: var(--button-hover-clr);
+
 }
 
 .book-information-bottom h2{
