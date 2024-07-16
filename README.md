@@ -1,7 +1,8 @@
 # Varingasagan
 
 Working on a forum / book page for my dad Leif Selander.
-I haven't really thought about the design yet so it's not very pretty but i'll post progress pictures below of hows it's going and how it looks like.
+
+Link to page: https://varingasagan-733fa.web.app/
 
 Programming stack with this project:
 React,
@@ -39,8 +40,11 @@ MUI
 - #26 Create media querys for desktop view. ✅
 - #27 Update / work on the design of the home page (doesn't look good enough). ✅
 - #28 Add a red thumb icon when you haven't liked a review. ✅
-
+- #29 Add hover effects when hovering a book and all buttons. ✅
+- #30 Deploy the page with firebase. ✅
 - #?? Cleanup code (make more components, delete logs etc...).
+
+
 
 # Progress Pictures
 
