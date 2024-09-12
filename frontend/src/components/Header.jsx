@@ -4,7 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
 import useAuthState from "./useAuthState";
-import { FaBars, FaTimes, FaHome, FaBook, FaInfoCircle, FaPlayCircle, FaSearch } from "react-icons/fa";
+import {
+  FaBars,
+  FaTimes,
+  FaHome,
+  FaBook,
+  FaInfoCircle,
+  FaPlayCircle,
+  FaSearch,
+} from "react-icons/fa";
 import { CiLogout, CiLogin } from "react-icons/ci";
 import { RiAdminLine } from "react-icons/ri";
 
@@ -83,7 +91,12 @@ export default function Header() {
 
         <div className="search-container">
           <FaSearch className="search-icon" />
-          <input className="search-input" type="text" placeholder="Search title..." onKeyDown={handleSearch} />
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Search title..."
+            onKeyDown={handleSearch}
+          />
         </div>
 
         <button className="nav-btn nav-close-btn" onClick={showNavBar}>

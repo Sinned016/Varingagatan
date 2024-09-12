@@ -2,16 +2,14 @@ import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-
 function App() {
-
   return (
     <>
       <header>
         <Header />
       </header>
 
-      <main>
+      <main className="lg:py-4">
         <Outlet />
       </main>
 
@@ -19,7 +17,7 @@ function App() {
         <Footer />
       </footer>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -14,7 +14,10 @@ export default function Books() {
 
       try {
         const booksData = await getDocs(booksCollectionRef);
-        const filteredBooksData = booksData.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        const filteredBooksData = booksData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
         console.log(filteredBooksData);
         setBooks(filteredBooksData);
       } catch (err) {
@@ -27,11 +30,11 @@ export default function Books() {
   return (
     <div className="page-container">
       {/* Maybe change this to another banner */}
-      <h1 className="books-h1">Books</h1>
+      <h1 className="title pb-2 font-bold">Books</h1>
 
       {books &&
         books.map((book, index) => {
-          const averageRating = calculateAverageRating(book.reviews);
+          // const averageRating = calculateAverageRating(book.reviews);
 
           return (
             <Link className="no-link" key={index} to={`/book/${book.id}`}>
@@ -41,31 +44,14 @@ export default function Books() {
                 </div>
 
                 <div className="books-container-info">
-                  <h2 className="books-h2">{book.title}</h2>
-
-                  <FinishedRating score={averageRating} size={25} />
+                  <h2 className="text-xl mb-2 font-bold">{book.title}</h2>
 
                   {/* Add emotes here instead of a text like "price:" */}
-                  <div className="books-info" style={{ marginTop: "10px" }}>
-                    <div>
-                      <p>Author: {book.author}</p>
-                      <p>Language: {book.language}</p>
-                      {book.secondTitle && <p>Second Title: {book.secondTitle}</p>}
-                      {book.reader && <p>Reader: {book.reader}</p>}
-                    </div>
-                    <div className="books-info-hide">
-                      <p>Price: {book.price} kr</p>
-                      {book.pages && <p>Pages: {book.pages}</p>}
-                      {book.weight && <p>Weight: {book.weight}</p>}
-                      {book.time && <p>Time: {book.time}</p>}
-                      {book.size && <p>Size: {book.size}</p>}
-                    </div>
-                    <div className="books-info-hide">
-                      {book.releaseDate && <p>Release Date: {book.releaseDate}</p>}
-                      {book.publisher && <p>Publisher: {book.publisher}</p>}
-                      <p>Type: {book.type}</p>
-                    </div>
-                  </div>
+
+                  <p className="mb-2">{book.secondTitle}</p>
+                  <p className="line-clamp-3 text-sm font-light">
+                    {book.description}
+                  </p>
                 </div>
               </div>
             </Link>

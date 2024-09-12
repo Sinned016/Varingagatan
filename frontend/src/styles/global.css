@@ -1,0 +1,12 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.h2-title {
+  @apply text-xl font-bold;
+}
+
+.h3-title {
+  @apply text-lg font-bold;
+}

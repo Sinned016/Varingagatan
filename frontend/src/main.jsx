@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import "./styles/global.css";
 import "./styles/styles.css";
 import "./styles/header.css";
 import "./styles/register.css";
@@ -9,6 +9,7 @@ import "./styles/books.css";
 import "./styles/about.css";
 import "./styles/admin.css";
 import "./styles/footer.css";
+import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
 import Login from "./auth/Login.jsx";

@@ -1,4 +1,11 @@
-import { Timestamp, arrayRemove, arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  Timestamp,
+  arrayRemove,
+  arrayUnion,
+  doc,
+  getDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { db } from "../config/firebase";
@@ -137,7 +144,9 @@ export default function Bookinfo() {
       const bookSnapshot = await getDoc(audioBookDocRef);
       const bookData = bookSnapshot.data();
 
-      const reviewIndex = bookData.reviews.findIndex((review) => review.reviewId === reviewId);
+      const reviewIndex = bookData.reviews.findIndex(
+        (review) => review.reviewId === reviewId
+      );
 
       // The specific review the user has liked
       const review = bookData.reviews[reviewIndex];
@@ -184,7 +193,9 @@ export default function Bookinfo() {
           const reviews = bookData.reviews;
 
           // Find the review to remove
-          const reviewToRemove = reviews.find((review) => review.reviewId === reviewIdToDelete);
+          const reviewToRemove = reviews.find(
+            (review) => review.reviewId === reviewIdToDelete
+          );
 
           if (reviewToRemove) {
             // Update the book document to remove the review from the array
@@ -218,7 +229,7 @@ export default function Bookinfo() {
               <div className="book-information">
                 <h2 style={{ marginBottom: "10px" }}>{audioBookInfo.title}</h2>
 
-                <FinishedRating score={averageRating} size={25} />
+                {/* <FinishedRating score={averageRating} size={25} /> */}
 
                 <p style={{ marginTop: "10px" }}>{audioBookInfo.author}</p>
                 {/* <p>{audioBookInfo.language}</p>
@@ -232,13 +243,16 @@ export default function Bookinfo() {
               </Link>
             </div>
 
-            <div style={{ marginBottom: "1em" }} className="book-information-bottom">
-              <h2>Description</h2>
+            <div
+              style={{ marginBottom: "1em" }}
+              className="book-information-bottom"
+            >
+              <h2 className="h2-title">Description</h2>
               <p>{audioBookInfo.description}</p>
             </div>
 
             <div className="book-information-bottom">
-              <h2>Information</h2>
+              <h2 className="h2-title">Information</h2>
 
               <div className="book-details">
                 <div className="book-details-item">
@@ -320,7 +334,10 @@ export default function Bookinfo() {
                 <label>Overall Score</label>
                 <p className="error-message">{reviewRatingError}</p>
 
-                <StarRating reviewRating={reviewRating} setReviewRating={setReviewRating} />
+                <StarRating
+                  reviewRating={reviewRating}
+                  setReviewRating={setReviewRating}
+                />
 
                 <label>Review Content</label>
 
@@ -367,7 +384,9 @@ export default function Bookinfo() {
               >
                 <div>
                   <h1 className="modal-title">Post Review?</h1>
-                  <p className="modal-text">Are you sure you want to post this review?</p>
+                  <p className="modal-text">
+                    Are you sure you want to post this review?
+                  </p>
 
                   <div className="modal-button-container">
                     <button
@@ -377,57 +396,87 @@ export default function Bookinfo() {
                     >
                       Submit
                     </button>
-                    <button className="modal-button" onClick={() => setOpen(false)}>
+                    <button
+                      className="modal-button"
+                      onClick={() => setOpen(false)}
+                    >
                       Close
                     </button>
                   </div>
 
-                  <FaTimes className="modal-close" size="25" onClick={() => setOpen(false)} />
+                  <FaTimes
+                    className="modal-close"
+                    size="25"
+                    onClick={() => setOpen(false)}
+                  />
                 </div>
               </Box>
             </Modal>
           </div>
+          {audioBookInfo.reviews?.length > 0 && (
+            <div className="reviews-container">
+              <h2>Reviews</h2>
+              <div className="line-space"></div>
 
-          <div className="reviews-container">
-            <h2>Reviews</h2>
-            <div className="line-space"></div>
-            {audioBookInfo.reviews ? (
-              <>
-                {/* Map over only the number of reviews specified by displayedReviews */}
-                {audioBookInfo.reviews.slice(0, displayedReviews).map((review, i) => {
+              {/* Map over only the number of reviews specified by displayedReviews */}
+              {audioBookInfo.reviews
+                .slice(0, displayedReviews)
+                .map((review, i) => {
                   return (
                     <div className="review-container" key={i}>
-                      <h3>{review.reviewTitle}</h3>
+                      <h3 className="h3-title">{review.reviewTitle}</h3>
 
                       <FinishedRating score={review.reviewRating} size={25} />
 
                       <div className="email-date">
                         <p>BY {review.email}</p>
-                        <p>{new Date(review.timestamp.seconds * 1000).toLocaleString()}</p>
+                        <p>
+                          {new Date(
+                            review.timestamp.seconds * 1000
+                          ).toLocaleString()}
+                        </p>
                       </div>
                       <p>{review.score}</p>
-                      <p className="margin-bot review-content">{review.reviewContent}</p>
+                      <p className="margin-bot review-content text-sm">
+                        {review.reviewContent}
+                      </p>
 
                       <div className="reviews-rating-container">
                         {isAdmin && (
                           <FaTrash
                             className="trash-icon"
                             size="22"
-                            onClick={() => handleDeleteReviewModal(review.reviewId)}
+                            onClick={() =>
+                              handleDeleteReviewModal(review.reviewId)
+                            }
                           />
                         )}
 
                         <p className="total-reviews">
-                          {review.likes && review.likes.length > 0 ? review.likes.length : ""}
+                          {review.likes && review.likes.length > 0
+                            ? review.likes.length
+                            : ""}
                         </p>
 
                         {signedInUser ? (
                           <div
-                            className={review.likes && review.likes.includes(signedInUser?.uid) ? "liked" : "unliked"}
-                            onClick={(e) => rateReview(e, review.reviewId, "like")}
+                            className={
+                              review.likes &&
+                              review.likes.includes(signedInUser?.uid)
+                                ? "liked"
+                                : "unliked"
+                            }
+                            onClick={(e) =>
+                              rateReview(e, review.reviewId, "like")
+                            }
                           >
-                            {review.likes && review.likes.includes(signedInUser.uid) ? (
-                              <img className="rate-icon" src={likeWhite} alt="" />
+                            {review.likes &&
+                            review.likes.includes(signedInUser.uid) ? (
+                              <img
+                                className="rate-icon"
+                                src={likeWhite}
+                                alt=""
+                              />
                             ) : (
                               <img className="rate-icon" src={likeRed} alt="" />
                             )}
@@ -440,20 +489,23 @@ export default function Bookinfo() {
                     </div>
                   );
                 })}
-                {/* Button to show more reviews */}
-                {audioBookInfo.reviews.length > displayedReviews && (
-                  <button onClick={handleShowMoreReviews} className="show-more-btn">
-                    Show More
-                  </button>
-                )}
-              </>
-            ) : (
-              "No reviews"
-            )}
-          </div>
+              {/* Button to show more reviews */}
+              {audioBookInfo.reviews.length > displayedReviews && (
+                <button
+                  onClick={handleShowMoreReviews}
+                  className="show-more-btn"
+                >
+                  Show More
+                </button>
+              )}
+            </div>
+          )}
 
           <div>
-            <Modal open={openDeleteReview} onClose={() => setOpenDeleteReview(false)}>
+            <Modal
+              open={openDeleteReview}
+              onClose={() => setOpenDeleteReview(false)}
+            >
               <Box
                 sx={{
                   position: "absolute",
@@ -469,7 +521,11 @@ export default function Bookinfo() {
                 <Typography variant="h5" sx={{ color: "black", mb: 2 }}>
                   Are you sure you want to delete this review?
                 </Typography>
-                <Button variant="contained" sx={{ mr: 1 }} onClick={deleteReview}>
+                <Button
+                  variant="contained"
+                  sx={{ mr: 1 }}
+                  onClick={deleteReview}
+                >
                   Yes
                 </Button>
                 <Button

@@ -1,298 +1,281 @@
 /* Books page */
 .books-h1 {
-    text-align: center;
-    margin-bottom: .3em;
-    color: var(--main-clr);
+  text-align: center;
+  margin-bottom: 0.3em;
+  color: var(--main-clr);
 }
 
 .books-h2 {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .books-container {
-    background-color: var(--header-clr);
-    border: 1px solid var(--border-clr);
-    margin-bottom: .5rem;
-    padding: 1em;
+  background-color: var(--header-clr);
+  border: 1px solid var(--border-clr);
+  margin-bottom: 0.5rem;
+  padding: 1em;
 
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 
-    position: relative;
-}
-
-.books-container:hover .books-img-container {
-    transform: scale(1.05); /* Scale up the image container slightly */
+  position: relative;
 }
 
 .books-container:hover {
-    background-color: var(--darker-clr);
+  background-color: var(--darker-clr);
 }
 
 .books-img-container {
-    flex-shrink: 0; /* Prevent the image container from shrinking */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  flex-shrink: 0; /* Prevent the image container from shrinking */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .books-img {
-    width: 100px; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover;
-    border: 1px solid #ddd;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
-    margin-right: 20px;
+  width: 100px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover;
+  border: 1px solid #ddd;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  margin-right: 20px;
 }
 
 .books-container-info {
-    display: flex;
-    flex-direction: column;
-    
-}
-
-.books-container:hover .audiobooks-img-container {
-    transform: scale(1.05); /* Scale up the image container slightly */
+  display: flex;
+  flex-direction: column;
 }
 
 .audiobooks-img-container {
-    flex-shrink: 0; /* Prevent the image container from shrinking */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  flex-shrink: 0; /* Prevent the image container from shrinking */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .audiobooks-img {
-    width: 100px; /* Adjust the width as needed */
-    height: 100px; /* Maintain aspect ratio */
-    object-fit: cover;
-    border: 1px solid #ddd;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
-    margin-right: 20px;
+  width: 100px; /* Adjust the width as needed */
+  height: 100px; /* Maintain aspect ratio */
+  object-fit: cover;
+  border: 1px solid #ddd;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  margin-right: 20px;
 }
-
-
 
 /* Book info */
 .book-information-container {
-    background-color: var(--header-clr);
-    margin-bottom: 1em;
-    padding: 1em;
+  background-color: var(--header-clr);
+  margin-bottom: 1em;
+  padding: 1em;
 }
 
 .book-information-top {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1em;
-    background-color: var(--darker-clr);
-    padding: .5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
+  background-color: var(--darker-clr);
+  padding: 0.5em;
 }
 
 .book-information-top img {
-    width: 100px;
-    border: 3px solid rgb(214, 214, 214);
+  width: 100px;
+  border: 3px solid rgb(214, 214, 214);
 }
 
-.book-information{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-} 
+.book-information {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
-.book-information h1{
-    text-align: center;
-    color: var(--text-clr);
+.book-information h1 {
+  text-align: center;
+  color: var(--text-clr);
 }
 
 .book-information-middle {
-
-    margin-bottom: 1em;
-
+  margin-bottom: 1em;
 }
 
 .purchase-btn {
-    padding: .7em 1em;
-    width: 100%;
-    border: 1px solid black;
-    border-radius: .2em;
-    background-color: var(--button-clr);
-    color: var(--text-clr);
-    cursor: pointer;
+  padding: 0.7em 1em;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 0.2em;
+  background-color: var(--button-clr);
+  color: var(--text-clr);
+  cursor: pointer;
 }
 
 .purchase-btn:hover {
-
-    background-color: var(--button-hover-clr);
-
+  background-color: var(--button-hover-clr);
 }
 
-.book-information-bottom h2{
-    color: var(--main-clr);
-    margin-bottom: .5em;
-    
+.book-information-bottom h2 {
+  color: var(--main-clr);
+  margin-bottom: 0.5em;
 }
 
-.book-information-bottom p{
-    color: var(--text-clr);
-    line-height: 1.5; /* 1.5 times the font size */
+.book-information-bottom p {
+  color: var(--text-clr);
+  line-height: 1.5; /* 1.5 times the font size */
 }
 
 .book-information-bottom .book-details {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust 200px as needed */
-    gap: .5em;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(150px, 1fr)
+  ); /* Adjust 200px as needed */
+  gap: 0.5em;
 
-    color: var(--text-clr);
+  color: var(--text-clr);
 }
 
 .book-details-item h3 {
-    color: var(--main-clr);
+  color: var(--main-clr);
 }
 
 .submitReview-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1em;
-    margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1em;
+  margin-bottom: 1em;
 
-    background-color: var(--header-clr);
+  background-color: var(--header-clr);
 }
 
 .submitReview-form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .submitReview-form > * {
-    margin-bottom: .2em; /* Adjust the margin as needed */
+  margin-bottom: 0.2em; /* Adjust the margin as needed */
 }
 
 .submitReview-form h2 {
-    color: var(--main-clr);
+  color: var(--main-clr);
 }
 
 .submitReview-form input {
-    padding: 8px;
+  padding: 8px;
 }
 
 textarea {
-    width: 100%; /* Adjust as needed */
-    min-height: 100px; /* Initial height */
-    padding: 8px; /* Adjust padding as needed */
-    resize: none; /* Disable textarea resizing by user */
-    overflow-y: auto;
+  width: 100%; /* Adjust as needed */
+  min-height: 100px; /* Initial height */
+  padding: 8px; /* Adjust padding as needed */
+  resize: none; /* Disable textarea resizing by user */
+  overflow-y: auto;
 }
 
 .submitReview-btns {
-    margin: .5em 0 0 0;
-
+  margin: 0.5em 0 0 0;
 }
 
 .submit-btn {
-    margin-right: .3em;
-    padding: .8em 1em ;
-    border: none;
-    border-radius: .2em;
-    background-color: var(--button-clr);
-    color: var(--text-clr);
+  margin-right: 0.3em;
+  padding: 0.8em 1em;
+  border: none;
+  border-radius: 0.2em;
+  background-color: var(--button-clr);
+  color: var(--text-clr);
 }
 
 .submit-btn:hover {
-    margin-right: .3em;
-    padding: .8em 1em ;
-    border: none;
-    border-radius: .2em;
-    background-color: var(--button-hover-clr);
-    color: var(--text-clr);
+  margin-right: 0.3em;
+  padding: 0.8em 1em;
+  border: none;
+  border-radius: 0.2em;
+  background-color: var(--button-hover-clr);
+  color: var(--text-clr);
 }
 
 .cancel-btn {
-    margin-right: .3em;
-    padding: .8em 1em ;
-    border: none;
-    border-radius: .2em;
-    background-color: #464646;
-    color: var(--text-clr);
+  margin-right: 0.3em;
+  padding: 0.8em 1em;
+  border: none;
+  border-radius: 0.2em;
+  background-color: #464646;
+  color: var(--text-clr);
 }
 
 .cancel-btn:hover {
-    margin-right: .5em;
-    padding: .8em 1em ;
-    border: none;
-    border-radius: .2em;
-    background-color: #313131;
-    color: var(--text-clr);
+  margin-right: 0.5em;
+  padding: 0.8em 1em;
+  border: none;
+  border-radius: 0.2em;
+  background-color: #313131;
+  color: var(--text-clr);
 }
 
-
 .reviews-container {
-    background-color: var(--header-clr);
-    padding: 1em;
-    margin-bottom: 1em;
+  background-color: var(--header-clr);
+  padding: 1em;
+  margin-bottom: 1em;
 }
 
 .reviews-container h2 {
-    margin-bottom: .5em;
-    color: var(--main-clr);
+  margin-bottom: 0.5em;
+  color: var(--main-clr);
 }
 
-
-.review-container > *{
-    margin-bottom: .5em;
+.review-container > * {
+  margin-bottom: 0.5em;
 }
 
 .review-content {
-    margin-bottom: 1em;
-    line-height: 1.5; /* 1.5 times the font size */
+  margin-bottom: 1em;
+  line-height: 1.5; /* 1.5 times the font size */
 }
 
 .line-space {
-    background-color: #8f8f8f;
-    padding: 1px;
-    margin-bottom: 1em;
+  background-color: #8f8f8f;
+  padding: 1px;
+  margin-bottom: 1em;
 }
 
-.review-container > *, .review-container div > * {
-    color: var(--text-clr);
-} 
+.review-container > *,
+.review-container div > * {
+  color: var(--text-clr);
+}
 
 .email-date {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .email-date p {
-    font-size: 14px;
-    color: rgb(39, 104, 201);
-    font-weight: 600;
+  font-size: 14px;
+  color: rgb(39, 104, 201);
+  font-weight: 600;
 }
 
 .reviews-rating-container {
-    display: flex;
-    align-items:center;
-    justify-content: space-between;
-    
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .reviews-rating-container p {
-    border-bottom: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .liked {
-    padding: .5em .7em .3em .7em;
-    border: 1px solid black;
-    background-color: var(--button-clr);
-    cursor: pointer;
-    border: none;
+  padding: 0.5em 0.7em 0.3em 0.7em;
+  border: 1px solid black;
+  background-color: var(--button-clr);
+  cursor: pointer;
+  border: none;
 }
 
 /* .liked:hover {
@@ -301,11 +284,11 @@ textarea {
 } */
 
 .unliked {
-    padding: .5em .7em .3em .7em;
-    border: 1px solid black;
-    background-color: white;
-    cursor: pointer;
-    border: none;
+  padding: 0.5em 0.7em 0.3em 0.7em;
+  border: 1px solid black;
+  background-color: white;
+  cursor: pointer;
+  border: none;
 }
 
 /* .unliked:hover {
@@ -314,107 +297,103 @@ textarea {
 } */
 
 .rate-icon {
-    width: 15px;
-    height: 15px;
+  width: 15px;
+  height: 15px;
 }
 
 /* Doesnt work? */
 .total-reviews {
-    color: var(--main-clr); 
+  color: var(--main-clr);
 }
 
 .finished-rating {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
-input[type=radio] {
-    display: none;
+input[type="radio"] {
+  display: none;
 }
 
 .star {
-    cursor: pointer;
-    transition: color 200ms;
+  cursor: pointer;
+  transition: color 200ms;
 }
 
 .no-rating {
-    color: var(--main-clr);
+  color: var(--main-clr);
 }
 
 .trash-icon {
-    
 }
 
 .trash-icon:hover {
-    transition: .3s;
-    color: rgb(214, 42, 42);
-    cursor: pointer;
+  transition: 0.3s;
+  color: rgb(214, 42, 42);
+  cursor: pointer;
 }
 
 .books-info {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5em;
-    line-height: 1.5em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5em;
+  line-height: 1.5em;
 }
 
-
 @media (max-width: 1550px) {
-    .books-info-hide {
-        display: none;
-    }
-}  
+  .books-info-hide {
+    display: none;
+  }
+}
 
 @media (max-width: 1000px) {
-    .books-info-hide {
-        display: block;
-    }
-}  
+  .books-info-hide {
+    display: block;
+  }
+}
 
 @media (max-width: 950px) {
-    .books-info-hide {
-        display: none;
-    }
-}  
+  .books-info-hide {
+    display: none;
+  }
+}
 
 @media (max-width: 850px) {
-    .books-info-hide {
-        display: none;
-    }
-}  
+  .books-info-hide {
+    display: none;
+  }
+}
 
 @media (min-width: 600px) {
-    .book-information-container .book-information-top img {
-        width: 130px;
-    }
+  .book-information-container .book-information-top img {
+    width: 130px;
+  }
 
-    .book-information h2 {
-        font-size: xx-large;
-    }
-}  
+  .book-information h2 {
+    font-size: xx-large;
+  }
+}
 
 @media (min-width: 1000px) {
-    .book-information-container .book-information-top img {
-        width: 150px;
-        
-    }
-}  
+  .book-information-container .book-information-top img {
+    width: 150px;
+  }
+}
 
 @media (min-width: 1600px) {
-    .books-info-hide {
-        display: none;
-    }
-}  
+  .books-info-hide {
+    display: none;
+  }
+}
 
 @media (min-width: 1900px) {
-    .books-info-hide {
-        display: block;
-    }
-}  
+  .books-info-hide {
+    display: block;
+  }
+}
 
 @media (min-width: 2200px) {
-    .book-information-container .book-information-top img {
-        width: 170px;
-
-    }
-}  
+  .book-information-container .book-information-top img {
+    width: 170px;
+  }
+}

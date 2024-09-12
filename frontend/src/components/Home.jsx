@@ -24,12 +24,18 @@ export default function Home() {
       try {
         // Fetch books
         const booksData = await getDocs(booksCollectionRef);
-        const filteredBooksData = booksData.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        const filteredBooksData = booksData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
         setBooks(filteredBooksData);
 
         // Fetch audiobooks
         const audioBooksData = await getDocs(audioBooksCollectionRef);
-        const filteredAudioBooksData = audioBooksData.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        const filteredAudioBooksData = audioBooksData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
         setAudioBooks(filteredAudioBooksData);
 
         // Filter and set state for newest books
@@ -55,7 +61,7 @@ export default function Home() {
         <div className="recommended-books-grid">
           {newestBooks &&
             newestBooks.map((book) => {
-              const averageRating = calculateAverageRating(book.reviews);
+              // const averageRating = calculateAverageRating(book.reviews);
 
               return (
                 <div className="book-item" key={book.id}>
@@ -69,8 +75,14 @@ export default function Home() {
                         <h3>{book.title}</h3>
                       </div>
 
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        <FinishedRating score={averageRating} size={17} />
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        {/* <FinishedRating score={averageRating} size={17} /> */}
                       </div>
 
                       <div className="book-author">
@@ -90,7 +102,7 @@ export default function Home() {
         <div className="books-grid">
           {books &&
             books.map((book) => {
-              const averageRating = calculateAverageRating(book.reviews);
+              // const averageRating = calculateAverageRating(book.reviews);
               return (
                 <div className="book-item" key={book.id}>
                   <Link to={`/book/${book.id}`}>
@@ -103,8 +115,14 @@ export default function Home() {
                         <h3>{book.title}</h3>
                       </div>
 
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        <FinishedRating score={averageRating} size={17} />
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        {/* <FinishedRating score={averageRating} size={17} /> */}
                       </div>
 
                       <div className="book-author">
@@ -124,12 +142,16 @@ export default function Home() {
         <div className="audiobook-grid">
           {audioBooks &&
             audioBooks.map((book) => {
-              const averageRating = calculateAverageRating(book.reviews);
+              // const averageRating = calculateAverageRating(book.reviews);
               return (
                 <div className="audiobook-item" key={book.id}>
                   <Link to={`/audioBook/${book.id}`}>
                     <div className="audiobook-image-container">
-                      <img src={book.image} alt="" className="audiobook-image" />
+                      <img
+                        src={book.image}
+                        alt=""
+                        className="audiobook-image"
+                      />
                     </div>
 
                     <div className="book-info-container">
@@ -137,8 +159,14 @@ export default function Home() {
                         <h3>{book.title}</h3>
                       </div>
 
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        <FinishedRating score={averageRating} size={17} />
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        {/* <FinishedRating score={averageRating} size={17} /> */}
                       </div>
 
                       <div className="book-author">

@@ -28,11 +28,17 @@ export default function SearchPage() {
       try {
         // Fetch books
         const booksData = await getDocs(booksCollectionRef);
-        const filteredBooksData = booksData.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        const filteredBooksData = booksData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
 
         // Fetch audiobooks
         const audioBooksData = await getDocs(audioBooksCollectionRef);
-        const filteredAudioBooksData = audioBooksData.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        const filteredAudioBooksData = audioBooksData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
 
         // Combine books and audiobooks into a single array
         const combinedData = [...filteredBooksData, ...filteredAudioBooksData];
@@ -60,6 +66,7 @@ export default function SearchPage() {
 
   return (
     <div className="page-container">
+      <h2 className="title pb-2">Search</h2>
       <div className="search-input-page-container">
         <FaSearch className="search-icon" />
         <input
@@ -73,35 +80,44 @@ export default function SearchPage() {
 
       {combinedData && combinedData.length > 0 ? (
         combinedData.map((data, index) => {
-          const averageRating = calculateAverageRating(data.reviews);
-
           return (
             <Link
               className="no-link"
               key={index}
-              to={data.type === "Book" ? `/book/${data.id}` : `/audioBook/${data.id}`}
+              to={
+                data.type === "Book"
+                  ? `/book/${data.id}`
+                  : `/audioBook/${data.id}`
+              }
             >
-              <div key={index} className="books-container">
-                <img className="books-img" src={data.image} alt="" />
+              <div className="books-container">
+                <div className="books-img-container">
+                  <img className="books-img" src={data.image} alt="" />
+                </div>
 
                 <div className="books-container-info">
-                  <h2 className="books-h2">{data.title}</h2>
-                  <FinishedRating score={averageRating} size={25} />
+                  <h2 className="text-xl mb-2 font-bold">
+                    {data.title} - {data.type}
+                  </h2>
 
                   {/* Add emotes here instead of a text like "price:" */}
-                  <div style={{ marginTop: "10px" }}>
-                    <p>{data.author}</p>
-                    <p>{data.language}</p>
-                    <p>Price: {data.price} kr</p>
-                    <p>Type: {data.type}</p>
-                  </div>
+
+                  <p className="mb-2">{data.secondTitle}</p>
+
+                  <p
+                    className={`${data.type === "Book" ? "line-clamp-3" : "line-clamp-2"} text-sm font-light`}
+                  >
+                    {data.description}
+                  </p>
                 </div>
               </div>
             </Link>
           );
         })
       ) : (
-        <h2 style={{ marginBottom: "1em", textAlign: "center" }}>No book with that title</h2>
+        <h2 style={{ marginBottom: "1em", textAlign: "center" }}>
+          No book with that title
+        </h2>
       )}
     </div>
   );

@@ -1,4 +1,12 @@
-import { Timestamp, arrayRemove, arrayUnion, deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  Timestamp,
+  arrayRemove,
+  arrayUnion,
+  deleteDoc,
+  doc,
+  getDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { db } from "../config/firebase";
@@ -137,7 +145,9 @@ export default function Bookinfo() {
       const bookSnapshot = await getDoc(bookDocRef);
       const bookData = bookSnapshot.data();
 
-      const reviewIndex = bookData.reviews.findIndex((review) => review.reviewId === reviewId);
+      const reviewIndex = bookData.reviews.findIndex(
+        (review) => review.reviewId === reviewId
+      );
 
       // The specific review the user has liked
       const review = bookData.reviews[reviewIndex];
@@ -187,7 +197,9 @@ export default function Bookinfo() {
           const reviews = bookData.reviews;
 
           // Find the review to remove
-          const reviewToRemove = reviews.find((review) => review.reviewId === reviewIdToDelete);
+          const reviewToRemove = reviews.find(
+            (review) => review.reviewId === reviewIdToDelete
+          );
 
           if (reviewToRemove) {
             // Update the book document to remove the review from the array
@@ -222,7 +234,7 @@ export default function Bookinfo() {
               <div className="book-information">
                 <h2 style={{ marginBottom: "10px" }}>{bookInfo.title}</h2>
 
-                <FinishedRating score={averageRating} size={25} />
+                {/* <FinishedRating score={averageRating} size={25} /> */}
 
                 <p style={{ marginTop: "10px" }}>{bookInfo.author}</p>
 
@@ -237,13 +249,16 @@ export default function Bookinfo() {
               </Link>
             </div>
 
-            <div style={{ marginBottom: "1em" }} className="book-information-bottom">
-              <h2>Description</h2>
+            <div
+              style={{ marginBottom: "1em" }}
+              className="book-information-bottom"
+            >
+              <h2 className="h2-title">Description</h2>
               <p>{bookInfo.description}</p>
             </div>
 
             <div className="book-information-bottom">
-              <h2>Information</h2>
+              <h2 className="h2-title">Information</h2>
 
               <div className="book-details">
                 <div className="book-details-item">
@@ -320,7 +335,10 @@ export default function Bookinfo() {
                 <label>Overall Score</label>
                 <p className="error-message">{reviewRatingError}</p>
 
-                <StarRating reviewRating={reviewRating} setReviewRating={setReviewRating} />
+                <StarRating
+                  reviewRating={reviewRating}
+                  setReviewRating={setReviewRating}
+                />
 
                 <label>Review Content</label>
                 <p className="error-message">{reviewContentError}</p>
@@ -366,7 +384,9 @@ export default function Bookinfo() {
                 <div>
                   <h1 className="modal-title">Post Review?</h1>
                   <p className="modal-text">
-                    Are you sure you want to <span style={{ fontWeight: "bold" }}>post</span> this review?
+                    Are you sure you want to{" "}
+                    <span style={{ fontWeight: "bold" }}>post</span> this
+                    review?
                   </p>
 
                   <div className="modal-button-container">
@@ -377,83 +397,111 @@ export default function Bookinfo() {
                     >
                       Submit
                     </button>
-                    <button className="modal-button" onClick={() => setOpen(false)}>
+                    <button
+                      className="modal-button"
+                      onClick={() => setOpen(false)}
+                    >
                       Close
                     </button>
                   </div>
 
-                  <FaTimes className="modal-close" size="25" onClick={() => setOpen(false)} />
+                  <FaTimes
+                    className="modal-close"
+                    size="25"
+                    onClick={() => setOpen(false)}
+                  />
                 </div>
               </Box>
             </Modal>
           </div>
 
-          <div className="reviews-container">
-            <h2>Reviews</h2>
-            <div className="line-space"></div>
-            {bookInfo.reviews ? (
-              <>
-                {/* Map over only the number of reviews specified by displayedReviews */}
-                {bookInfo.reviews.slice(0, displayedReviews).map((review, i) => {
-                  return (
-                    <div className="review-container" key={i}>
-                      <h3>{review.reviewTitle}</h3>
+          {bookInfo.reviews?.length > 0 && (
+            <div className="reviews-container">
+              <h2>Reviews</h2>
+              <div className="line-space"></div>
 
-                      <FinishedRating score={review.reviewRating} size={25} />
+              {/* Map over only the number of reviews specified by displayedReviews */}
+              {bookInfo.reviews.slice(0, displayedReviews).map((review, i) => {
+                return (
+                  <div className="review-container" key={i}>
+                    <h3 className="h3-title">{review.reviewTitle}</h3>
 
-                      <div className="email-date">
-                        <p>BY {review.email}</p>
-                        <p>{new Date(review.timestamp.seconds * 1000).toLocaleString()}</p>
-                      </div>
-                      <p>{review.score}</p>
-                      <p className="margin-bot review-content">{review.reviewContent}</p>
+                    <FinishedRating score={review.reviewRating} size={25} />
 
-                      <div className="reviews-rating-container">
-                        {isAdmin && (
-                          <FaTrash
-                            className="trash-icon"
-                            size="22"
-                            onClick={() => handleDeleteReviewModal(review.reviewId)}
-                          />
-                        )}
-
-                        <p className="total-reviews">
-                          {review.likes && review.likes.length > 0 ? review.likes.length : ""}
-                        </p>
-
-                        {signedInUser ? (
-                          <div
-                            className={review.likes && review.likes.includes(signedInUser?.uid) ? "liked" : "unliked"}
-                            onClick={(e) => rateReview(e, review.reviewId, "like")}
-                          >
-                            {review.likes && review.likes.includes(signedInUser.uid) ? (
-                              <img className="rate-icon" src={likeWhite} alt="" />
-                            ) : (
-                              <img className="rate-icon" src={likeRed} alt="" />
-                            )}
-                          </div>
-                        ) : (
-                          ""
-                        )}
-                      </div>
-                      <div className="line-space"></div>
+                    <div className="email-date">
+                      <p>BY {review.email}</p>
+                      <p>
+                        {new Date(
+                          review.timestamp.seconds * 1000
+                        ).toLocaleString()}
+                      </p>
                     </div>
-                  );
-                })}
-                {/* Button to show more reviews */}
-                {bookInfo.reviews.length > displayedReviews && (
-                  <button onClick={handleShowMoreReviews} className="show-more-btn">
-                    Show More
-                  </button>
-                )}
-              </>
-            ) : (
-              "No reviews"
-            )}
-          </div>
+                    <p>{review.score}</p>
+                    <p className="margin-bot review-content text-sm">
+                      {review.reviewContent}
+                    </p>
+
+                    <div className="reviews-rating-container">
+                      {isAdmin && (
+                        <FaTrash
+                          className="trash-icon"
+                          size="22"
+                          onClick={() =>
+                            handleDeleteReviewModal(review.reviewId)
+                          }
+                        />
+                      )}
+
+                      <p className="total-reviews">
+                        {review.likes && review.likes.length > 0
+                          ? review.likes.length
+                          : ""}
+                      </p>
+
+                      {signedInUser ? (
+                        <div
+                          className={
+                            review.likes &&
+                            review.likes.includes(signedInUser?.uid)
+                              ? "liked"
+                              : "unliked"
+                          }
+                          onClick={(e) =>
+                            rateReview(e, review.reviewId, "like")
+                          }
+                        >
+                          {review.likes &&
+                          review.likes.includes(signedInUser.uid) ? (
+                            <img className="rate-icon" src={likeWhite} alt="" />
+                          ) : (
+                            <img className="rate-icon" src={likeRed} alt="" />
+                          )}
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div className="line-space"></div>
+                  </div>
+                );
+              })}
+              {/* Button to show more reviews */}
+              {bookInfo.reviews.length > displayedReviews && (
+                <button
+                  onClick={handleShowMoreReviews}
+                  className="show-more-btn"
+                >
+                  Show More
+                </button>
+              )}
+            </div>
+          )}
 
           <div>
-            <Modal open={openDeleteReview} onClose={() => setOpenDeleteReview(false)}>
+            <Modal
+              open={openDeleteReview}
+              onClose={() => setOpenDeleteReview(false)}
+            >
               <Box
                 sx={{
                   position: "absolute",
@@ -472,11 +520,17 @@ export default function Bookinfo() {
                 <div>
                   <h1 className="modal-title">Delete Review?</h1>
                   <p className="modal-text">
-                    Are you sure you want to <span style={{ fontWeight: "bold" }}>delete</span> this review?
+                    Are you sure you want to{" "}
+                    <span style={{ fontWeight: "bold" }}>delete</span> this
+                    review?
                   </p>
 
                   <div className="modal-button-container">
-                    <button style={{ marginBottom: ".5em" }} className="modal-button-delete" onClick={deleteReview}>
+                    <button
+                      style={{ marginBottom: ".5em" }}
+                      className="modal-button-delete"
+                      onClick={deleteReview}
+                    >
                       Delete
                     </button>
                     <button
@@ -490,7 +544,11 @@ export default function Bookinfo() {
                     </button>
                   </div>
 
-                  <FaTimes className="modal-close" size="25" onClose={() => setOpenDeleteReview(false)} />
+                  <FaTimes
+                    className="modal-close"
+                    size="25"
+                    onClose={() => setOpenDeleteReview(false)}
+                  />
                 </div>
               </Box>
             </Modal>
