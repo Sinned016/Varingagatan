@@ -2,7 +2,11 @@ import { Box, Modal } from "@mui/material";
 import { useState } from "react";
 import { addContentToDatabase } from "../../functions/addContentToDatabase";
 
-export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger }) {
+export default function AdminAddBook({
+  addAudioBook,
+  setAddAudioBook,
+  setTrigger,
+}) {
   const initialFormValues = {
     title: "", // required
     secondTitle: "",
@@ -78,7 +82,7 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
         }}
       >
         <Box className="admin-add-book">
-          <h1 style={{ textAlign: "center", marginBottom: ".5em" }}>Add New Audiobook</h1>
+          <h3 className="h3-title text-center mb-2">Add New Audiobook</h3>
 
           <div className="admin-add-content">
             <label htmlFor="">Title</label>
@@ -113,7 +117,9 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
 
             <label htmlFor="">Description</label>
             <textarea
-              className={errors.description ? "error-input" : "admin-content-input"}
+              className={
+                errors.description ? "error-input" : "admin-content-input"
+              }
               name="description"
               type="text"
               placeholder="Description..."
@@ -123,7 +129,9 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
 
             <label htmlFor="">Language</label>
             <input
-              className={errors.language ? "error-input" : "admin-content-input"}
+              className={
+                errors.language ? "error-input" : "admin-content-input"
+              }
               name="language"
               type="text"
               placeholder="Language..."
@@ -193,7 +201,9 @@ export default function AdminAddBook({ addAudioBook, setAddAudioBook, setTrigger
 
             <label htmlFor="">Link to Purchase</label>
             <input
-              className={errors.linkToPurchase ? "error-input" : "admin-content-input"}
+              className={
+                errors.linkToPurchase ? "error-input" : "admin-content-input"
+              }
               name="linkToPurchase"
               type="text"
               placeholder="Link to purchase..."

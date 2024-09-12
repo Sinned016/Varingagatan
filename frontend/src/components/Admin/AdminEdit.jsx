@@ -94,13 +94,11 @@ export default function AdminEdit() {
               <FinishedRating score={averageRating} size={25} />
 
               <p style={{ marginTop: "10px" }}>{data.author}</p>
-              <p>{data.language}</p>
-              <p>{data.price}</p>
             </div>
           </div>
 
           <div className="admin-edit-information">
-            <h2 style={{ textAlign: "center" }}>Edit {type}</h2>
+            <h2 className="h2-title text-center">Edit {type}</h2>
             <label htmlFor="">Title</label>
             <input
               name="title"

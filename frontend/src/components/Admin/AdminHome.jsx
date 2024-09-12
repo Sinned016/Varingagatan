@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import useAuthState from "../useAuthState";
 import { Link, useNavigate } from "react-router-dom";
-import { collection, deleteDoc, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+} from "firebase/firestore";
 import { db } from "../../config/firebase";
 import FinishedRating from "../FinishedRating";
 import { calculateAverageRating } from "../../functions/calculateAverageRating";
@@ -43,11 +49,17 @@ export default function AdminHome() {
       try {
         // Fetch books
         const booksData = await getDocs(booksCollectionRef);
-        const filteredBooksData = booksData.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        const filteredBooksData = booksData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
 
         // Fetch audiobooks
         const audioBooksData = await getDocs(audioBooksCollectionRef);
-        const filteredAudioBooksData = audioBooksData.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        const filteredAudioBooksData = audioBooksData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
 
         // Combine books and audiobooks into a single array
         const combinedData = [...filteredBooksData, ...filteredAudioBooksData];
@@ -74,7 +86,9 @@ export default function AdminHome() {
       if (bookDocSnapshot.exists()) {
         // Document exists in books collection, delete it
         await deleteDoc(bookDocRef);
-        console.log(`Document with ID ${dataToDelete} deleted from books collection`);
+        console.log(
+          `Document with ID ${dataToDelete} deleted from books collection`
+        );
         setDataToDelete(null);
         setOpenDeleteData(false);
         setTrigger((prev) => !prev);
@@ -88,7 +102,9 @@ export default function AdminHome() {
       if (audioBookDocSnapshot.exists()) {
         // Document exists in audiobooks collection, delete it
         await deleteDoc(audioBookDocRef);
-        console.log(`Document with ID ${dataToDelete} deleted from audiobooks collection`);
+        console.log(
+          `Document with ID ${dataToDelete} deleted from audiobooks collection`
+        );
         setDataToDelete(null);
         setOpenDeleteData(false);
         setTrigger((prev) => !prev);
@@ -103,7 +119,9 @@ export default function AdminHome() {
   function handleSearch(value) {
     setSearchData(value);
 
-    const filtered = allData.filter((data) => data.title.toLowerCase().includes(value.toLowerCase()));
+    const filtered = allData.filter((data) =>
+      data.title.toLowerCase().includes(value.toLowerCase())
+    );
     setFilteredData(filtered);
   }
 
@@ -131,9 +149,13 @@ export default function AdminHome() {
   return (
     <div className="page-container">
       {/* Maybe change this to another banner */}
-      <h1 className="books-h1">Admin Page</h1>
+      <h1 className="title pb-2">Admin Page</h1>
 
-      <FaPlus className="admin-add" size="30" onClick={() => setOpenAddNew(true)} />
+      <FaPlus
+        className="admin-add"
+        size="30"
+        onClick={() => setOpenAddNew(true)}
+      />
 
       <div className="search-input-page-container">
         <FaSearch className="search-icon" />
@@ -153,13 +175,17 @@ export default function AdminHome() {
           return (
             <div key={index} className="admin-data-container">
               {/* Add a Trashcan icon here */}
-              <Link className="books-container" key={index} to={`/admin/${data.type}/${data.id}`}>
+              <Link
+                className="books-container"
+                key={index}
+                to={`/admin/${data.type}/${data.id}`}
+              >
                 <div className="books-img-container">
                   <img className="books-img" src={data.image} alt="" />
                 </div>
 
                 <div className="books-container-info">
-                  <h2 className="books-h2">
+                  <h2 className="h2-title mb-2">
                     {data.title} - {data.type}
                   </h2>
                   <FinishedRating score={averageRating} size={25} />
@@ -169,8 +195,9 @@ export default function AdminHome() {
                     <div>
                       <p>Author: {data.author}</p>
                       <p>Language: {data.language}</p>
-                      {data.secondTitle && <p>Second Title: {data.secondTitle}</p>}
-                      {data.reader && <p>Reader: {data.reader}</p>}
+                      {data.secondTitle && (
+                        <p>Second Title: {data.secondTitle}</p>
+                      )}
                     </div>
                     <div className="books-info-hide">
                       <p>Price: {data.price} kr</p>
@@ -180,7 +207,9 @@ export default function AdminHome() {
                       {data.size && <p>Size: {data.size}</p>}
                     </div>
                     <div className="books-info-hide">
-                      {data.releaseDate && <p>Release Date: {data.releaseDate}</p>}
+                      {data.releaseDate && (
+                        <p>Release Date: {data.releaseDate}</p>
+                      )}
                       {data.publisher && <p>Publisher: {data.publisher}</p>}
                       <p>Type: {data.type}</p>
                     </div>
@@ -188,7 +217,11 @@ export default function AdminHome() {
                 </div>
               </Link>
 
-              <FaTrash className="admin-delete" size="22" onClick={() => handleDeleteData(data.id)} />
+              <FaTrash
+                className="admin-delete"
+                size="22"
+                onClick={() => handleDeleteData(data.id)}
+              />
             </div>
           );
         })}
@@ -210,21 +243,25 @@ export default function AdminHome() {
               outline: "none",
             }}
           >
-            <h1 className="modal-title">Delete</h1>
+            <h1 className="h3-title text-center">Delete</h1>
             <p className="modal-text">Are you sure you want to delete this?</p>
 
             <div className="modal-button-container">
-              <button style={{ marginBottom: ".5em" }} className="modal-button-delete" onClick={() => deleteData()}>
-                Delete
+              <button
+                style={{ marginBottom: ".5em" }}
+                className="modal-button bg-green-500 hover:bg-green-600 active:bg-green-700 text-black"
+                onClick={() => deleteData()}
+              >
+                Yes
               </button>
               <button
-                className="modal-button"
+                className="modal-button bg-red-500 hover:bg-red-600 active:bg-red-700 text-black"
                 onClick={() => {
                   setOpenDeleteData(false);
                   setDataToDelete(null);
                 }}
               >
-                Cancel
+                No
               </button>
             </div>
 
@@ -258,18 +295,23 @@ export default function AdminHome() {
             }}
           >
             <div>
-              <h1 className="modal-title">Add new Content</h1>
-              <p className="modal-text">What Type of book do you want to add?</p>
+              <h3 className="h3-title text-center">Add new Content</h3>
+              <p className="modal-text">
+                What Type of book do you want to add?
+              </p>
 
               <div className="modal-button-container">
                 <button
                   style={{ marginBottom: ".5em" }}
-                  className="modal-button"
+                  className="w-full rounded-lg p-2 bg-slate-500 hover:bg-slate-600 active:bg-slate-700"
                   onClick={() => handleCreateData("book")}
                 >
                   Book
                 </button>
-                <button className="modal-button" onClick={() => handleCreateData("audiobook")}>
+                <button
+                  className="w-full rounded-lg p-2 bg-slate-500 hover:bg-slate-600 active:bg-slate-700"
+                  onClick={() => handleCreateData("audiobook")}
+                >
                   Audiobook
                 </button>
               </div>
@@ -286,8 +328,16 @@ export default function AdminHome() {
         </Modal>
       </div>
 
-      <AdminAddBook addBook={addBook} setAddBook={setAddBook} setTrigger={setTrigger} />
-      <AdminAddAudiobook addAudioBook={addAudioBook} setAddAudioBook={setAddAudioBook} setTrigger={setTrigger} />
+      <AdminAddBook
+        addBook={addBook}
+        setAddBook={setAddBook}
+        setTrigger={setTrigger}
+      />
+      <AdminAddAudiobook
+        addAudioBook={addAudioBook}
+        setAddAudioBook={setAddAudioBook}
+        setTrigger={setTrigger}
+      />
     </div>
   );
 }

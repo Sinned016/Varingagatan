@@ -322,7 +322,7 @@ export default function Bookinfo() {
           {signedInUser ? (
             <div className="submitReview-container">
               <form className="submitReview-form" onSubmit={openModal}>
-                <h2>Leave a Review</h2>
+                <h2 className="h2-title">Leave a Review</h2>
                 <label>Review Title</label>
                 <p className="error-message">{reviewTitleError}</p>
                 <input
@@ -382,7 +382,7 @@ export default function Bookinfo() {
                 }}
               >
                 <div>
-                  <h1 className="modal-title">Post Review?</h1>
+                  <h3 className="h3-title text-center">Post Review?</h3>
                   <p className="modal-text">
                     Are you sure you want to{" "}
                     <span style={{ fontWeight: "bold" }}>post</span> this
@@ -392,16 +392,16 @@ export default function Bookinfo() {
                   <div className="modal-button-container">
                     <button
                       style={{ marginBottom: ".5em" }}
-                      className="modal-button-delete"
+                      className="modal-button bg-green-500 hover:bg-green-600 active:bg-green-700 text-black"
                       onClick={handleSubmitReview}
                     >
-                      Submit
+                      Yes
                     </button>
                     <button
-                      className="modal-button"
+                      className="modal-button bg-red-500 hover:bg-red-600 active:bg-red-700 text-black"
                       onClick={() => setOpen(false)}
                     >
-                      Close
+                      No
                     </button>
                   </div>
 
@@ -417,7 +417,7 @@ export default function Bookinfo() {
 
           {bookInfo.reviews?.length > 0 && (
             <div className="reviews-container">
-              <h2>Reviews</h2>
+              <h2 className="h2-title">Reviews</h2>
               <div className="line-space"></div>
 
               {/* Map over only the number of reviews specified by displayedReviews */}
@@ -518,7 +518,7 @@ export default function Bookinfo() {
                 }}
               >
                 <div>
-                  <h1 className="modal-title">Delete Review?</h1>
+                  <h1 className="h3-title text-center">Delete Review?</h1>
                   <p className="modal-text">
                     Are you sure you want to{" "}
                     <span style={{ fontWeight: "bold" }}>delete</span> this
@@ -528,26 +528,26 @@ export default function Bookinfo() {
                   <div className="modal-button-container">
                     <button
                       style={{ marginBottom: ".5em" }}
-                      className="modal-button-delete"
+                      className="modal-button bg-green-500 hover:bg-green-600 active:bg-green-700 text-black"
                       onClick={deleteReview}
                     >
-                      Delete
+                      Yes
                     </button>
                     <button
-                      className="modal-button"
+                      className="modal-button bg-red-500 hover:bg-red-600 active:bg-red-700 text-black"
                       onClick={() => {
                         setOpenDeleteReview(false);
                         setReviewIdToDelete(null);
                       }}
                     >
-                      Cancel
+                      No
                     </button>
                   </div>
 
                   <FaTimes
                     className="modal-close"
                     size="25"
-                    onClose={() => setOpenDeleteReview(false)}
+                    onClick={() => setOpenDeleteReview(false)}
                   />
                 </div>
               </Box>

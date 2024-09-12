@@ -383,7 +383,7 @@ export default function Bookinfo() {
                 }}
               >
                 <div>
-                  <h1 className="modal-title">Post Review?</h1>
+                  <h3 className="h3-title text-center mb-2">Post Review?</h3>
                   <p className="modal-text">
                     Are you sure you want to post this review?
                   </p>
@@ -391,13 +391,13 @@ export default function Bookinfo() {
                   <div className="modal-button-container">
                     <button
                       style={{ marginBottom: ".5em" }}
-                      className="modal-button-delete"
+                      className="modal-button bg-green-500 hover:bg-green-600 active:bg-green-700 text-black"
                       onClick={handleSubmitReview}
                     >
                       Submit
                     </button>
                     <button
-                      className="modal-button"
+                      className="modal-button bg-red-500 hover:bg-red-600 active:bg-red-700 text-blac"
                       onClick={() => setOpen(false)}
                     >
                       Close
@@ -415,7 +415,7 @@ export default function Bookinfo() {
           </div>
           {audioBookInfo.reviews?.length > 0 && (
             <div className="reviews-container">
-              <h2>Reviews</h2>
+              <h2 className="h2-title">Reviews</h2>
               <div className="line-space"></div>
 
               {/* Map over only the number of reviews specified by displayedReviews */}
@@ -513,30 +513,47 @@ export default function Bookinfo() {
                   left: "50%",
                   transform: "translate(-50%, -50%)",
                   width: 400,
-                  bgcolor: "background.paper",
+                  bgcolor: "#333",
                   boxShadow: 24,
                   p: 4,
+                  borderRadius: "1em",
+                  overflow: "auto",
+                  outline: "none",
                 }}
               >
-                <Typography variant="h5" sx={{ color: "black", mb: 2 }}>
-                  Are you sure you want to delete this review?
-                </Typography>
-                <Button
-                  variant="contained"
-                  sx={{ mr: 1 }}
-                  onClick={deleteReview}
-                >
-                  Yes
-                </Button>
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    setOpenDeleteReview(false);
-                    setReviewIdToDelete(null);
-                  }}
-                >
-                  No
-                </Button>
+                <div>
+                  <h1 className="h3-title text-center">Delete Review?</h1>
+                  <p className="modal-text">
+                    Are you sure you want to{" "}
+                    <span style={{ fontWeight: "bold" }}>delete</span> this
+                    review?
+                  </p>
+
+                  <div className="modal-button-container">
+                    <button
+                      style={{ marginBottom: ".5em" }}
+                      className="modal-button bg-green-500 hover:bg-green-600 active:bg-green-700 text-black"
+                      onClick={deleteReview}
+                    >
+                      Yes
+                    </button>
+                    <button
+                      className="modal-button bg-red-500 hover:bg-red-600 active:bg-red-700 text-black"
+                      onClick={() => {
+                        setOpenDeleteReview(false);
+                        setReviewIdToDelete(null);
+                      }}
+                    >
+                      No
+                    </button>
+                  </div>
+
+                  <FaTimes
+                    className="modal-close"
+                    size="25"
+                    onClick={() => setOpenDeleteReview(false)}
+                  />
+                </div>
               </Box>
             </Modal>
           </div>

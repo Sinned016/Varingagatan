@@ -77,7 +77,7 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
         }}
       >
         <div className="admin-add-book">
-          <h1 style={{ textAlign: "center", marginTop: ".5em", marginBottom: ".5em" }}>Add New Book</h1>
+          <h3 className="h3-title text-center mb-2">Add New Book</h3>
 
           <div className="admin-add-content">
             <label htmlFor="">Title</label>
@@ -113,7 +113,9 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
 
             <label htmlFor="">Description</label>
             <textarea
-              className={errors.description ? "error-input" : "admin-content-input"}
+              className={
+                errors.description ? "error-input" : "admin-content-input"
+              }
               name="description"
               type="text"
               placeholder="Description..."
@@ -123,7 +125,9 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
 
             <label htmlFor="">Language</label>
             <input
-              className={errors.language ? "error-input" : "admin-content-input"}
+              className={
+                errors.language ? "error-input" : "admin-content-input"
+              }
               name="language"
               type="text"
               placeholder="Language..."
@@ -183,7 +187,9 @@ export default function AdminAddBook({ addBook, setAddBook, setTrigger }) {
 
             <label htmlFor="">Link to Purchase</label>
             <input
-              className={errors.linkToPurchase ? "error-input" : "admin-content-input"}
+              className={
+                errors.linkToPurchase ? "error-input" : "admin-content-input"
+              }
               name="linkToPurchase"
               type="text"
               placeholder="Link to purchase..."
