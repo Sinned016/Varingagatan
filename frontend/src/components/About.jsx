@@ -1,5 +1,4 @@
 import leifSelander from "../assets/pictures/leif-selander-portratt.webp";
-import { Link } from "react-router-dom";
 
 export default function About() {
   return (
