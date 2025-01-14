@@ -8,7 +8,6 @@
   padding: 0 2rem;
   background-color: var(--header-clr);
   color: var(--text-clr);
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.6); /* Adjusted shadow with zero horizontal offset */
 }
 
 .header-nav {

@@ -53,143 +53,86 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="page-container">
-      <div className="home-header">
-        <img src={homeHeader} alt="" />
-      </div>
+    <div>
+      <img
+        src={homeHeader}
+        className="object-cover h-full w-full"
+        alt="Picture of Leif Selander"
+      />
 
-      {loading ? (
-        <div>
-          <h2 className="title">Loading...</h2>
+      <>
+        <div className="bg-slate-50 p-4 mb-4 mt-4">
+          <h2 className="text-center text-3xl font-bold mb-3">Böcker</h2>
+
+          <div className="flex justify-center flex-wrap">
+            {books &&
+              books.slice(0, 6).map((book) => {
+                return (
+                  <div
+                    className="px-2 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6"
+                    key={book.id}
+                  >
+                    <Link to={`/book/${book.id}`}>
+                      <div className="w-full h-64 md:h-72 border">
+                        <img
+                          src={book.image}
+                          alt=""
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+
+                      <div>
+                        <h3 className="text-black text-center font-semibold text-lg">
+                          {book.title}
+                        </h3>
+
+                        <p className=" text-center text-sm text-black ">
+                          {book.author}
+                        </p>
+                      </div>
+                    </Link>
+                  </div>
+                );
+              })}
+          </div>
         </div>
-      ) : (
-        <>
-          <div className="home-container">
-            <h2 className="title">Väringasagan Series</h2>
 
-            <div className="recommended-books-grid">
-              {newestBooks &&
-                newestBooks.map((book) => {
-                  // const averageRating = calculateAverageRating(book.reviews);
+        <div className="bg-zinc-50 p-4">
+          <h2 className="text-center text-3xl font-bold mb-3">Ljudböcker</h2>
 
-                  return (
-                    <div className="book-item" key={book.id}>
-                      <Link to={`/book/${book.id}`}>
-                        <div className="book-image-container">
-                          <img src={book.image} alt="" className="book-image" />
-                        </div>
+          <div className="flex justify-center flex-wrap">
+            {audioBooks &&
+              audioBooks.slice(0, 6).map((book) => {
+                return (
+                  <div
+                    className="px-2 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6"
+                    key={book.id}
+                  >
+                    <Link to={`/audioBook/${book.id}`}>
+                      <div className="">
+                        <img
+                          src={book.image}
+                          alt=""
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
 
-                        <div className="book-info-container">
-                          <div className="book-info">
-                            <h3>{book.title}</h3>
-                          </div>
+                      <div>
+                        <h3 className="text-black text-center text-lg font-semibold">
+                          {book.title}
+                        </h3>
 
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                            }}
-                          >
-                            {/* <FinishedRating score={averageRating} size={17} /> */}
-                          </div>
-
-                          <div className="book-author">
-                            <p>{book.author}</p>
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
-                  );
-                })}
-            </div>
+                        <p className="text-center text-sm text-black ">
+                          {book.author}
+                        </p>
+                      </div>
+                    </Link>
+                  </div>
+                );
+              })}
           </div>
-
-          <div className="home-container">
-            <h2 className="title">Books</h2>
-
-            <div className="books-grid">
-              {books &&
-                books.map((book) => {
-                  // const averageRating = calculateAverageRating(book.reviews);
-                  return (
-                    <div className="book-item" key={book.id}>
-                      <Link to={`/book/${book.id}`}>
-                        <div className="book-image-container">
-                          <img src={book.image} alt="" className="book-image" />
-                        </div>
-
-                        <div className="book-info-container">
-                          <div className="book-info">
-                            <h3>{book.title}</h3>
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                            }}
-                          >
-                            {/* <FinishedRating score={averageRating} size={17} /> */}
-                          </div>
-
-                          <div className="book-author">
-                            <p>{book.author}</p>
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
-                  );
-                })}
-            </div>
-          </div>
-
-          <div className="home-container">
-            <h2 className="title">Audiobooks</h2>
-
-            <div className="audiobook-grid">
-              {audioBooks &&
-                audioBooks.map((book) => {
-                  // const averageRating = calculateAverageRating(book.reviews);
-                  return (
-                    <div className="audiobook-item" key={book.id}>
-                      <Link to={`/audioBook/${book.id}`}>
-                        <div className="audiobook-image-container">
-                          <img
-                            src={book.image}
-                            alt=""
-                            className="audiobook-image"
-                          />
-                        </div>
-
-                        <div className="book-info-container">
-                          <div className="book-info">
-                            <h3>{book.title}</h3>
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                            }}
-                          >
-                            {/* <FinishedRating score={averageRating} size={17} /> */}
-                          </div>
-
-                          <div className="book-author">
-                            <p>{book.author}</p>
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
-                  );
-                })}
-            </div>
-          </div>
-        </>
-      )}
+        </div>
+      </>
     </div>
   );
 }

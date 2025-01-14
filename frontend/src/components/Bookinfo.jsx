@@ -18,23 +18,20 @@ import StarRating from "./StarRating";
 import FinishedRating from "./FinishedRating";
 import { calculateAverageRating } from "../functions/calculateAverageRating";
 import { FaTimes, FaTrash } from "react-icons/fa";
+import { formatDistance, subDays } from "date-fns";
+import { Trash } from "lucide-react";
+import Review from "./Review";
 
 export default function Bookinfo() {
   let { id } = useParams();
   const [bookInfo, setBookInfo] = useState();
   const { signedInUser, isAdmin } = useAuthState(); // Use the custom hook to get authentication state
 
-  const [reviewTitle, setReviewTitle] = useState("");
-  const [reviewTitleError, setReviewTitleError] = useState("");
-  const [reviewContent, setReviewContent] = useState("");
-  const [reviewContentError, setReviewContentError] = useState("");
-  const [reviewRatingError, setReviewRatingError] = useState("");
-  const [open, setOpen] = useState(false);
   const [openDeleteReview, setOpenDeleteReview] = useState(false);
   const [reviewIdToDelete, setReviewIdToDelete] = useState(null);
   const [displayedReviews, setDisplayedReviews] = useState(5);
-  const [reviewRating, setReviewRating] = useState(0);
   const [averageRating, setAverageRating] = useState(null);
+  const [description, setDescription] = useState(true);
 
   // Trigger to do the useEffect again and fetch all data.
   const [submitTrigger, setSubmitTrigger] = useState(false);
@@ -64,72 +61,6 @@ export default function Bookinfo() {
     }
     getData();
   }, [id, submitTrigger]);
-
-  function openModal(e) {
-    e.preventDefault();
-
-    if (!reviewTitle || reviewTitle.length < 3) {
-      setReviewTitleError("Please provide a title for your review");
-      return;
-    } else {
-      setReviewTitleError("");
-    }
-
-    if (!reviewContent) {
-      setReviewContentError("Please provide your review before submitting");
-      return;
-    } else {
-      setReviewContentError("");
-    }
-
-    if (reviewRating === 0) {
-      setReviewRatingError("Please provide a rating before submitting");
-      return;
-    } else {
-      setReviewRatingError("");
-    }
-
-    setOpen(true);
-  }
-
-  async function handleSubmitReview(e) {
-    e.preventDefault();
-
-    const bookDocRef = doc(db, "books", id);
-    const newTimestamp = Timestamp.now();
-
-    const payloadData = {
-      userId: signedInUser.uid,
-      reviewId: `email-${signedInUser.email}-title-${reviewTitle}-timestamp-${newTimestamp}`,
-      email: signedInUser.email,
-      reviewTitle: reviewTitle,
-      reviewContent: reviewContent,
-      reviewRating: reviewRating,
-      timestamp: newTimestamp,
-      likes: [],
-    };
-
-    try {
-      await updateDoc(bookDocRef, {
-        reviews: arrayUnion(payloadData), // Add the new review to the existing reviews array
-      });
-
-      setReviewTitle("");
-      setReviewContent("");
-      setReviewRating(0);
-      setOpen(false);
-      setSubmitTrigger(!submitTrigger);
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
-  function handleCancelReview(e) {
-    e.preventDefault();
-
-    setReviewTitle("");
-    setReviewContent("");
-  }
 
   const handleShowMoreReviews = () => {
     setDisplayedReviews(displayedReviews + 5);
@@ -224,235 +155,160 @@ export default function Bookinfo() {
   }
 
   return (
-    <div className="page-container">
+    <div className="">
       {bookInfo ? (
-        <div>
-          <div className="book-information-container">
-            <div className="book-information-top">
-              <img src={bookInfo.image} alt="" />
+        <div className="bg-slate-50 p-6">
+          <div className="   flex flex-col md:flex-row pb-16">
+            <div className="mr-6 flex-shrink-0">
+              <img className=" h-72 md:h-96" src={bookInfo.image} alt="" />
 
-              <div className="book-information">
-                <h2 style={{ marginBottom: "10px" }}>{bookInfo.title}</h2>
-
-                {/* <FinishedRating score={averageRating} size={25} /> */}
-
-                <p style={{ marginTop: "10px" }}>{bookInfo.author}</p>
-
-                {/* <p>{bookInfo.language}</p> */}
-                {/* <p>{bookInfo.price}</p> */}
-              </div>
-            </div>
-
-            <div className="book-information-middle">
-              <Link to={bookInfo.linkToPurchase}>
-                <button className="purchase-btn">Purchase</button>
-              </Link>
-            </div>
-
-            <div
-              style={{ marginBottom: "1em" }}
-              className="book-information-bottom"
-            >
-              <h2 className="h2-title">Description</h2>
-              <p>{bookInfo.description}</p>
-            </div>
-
-            <div className="book-information-bottom">
-              <h2 className="h2-title">Information</h2>
-
-              <div className="book-details">
-                <div className="book-details-item">
-                  <h3>Author</h3>
-                  <p>{bookInfo.author}</p>
-                </div>
-
-                <div className="book-details-item">
-                  <h3>Language</h3>
-                  <p>{bookInfo.language}</p>
-                </div>
-
-                {bookInfo.secondTitle && (
-                  <div className="book-details-item">
-                    <h3>Second Title</h3>
-                    <p>{bookInfo.secondTitle}</p>
-                  </div>
-                )}
-
-                <div className="book-details-item">
-                  <h3>Price</h3>
-                  <p>{bookInfo.price} sek</p>
-                </div>
-
-                {bookInfo.pages && (
-                  <div className="book-details-item">
-                    <h3>Pages</h3>
-                    <p>{bookInfo.pages}</p>
-                  </div>
-                )}
-
-                {bookInfo.publisher && (
-                  <div className="book-details-item">
-                    <h3>Publisher</h3>
-                    <p>{bookInfo.publisher}</p>
-                  </div>
-                )}
-
-                {bookInfo.releaseDate && (
-                  <div className="book-details-item">
-                    <h3>Release Date</h3>
-                    <p>{bookInfo.releaseDate}</p>
-                  </div>
-                )}
-
-                <div className="book-details-item">
-                  <h3>Type</h3>
-                  <p>{bookInfo.type}</p>
-                </div>
-
-                {bookInfo.weight && (
-                  <div className="book-details-item">
-                    <h3>Weight</h3>
-                    <p>{bookInfo.weight}</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {signedInUser ? (
-            <div className="submitReview-container">
-              <form className="submitReview-form" onSubmit={openModal}>
-                <h2 className="h2-title">Leave a Review</h2>
-                <label>Review Title</label>
-                <p className="error-message">{reviewTitleError}</p>
-                <input
-                  placeholder={"Write your Title here..."}
-                  value={reviewTitle}
-                  onChange={(e) => setReviewTitle(e.target.value)}
-                  type="text"
-                />
-
-                <label>Overall Score</label>
-                <p className="error-message">{reviewRatingError}</p>
-
-                <StarRating
-                  reviewRating={reviewRating}
-                  setReviewRating={setReviewRating}
-                />
-
-                <label>Review Content</label>
-                <p className="error-message">{reviewContentError}</p>
-                <textarea
-                  value={reviewContent}
-                  onChange={(e) => setReviewContent(e.target.value)}
-                  placeholder={"Write your review here..."}
-                  rows={3} // Initial number of rows
-                />
-
-                <div className="submitReview-btns">
-                  <button className="submit-btn" type="submit">
-                    Submit
-                  </button>
-                  <button className="cancel-btn" onClick={handleCancelReview}>
-                    Cancel
-                  </button>
-                </div>
-              </form>
-            </div>
-          ) : (
-            // <p>Sign in to review the book</p>
-            ""
-          )}
-
-          <div>
-            <Modal open={open} onClose={() => setOpen(false)}>
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  width: 400,
-                  bgcolor: "#333",
-                  boxShadow: 24,
-                  p: 4,
-                  borderRadius: "1em",
-                  overflow: "auto",
-                  outline: "none",
-                }}
+              <a
+                href={bookInfo.linkToPurchase}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <div>
-                  <h3 className="h3-title text-center">Post Review?</h3>
-                  <p className="modal-text">
-                    Are you sure you want to{" "}
-                    <span style={{ fontWeight: "bold" }}>post</span> this
-                    review?
-                  </p>
+                <button className="mt-5 px-3 py-2 bg-red-500 hover:bg-red-600 rounded text-white w-full">
+                  Köp boken
+                </button>
+              </a>
+            </div>
 
-                  <div className="modal-button-container">
-                    <button
-                      style={{ marginBottom: ".5em" }}
-                      className="modal-button bg-green-500 hover:bg-green-600 active:bg-green-700 text-black"
-                      onClick={handleSubmitReview}
-                    >
-                      Yes
-                    </button>
-                    <button
-                      className="modal-button bg-red-500 hover:bg-red-600 active:bg-red-700 text-black"
-                      onClick={() => setOpen(false)}
-                    >
-                      No
-                    </button>
+            <div className="flex flex-col flex-grow">
+              <h1 className="text-4xl mb-2 font-semibold">{bookInfo.title}</h1>
+              <div className="flex flex-row">
+                <p className="mr-2">{bookInfo.author}</p>
+                <p>{bookInfo.releaseDate}</p>
+              </div>
+              <p className="font-semibold text-lg">{bookInfo.price} kr</p>
+
+              <div className="flex flex-row justify-evenly mt-4">
+                <button
+                  className={description && "font-semibold"}
+                  onClick={() => setDescription(true)}
+                >
+                  Beskrivning
+                </button>
+                <button
+                  className={!description && "font-semibold"}
+                  onClick={() => setDescription(false)}
+                >
+                  Specifikationer
+                </button>
+              </div>
+
+              <div className="border mt-2 border-muted-foreground"></div>
+
+              {description && (
+                <div className="mt-5">
+                  <p>{bookInfo.description}</p>
+                </div>
+              )}
+
+              {!description && (
+                <div className="mt-5 flex flex-row justify-between">
+                  <div>
+                    <div className="flex flex-row">
+                      <p className="font-semibold mr-1">Format:</p>
+                      <p>{bookInfo.type}</p>
+                    </div>
+                    <div className="flex flex-row">
+                      <p className="font-semibold mr-1">Språk:</p>
+                      <p>{bookInfo.language}</p>
+                    </div>
+                    <div className="flex flex-row">
+                      <p className="font-semibold mr-1">Antal sidor:</p>
+                      <p>{bookInfo.pages}</p>
+                    </div>
                   </div>
 
-                  <FaTimes
-                    className="modal-close"
-                    size="25"
-                    onClick={() => setOpen(false)}
-                  />
+                  <div>
+                    <div className="flex flex-row">
+                      <p className="font-semibold mr-1">Pris:</p>
+                      <p>{bookInfo.price}</p>
+                    </div>
+                    <div className="flex flex-row">
+                      <p className="font-semibold mr-1">Vikt:</p>
+                      <p>{bookInfo.weight}</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex flex-row">
+                      <p className="font-semibold mr-1">Utgivningsdatum:</p>
+                      <p>{bookInfo.releaseDate}</p>
+                    </div>
+                    <div className="flex flex-row">
+                      <p className="font-semibold mr-1">Utgivare:</p>
+                      <p>{bookInfo.publisher}</p>
+                    </div>
+                  </div>
                 </div>
-              </Box>
-            </Modal>
+              )}
+
+              <div></div>
+            </div>
           </div>
+
+          <Review
+            submitTrigger={submitTrigger}
+            setSubmitTrigger={setSubmitTrigger}
+          />
+
+          {console.log(new Date())}
 
           {bookInfo.reviews?.length > 0 && (
-            <div className="reviews-container">
-              <h2 className="h2-title">Reviews</h2>
-              <div className="line-space"></div>
+            <div className="">
+              <h2 className="text-xl mb-2 font-bold">Recensioner</h2>
 
               {/* Map over only the number of reviews specified by displayedReviews */}
               {bookInfo.reviews.slice(0, displayedReviews).map((review, i) => {
                 return (
-                  <div className="review-container" key={i}>
-                    <h3 className="h3-title">{review.reviewTitle}</h3>
-
-                    <FinishedRating score={review.reviewRating} size={25} />
-
-                    <div className="email-date">
-                      <p>BY {review.email}</p>
-                      <p>
-                        {new Date(
-                          review.timestamp.seconds * 1000
-                        ).toLocaleString()}
-                      </p>
+                  <div
+                    className="border p-4 rounded-lg mb-4 border-muted-foreground bg-slate-100 relative"
+                    key={i}
+                  >
+                    <div className="flex gap-4 mb-2">
+                      <div className="w-11 h-11 rounded-full bg-zinc-400"></div>
+                      <div>
+                        <p>{review.email}</p>
+                        <div className="flex flex-row gap-2">
+                          <FinishedRating
+                            score={review.reviewRating}
+                            size={16}
+                          />
+                          <div className="flex gap-1">
+                            <p className="text-xs font-semibold text-muted-foreground">
+                              {formatDistance(
+                                subDays(review.timestamp.seconds * 1000, 0),
+                                new Date()
+                              )}
+                            </p>
+                            <p className="text-xs font-semibold text-muted-foreground">
+                              ago
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <p>{review.score}</p>
-                    <p className="margin-bot review-content text-sm">
-                      {review.reviewContent}
-                    </p>
 
-                    <div className="reviews-rating-container">
+                    <h3 className="text-lg  font-semibold">
+                      {review.reviewTitle}
+                    </h3>
+                    <p>{review.reviewContent}</p>
+
+                    <div className="">
                       {isAdmin && (
-                        <FaTrash
-                          className="trash-icon"
-                          size="22"
+                        <Trash
+                          className="absolute top-0 right-0 m-4 cursor-pointer"
                           onClick={() =>
                             handleDeleteReviewModal(review.reviewId)
                           }
-                        />
+                          size={22}
+                        ></Trash>
                       )}
 
-                      <p className="total-reviews">
+                      {/* System for liking reviews, it's done and works but idk if i want it, if I do then change the icons. */}
+                      {/* <p className="total-reviews">
                         {review.likes && review.likes.length > 0
                           ? review.likes.length
                           : ""}
@@ -479,9 +335,8 @@ export default function Bookinfo() {
                         </div>
                       ) : (
                         ""
-                      )}
+                      )} */}
                     </div>
-                    <div className="line-space"></div>
                   </div>
                 );
               })}
@@ -489,7 +344,7 @@ export default function Bookinfo() {
               {bookInfo.reviews.length > displayedReviews && (
                 <button
                   onClick={handleShowMoreReviews}
-                  className="show-more-btn"
+                  className="border border-muted-foreground p-2 rounded-sm bg-slate-100"
                 >
                   Show More
                 </button>
@@ -509,44 +364,42 @@ export default function Bookinfo() {
                   left: "50%",
                   transform: "translate(-50%, -50%)",
                   width: 400,
-                  bgcolor: "#333",
                   boxShadow: 24,
-                  p: 4,
-                  borderRadius: "1em",
+
                   overflow: "auto",
                   outline: "none",
                 }}
+                className="bg-slate-100 rounded-lg p-6"
               >
                 <div>
-                  <h1 className="h3-title text-center">Delete Review?</h1>
-                  <p className="modal-text">
-                    Are you sure you want to{" "}
-                    <span style={{ fontWeight: "bold" }}>delete</span> this
-                    review?
+                  <h1 className="text-lg font-bold mb-2">Ta bort recension?</h1>
+                  <p className="text-sm  mb-4">
+                    Är du säker på att du vill{" "}
+                    <span className="font-semibold">ta bort</span> denna
+                    recension?
                   </p>
 
                   <div className="modal-button-container">
                     <button
-                      style={{ marginBottom: ".5em" }}
-                      className="modal-button bg-green-500 hover:bg-green-600 active:bg-green-700 text-black"
+                      className="mb-2 modal-button rounded-lg bg-red-500 hover:bg-red-600 text-white"
                       onClick={deleteReview}
                     >
-                      Yes
+                      Ta bort
                     </button>
                     <button
-                      className="modal-button bg-red-500 hover:bg-red-600 active:bg-red-700 text-black"
+                      className="modal-button rounded-lg bg-zinc-500 hover:bg-zinc-600 text-white"
                       onClick={() => {
                         setOpenDeleteReview(false);
                         setReviewIdToDelete(null);
                       }}
                     >
-                      No
+                      Nej
                     </button>
                   </div>
 
                   <FaTimes
-                    className="modal-close"
-                    size="25"
+                    className="cursor-pointer absolute top-0 right-0 m-4"
+                    size="22"
                     onClick={() => setOpenDeleteReview(false)}
                   />
                 </div>

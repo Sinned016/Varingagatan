@@ -4,19 +4,19 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
+    <div className="bg-slate-200">
       <header>
         <Header />
       </header>
 
-      <main className="lg:py-4">
+      <main className=" mx-auto max-w-6xl bg-slate-200 pb-4">
         <Outlet />
       </main>
 
       <footer>
         <Footer />
       </footer>
-    </>
+    </div>
   );
 }
 

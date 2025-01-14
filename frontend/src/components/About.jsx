@@ -2,7 +2,7 @@ import leifSelander from "../assets/pictures/leif-selander-portratt.webp";
 
 export default function About() {
   return (
-    <div className="page-container">
+    <div className="">
       <div className="about-container">
         <div className="about-info">
           <h1 className="title">Leif Selander</h1>

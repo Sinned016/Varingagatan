@@ -22,35 +22,18 @@
 }
 
 body {
-  background: url("../assets/pictures/wood-floor1920.jpg") no-repeat center
+  /* background: url("../assets/pictures/wood-floor1920.jpg") no-repeat center
     center/ cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  color: #f0f0f0;
+  color: #f0f0f0; */
 }
 
 #root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-}
-
-input,
-textarea {
-  color: black;
-}
-
-a {
-  text-decoration: none;
-  color: var(--text-clr);
 }
 
 /* General css */

@@ -147,7 +147,7 @@ export default function AdminHome() {
   }
 
   return (
-    <div className="page-container">
+    <div className="">
       {/* Maybe change this to another banner */}
       <h1 className="title pb-2">Admin Page</h1>
 

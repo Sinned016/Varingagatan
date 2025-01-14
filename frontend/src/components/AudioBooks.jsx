@@ -29,7 +29,7 @@ export default function AudioBooks() {
     getAudioBooks();
   }, []);
   return (
-    <div className="page-container">
+    <div className="">
       <h1 className="title pb-2 font-bold">Audiobooks</h1>
 
       {books &&

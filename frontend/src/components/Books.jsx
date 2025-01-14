@@ -28,7 +28,7 @@ export default function Books() {
     getBooks();
   }, []);
   return (
-    <div className="page-container">
+    <div className="">
       {/* Maybe change this to another banner */}
       <h1 className="title pb-2 font-bold">Books</h1>
 
