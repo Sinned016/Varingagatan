@@ -7,7 +7,11 @@ import { arrayUnion, doc, Timestamp, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { useParams } from "react-router-dom";
 
-export default function Review({ submitTrigger, setSubmitTrigger }) {
+export default function Review({
+  submitTrigger,
+  setSubmitTrigger,
+  typeofBook,
+}) {
   let { id } = useParams();
   const { signedInUser } = useAuthState(); // Use the custom hook to get authentication state
 
@@ -24,24 +28,26 @@ export default function Review({ submitTrigger, setSubmitTrigger }) {
     e.preventDefault();
 
     if (!reviewTitle || reviewTitle.length < 3) {
-      setReviewTitleError("Please provide a title for your review");
+      setReviewTitleError("Vänligen ge en titel för din recension.");
       return;
     } else {
       setReviewTitleError("");
     }
 
-    if (!reviewContent) {
-      setReviewContentError("Please provide your review before submitting");
-      return;
-    } else {
-      setReviewContentError("");
-    }
-
     if (reviewRating === 0) {
-      setReviewRatingError("Please provide a rating before submitting");
+      setReviewRatingError("Vänligen ange ett betyg för din recension.");
       return;
     } else {
       setReviewRatingError("");
+    }
+
+    if (!reviewContent) {
+      setReviewContentError(
+        "Vänligen lämna din recension innan du skickar in."
+      );
+      return;
+    } else {
+      setReviewContentError("");
     }
 
     setOpen(true);
@@ -51,6 +57,7 @@ export default function Review({ submitTrigger, setSubmitTrigger }) {
     e.preventDefault();
 
     const bookDocRef = doc(db, "books", id);
+    const audioBookDocRef = doc(db, "audioBooks", id);
     const newTimestamp = Timestamp.now();
 
     const payloadData = {
@@ -65,9 +72,15 @@ export default function Review({ submitTrigger, setSubmitTrigger }) {
     };
 
     try {
-      await updateDoc(bookDocRef, {
-        reviews: arrayUnion(payloadData), // Add the new review to the existing reviews array
-      });
+      if (typeofBook === "book") {
+        await updateDoc(bookDocRef, {
+          reviews: arrayUnion(payloadData),
+        });
+      } else if (typeofBook === "audioBook") {
+        await updateDoc(audioBookDocRef, {
+          reviews: arrayUnion(payloadData),
+        });
+      }
 
       setReviewTitle("");
       setReviewContent("");

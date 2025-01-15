@@ -224,7 +224,7 @@ export default function Bookinfo() {
                   <div>
                     <div className="flex flex-row">
                       <p className="font-semibold mr-1">Pris:</p>
-                      <p>{bookInfo.price}</p>
+                      <p>{bookInfo.price} kr</p>
                     </div>
                     <div className="flex flex-row">
                       <p className="font-semibold mr-1">Vikt:</p>
@@ -252,6 +252,7 @@ export default function Bookinfo() {
           <Review
             submitTrigger={submitTrigger}
             setSubmitTrigger={setSubmitTrigger}
+            typeofBook="book"
           />
 
           {console.log(new Date())}
@@ -344,9 +345,9 @@ export default function Bookinfo() {
               {bookInfo.reviews.length > displayedReviews && (
                 <button
                   onClick={handleShowMoreReviews}
-                  className="border border-muted-foreground p-2 rounded-sm bg-slate-100"
+                  className="border border-muted-foreground p-2 rounded-sm bg-slate-100 hover:bg-slate-200"
                 >
-                  Show More
+                  Visa mer
                 </button>
               )}
             </div>

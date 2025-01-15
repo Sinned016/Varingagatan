@@ -17,6 +17,9 @@ import StarRating from "./StarRating";
 import FinishedRating from "./FinishedRating";
 import { calculateAverageRating } from "../functions/calculateAverageRating";
 import { FaTimes, FaTrash } from "react-icons/fa";
+import Review from "./Review";
+import { Trash } from "lucide-react";
+import { formatDistance, subDays } from "date-fns";
 
 export default function Bookinfo() {
   let { id } = useParams();
@@ -34,6 +37,7 @@ export default function Bookinfo() {
   const [displayedReviews, setDisplayedReviews] = useState(5);
   const [reviewRating, setReviewRating] = useState(0);
   const [averageRating, setAverageRating] = useState(null);
+  const [description, setDescription] = useState(true);
 
   // Trigger to do the useEffect again and fetch all data.
   const [submitTrigger, setSubmitTrigger] = useState(false);
@@ -220,272 +224,202 @@ export default function Bookinfo() {
   }
 
   return (
-    <div className="page-container">
+    <div className="">
       {audioBookInfo ? (
-        <div>
-          <div className="book-information-container">
-            <div className="book-information-top">
-              <img src={audioBookInfo.image} alt="" />
-              <div className="book-information">
-                <h2 style={{ marginBottom: "10px" }}>{audioBookInfo.title}</h2>
+        <div className="bg-slate-50 p-6">
+          <div className="   flex flex-col md:flex-row pb-16">
+            <div className="mr-6 flex-shrink-0">
+              <img
+                className="w-full max-w-52"
+                src={audioBookInfo.image}
+                alt=""
+              />
 
-                {/* <FinishedRating score={averageRating} size={25} /> */}
-
-                <p style={{ marginTop: "10px" }}>{audioBookInfo.author}</p>
-                {/* <p>{audioBookInfo.language}</p>
-                <p>{audioBookInfo.price} kr</p> */}
-              </div>
-            </div>
-
-            <div className="book-information-middle">
-              <Link to={audioBookInfo.linkToPurchase}>
-                <button className="purchase-btn">Purchase</button>
-              </Link>
-            </div>
-
-            <div
-              style={{ marginBottom: "1em" }}
-              className="book-information-bottom"
-            >
-              <h2 className="h2-title">Description</h2>
-              <p>{audioBookInfo.description}</p>
-            </div>
-
-            <div className="book-information-bottom">
-              <h2 className="h2-title">Information</h2>
-
-              <div className="book-details">
-                <div className="book-details-item">
-                  <h3>Author</h3>
-                  <p>{audioBookInfo.author}</p>
-                </div>
-
-                <div className="book-details-item">
-                  <h3>Language</h3>
-                  <p>{audioBookInfo.language}</p>
-                </div>
-
-                {audioBookInfo.releaseDate && (
-                  <div className="book-details-item">
-                    <h3>Second Title</h3>
-                    <p>{audioBookInfo.secondTitle}</p>
-                  </div>
-                )}
-
-                <div className="book-details-item">
-                  <h3>Reader</h3>
-                  <p>{audioBookInfo.reader}</p>
-                </div>
-
-                <div className="book-details-item">
-                  <h3>Price</h3>
-                  <p>{audioBookInfo.price} sek</p>
-                </div>
-
-                {audioBookInfo.time && (
-                  <div className="book-details-item">
-                    <h3>Time</h3>
-                    <p>{audioBookInfo.time}</p>
-                  </div>
-                )}
-
-                {audioBookInfo.size && (
-                  <div className="book-details-item">
-                    <h3>Size</h3>
-                    <p>{audioBookInfo.size}</p>
-                  </div>
-                )}
-
-                {audioBookInfo.publisher && (
-                  <div className="book-details-item">
-                    <h3>Publisher</h3>
-                    <p>{audioBookInfo.publisher}</p>
-                  </div>
-                )}
-
-                {audioBookInfo.releaseDate && (
-                  <div className="book-details-item">
-                    <h3>Release Date</h3>
-                    <p>{audioBookInfo.releaseDate}</p>
-                  </div>
-                )}
-
-                <div className="book-details-item">
-                  <h3>Type</h3>
-                  <p>{audioBookInfo.type}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {signedInUser ? (
-            <div className="submitReview-container">
-              <form className="submitReview-form" onSubmit={openModal}>
-                <h2>Leave a Review</h2>
-                <label>Review Title</label>
-                <p className="error-message">{reviewTitleError}</p>
-                <input
-                  placeholder={"Write your Title here..."}
-                  value={reviewTitle}
-                  onChange={(e) => setReviewTitle(e.target.value)}
-                  type="text"
-                />
-
-                <label>Overall Score</label>
-                <p className="error-message">{reviewRatingError}</p>
-
-                <StarRating
-                  reviewRating={reviewRating}
-                  setReviewRating={setReviewRating}
-                />
-
-                <label>Review Content</label>
-
-                <p className="error-message">{reviewContentError}</p>
-
-                <textarea
-                  value={reviewContent}
-                  onChange={(e) => setReviewContent(e.target.value)}
-                  placeholder={"Write your review here..."}
-                  rows={3} // Initial number of rows
-                />
-
-                <div className="submitReview-btns">
-                  <button className="submit-btn" type="submit">
-                    Submit
-                  </button>
-                  <button className="cancel-btn" onClick={handleCancelReview}>
-                    Cancel
-                  </button>
-                </div>
-              </form>
-            </div>
-          ) : (
-            // <p>Sign in to review the book</p>
-            ""
-          )}
-
-          <div>
-            <Modal open={open} onClose={() => setOpen(false)}>
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  width: 400,
-                  bgcolor: "#333",
-                  boxShadow: 24,
-                  p: 4,
-                  borderRadius: "1em",
-                  overflow: "auto",
-                  outline: "none",
-                }}
+              <a
+                href={audioBookInfo.linkToPurchase}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <div>
-                  <h3 className="h3-title text-center mb-2">Post Review?</h3>
-                  <p className="modal-text">
-                    Are you sure you want to post this review?
-                  </p>
+                <button className="mt-5 px-3 py-2 bg-red-500 hover:bg-red-600 rounded text-white w-full">
+                  Köp ljudboken
+                </button>
+              </a>
+            </div>
 
-                  <div className="modal-button-container">
-                    <button
-                      style={{ marginBottom: ".5em" }}
-                      className="modal-button bg-green-500 hover:bg-green-600 active:bg-green-700 text-black"
-                      onClick={handleSubmitReview}
-                    >
-                      Submit
-                    </button>
-                    <button
-                      className="modal-button bg-red-500 hover:bg-red-600 active:bg-red-700 text-blac"
-                      onClick={() => setOpen(false)}
-                    >
-                      Close
-                    </button>
+            <div className="flex flex-col flex-grow">
+              <h1 className="text-4xl mb-2 font-semibold">
+                {audioBookInfo.title}
+              </h1>
+              <div className="flex flex-row">
+                <p className="mr-2">{audioBookInfo.author}</p>
+                <p>{audioBookInfo.releaseDate}</p>
+              </div>
+              <p className="font-semibold text-lg">{audioBookInfo.price} kr</p>
+
+              <div className="flex flex-row justify-evenly mt-4">
+                <button
+                  className={description && "font-semibold"}
+                  onClick={() => setDescription(true)}
+                >
+                  Beskrivning
+                </button>
+                <button
+                  className={!description && "font-semibold"}
+                  onClick={() => setDescription(false)}
+                >
+                  Specifikationer
+                </button>
+              </div>
+
+              <div className="border mt-2 border-muted-foreground"></div>
+
+              {description && (
+                <div className="mt-5">
+                  <p>{audioBookInfo.description}</p>
+                </div>
+              )}
+
+              {!description && (
+                <div className="mt-5 flex flex-row justify-between">
+                  <div>
+                    <div className="flex flex-row">
+                      <p className="font-semibold mr-1">Format:</p>
+                      <p>{audioBookInfo.type}</p>
+                    </div>
+                    <div className="flex flex-row">
+                      <p className="font-semibold mr-1">Språk:</p>
+                      <p>{audioBookInfo.language}</p>
+                    </div>
+
+                    <div className="flex flex-row">
+                      <p className="font-semibold mr-1">Uppläsare:</p>
+                      <p>{audioBookInfo.reader}</p>
+                    </div>
                   </div>
 
-                  <FaTimes
-                    className="modal-close"
-                    size="25"
-                    onClick={() => setOpen(false)}
-                  />
+                  <div>
+                    <div className="flex flex-row">
+                      <p className="font-semibold mr-1">Pris:</p>
+                      <p>{audioBookInfo.price} kr</p>
+                    </div>
+
+                    <div className="flex flex-row">
+                      <p className="font-semibold mr-1">Speltid:</p>
+                      <p>{audioBookInfo.time}</p>
+                    </div>
+
+                    <div className="flex flex-row">
+                      <p className="font-semibold mr-1">Storlek:</p>
+                      <p>{audioBookInfo.size}</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex flex-row">
+                      <p className="font-semibold mr-1">Utgivningsdatum:</p>
+                      <p>{audioBookInfo.releaseDate}</p>
+                    </div>
+                    <div className="flex flex-row">
+                      <p className="font-semibold mr-1">Utgivare:</p>
+                      <p>{audioBookInfo.publisher}</p>
+                    </div>
+                  </div>
                 </div>
-              </Box>
-            </Modal>
+              )}
+
+              <div></div>
+            </div>
           </div>
+
+          <Review
+            submitTrigger={submitTrigger}
+            setSubmitTrigger={setSubmitTrigger}
+            typeofBook="audioBook"
+          />
+
           {audioBookInfo.reviews?.length > 0 && (
-            <div className="reviews-container">
-              <h2 className="h2-title">Reviews</h2>
-              <div className="line-space"></div>
+            <div className="">
+              <h2 className="text-xl mb-2 font-bold">Recensioner</h2>
 
               {/* Map over only the number of reviews specified by displayedReviews */}
               {audioBookInfo.reviews
                 .slice(0, displayedReviews)
                 .map((review, i) => {
                   return (
-                    <div className="review-container" key={i}>
-                      <h3 className="h3-title">{review.reviewTitle}</h3>
-
-                      <FinishedRating score={review.reviewRating} size={25} />
-
-                      <div className="email-date">
-                        <p>BY {review.email}</p>
-                        <p>
-                          {new Date(
-                            review.timestamp.seconds * 1000
-                          ).toLocaleString()}
-                        </p>
+                    <div
+                      className="border p-4 rounded-lg mb-4 border-muted-foreground bg-slate-100 relative"
+                      key={i}
+                    >
+                      <div className="flex gap-4 mb-2">
+                        <div className="w-11 h-11 rounded-full bg-zinc-400"></div>
+                        <div>
+                          <p>{review.email}</p>
+                          <div className="flex flex-row gap-2">
+                            <FinishedRating
+                              score={review.reviewRating}
+                              size={16}
+                            />
+                            <div className="flex gap-1">
+                              <p className="text-xs font-semibold text-muted-foreground">
+                                {formatDistance(
+                                  subDays(review.timestamp.seconds * 1000, 0),
+                                  new Date()
+                                )}
+                              </p>
+                              <p className="text-xs font-semibold text-muted-foreground">
+                                ago
+                              </p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <p>{review.score}</p>
-                      <p className="margin-bot review-content text-sm">
-                        {review.reviewContent}
-                      </p>
 
-                      <div className="reviews-rating-container">
+                      <h3 className="text-lg  font-semibold">
+                        {review.reviewTitle}
+                      </h3>
+                      <p>{review.reviewContent}</p>
+
+                      <div className="">
                         {isAdmin && (
-                          <FaTrash
-                            className="trash-icon"
-                            size="22"
+                          <Trash
+                            className="absolute top-0 right-0 m-4 cursor-pointer"
                             onClick={() =>
                               handleDeleteReviewModal(review.reviewId)
                             }
-                          />
+                            size={22}
+                          ></Trash>
                         )}
 
-                        <p className="total-reviews">
-                          {review.likes && review.likes.length > 0
-                            ? review.likes.length
-                            : ""}
-                        </p>
+                        {/* System for liking reviews, it's done and works but idk if i want it, if I do then change the icons. */}
+                        {/* <p className="total-reviews">
+                        {review.likes && review.likes.length > 0
+                          ? review.likes.length
+                          : ""}
+                      </p>
 
-                        {signedInUser ? (
-                          <div
-                            className={
-                              review.likes &&
-                              review.likes.includes(signedInUser?.uid)
-                                ? "liked"
-                                : "unliked"
-                            }
-                            onClick={(e) =>
-                              rateReview(e, review.reviewId, "like")
-                            }
-                          >
-                            {review.likes &&
-                            review.likes.includes(signedInUser.uid) ? (
-                              <img
-                                className="rate-icon"
-                                src={likeWhite}
-                                alt=""
-                              />
-                            ) : (
-                              <img className="rate-icon" src={likeRed} alt="" />
-                            )}
-                          </div>
-                        ) : (
-                          ""
-                        )}
+                      {signedInUser ? (
+                        <div
+                          className={
+                            review.likes &&
+                            review.likes.includes(signedInUser?.uid)
+                              ? "liked"
+                              : "unliked"
+                          }
+                          onClick={(e) =>
+                            rateReview(e, review.reviewId, "like")
+                          }
+                        >
+                          {review.likes &&
+                          review.likes.includes(signedInUser.uid) ? (
+                            <img className="rate-icon" src={likeWhite} alt="" />
+                          ) : (
+                            <img className="rate-icon" src={likeRed} alt="" />
+                          )}
+                        </div>
+                      ) : (
+                        ""
+                      )} */}
                       </div>
-                      <div className="line-space"></div>
                     </div>
                   );
                 })}
@@ -493,9 +427,9 @@ export default function Bookinfo() {
               {audioBookInfo.reviews.length > displayedReviews && (
                 <button
                   onClick={handleShowMoreReviews}
-                  className="show-more-btn"
+                  className="border border-muted-foreground p-2 rounded-sm bg-slate-100 hover:bg-slate-200"
                 >
-                  Show More
+                  Visa mer
                 </button>
               )}
             </div>
@@ -513,44 +447,42 @@ export default function Bookinfo() {
                   left: "50%",
                   transform: "translate(-50%, -50%)",
                   width: 400,
-                  bgcolor: "#333",
                   boxShadow: 24,
-                  p: 4,
-                  borderRadius: "1em",
+
                   overflow: "auto",
                   outline: "none",
                 }}
+                className="bg-slate-100 rounded-lg p-6"
               >
                 <div>
-                  <h1 className="h3-title text-center">Delete Review?</h1>
-                  <p className="modal-text">
-                    Are you sure you want to{" "}
-                    <span style={{ fontWeight: "bold" }}>delete</span> this
-                    review?
+                  <h1 className="text-lg font-bold mb-2">Ta bort recension?</h1>
+                  <p className="text-sm  mb-4">
+                    Är du säker på att du vill{" "}
+                    <span className="font-semibold">ta bort</span> denna
+                    recension?
                   </p>
 
                   <div className="modal-button-container">
                     <button
-                      style={{ marginBottom: ".5em" }}
-                      className="modal-button bg-green-500 hover:bg-green-600 active:bg-green-700 text-black"
+                      className="mb-2 modal-button rounded-lg bg-red-500 hover:bg-red-600 text-white"
                       onClick={deleteReview}
                     >
-                      Yes
+                      Ta bort
                     </button>
                     <button
-                      className="modal-button bg-red-500 hover:bg-red-600 active:bg-red-700 text-black"
+                      className="modal-button rounded-lg bg-zinc-500 hover:bg-zinc-600 text-white"
                       onClick={() => {
                         setOpenDeleteReview(false);
                         setReviewIdToDelete(null);
                       }}
                     >
-                      No
+                      Nej
                     </button>
                   </div>
 
                   <FaTimes
-                    className="modal-close"
-                    size="25"
+                    className="cursor-pointer absolute top-0 right-0 m-4"
+                    size="22"
                     onClick={() => setOpenDeleteReview(false)}
                   />
                 </div>
