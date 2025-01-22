@@ -29,29 +29,28 @@ export default function AudioBooks() {
     getAudioBooks();
   }, []);
   return (
-    <div className="">
-      <h1 className="title pb-2 font-bold">Audiobooks</h1>
+    <div className="bg-slate-50 p-6">
+      <h1 className="text-center text-4xl font-bold mb-3">Audiobooks</h1>
 
       {books &&
         books.map((book, index) => {
           // const averageRating = calculateAverageRating(book.reviews);
 
           return (
-            <Link className="no-link" key={index} to={`/audioBook/${book.id}`}>
-              <div className="books-container" key={index}>
-                <div className="audiobooks-img-container">
-                  <img className="audiobooks-img" src={book.image} alt="" />
+            <Link className="" key={index} to={`/audioBook/${book.id}`}>
+              <div className="flex flex-row mb-6 gap-6" key={index}>
+                <div className="flex-shrink-0">
+                  <img className="w-full max-w-52" src={book.image} alt="" />
                 </div>
 
-                <div className="books-container-info">
-                  <h2 className="text-xl mb-2 font-bold">{book.title}</h2>
+                <div className="">
+                  <h2 className="text-3xl mb-2 font-semibold">{book.title}</h2>
                   {/* <FinishedRating score={averageRating} size={25} /> */}
 
                   {/* Add emotes here instead of a text like "price:" */}
-                  <p className="mb-2">{book.secondTitle}</p>
-                  <p className="line-clamp-2 text-sm font-light">
-                    {book.description}
-                  </p>
+                  <p className="mb-2 font-semibold">{book.secondTitle}</p>
+                  <p className="mb-2">{book.author}</p>
+                  <p className="line-clamp-3">{book.description}</p>
                 </div>
               </div>
             </Link>
