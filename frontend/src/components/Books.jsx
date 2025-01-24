@@ -32,6 +32,8 @@ export default function Books() {
       {/* Maybe change this to another banner */}
       <h1 className="text-center text-4xl font-bold mb-3">Books</h1>
 
+      <div className="border border-muted-foreground mb-6"></div>
+
       <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
         {books &&
           books.map((book, index) => {

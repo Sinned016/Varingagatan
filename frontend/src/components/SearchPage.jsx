@@ -8,22 +8,25 @@ import { FaSearch } from "react-icons/fa";
 
 export default function SearchPage() {
   const [combinedData, setCombinedData] = useState([]);
+  const [searchedData, setSearchedData] = useState([]);
   const [search, setSearch] = useState("");
-
-  console.log(combinedData);
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+
+  // Gotta somehow use this to filter the data
   const searchTitle = queryParams.get("title");
 
-  const navigate = useNavigate();
-
+  console.log(combinedData);
   console.log(searchTitle);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getData() {
       const booksCollectionRef = collection(db, "books");
       const audioBooksCollectionRef = collection(db, "audioBooks");
+      setSearch(searchTitle);
 
       try {
         // Fetch books
@@ -43,43 +46,47 @@ export default function SearchPage() {
         // Combine books and audiobooks into a single array
         const combinedData = [...filteredBooksData, ...filteredAudioBooksData];
 
-        const filteredCombinedData = combinedData.filter((data) => {
-          return data.title.toLowerCase().includes(searchTitle.toLowerCase());
-        });
+        setCombinedData(combinedData);
 
-        // Set state for combined data
-        setCombinedData(filteredCombinedData);
-        setSearch(searchTitle);
+        const filteredData = combinedData.filter((data) =>
+          data.title.toLowerCase().includes(searchTitle.toLowerCase())
+        );
+        setSearchedData(filteredData);
       } catch (err) {
         console.error(err);
       }
     }
 
     getData();
-  }, [searchTitle]);
+  }, []);
 
   function handleSearch(e) {
-    const title = e.target.value;
-    setSearch(title);
-    navigate(`?title=${title}`);
+    if (e.key === "Enter") {
+      navigate(`?title=${search}`);
+
+      const filteredData = combinedData.filter((data) =>
+        data.title.toLowerCase().includes(search.toLowerCase())
+      );
+      setSearchedData(filteredData);
+    }
   }
 
   return (
-    <div className="page-container">
-      <h2 className="title pb-2">Search</h2>
-      <div className="search-input-page-container">
-        <FaSearch className="search-icon" />
+    <div className="bg-slate-50 p-6">
+      <h2 className="text-center text-4xl font-bold mb-3">Search</h2>
+      <div className="mb-4">
         <input
           value={search}
-          className="search-input"
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full border rounded-full p-2 bg-slate-300 placeholder-neutral-700"
           type="text"
-          placeholder="Search title..."
-          onChange={handleSearch}
+          placeholder="Search for a title..."
+          onKeyDown={handleSearch}
         />
       </div>
 
-      {combinedData && combinedData.length > 0 ? (
-        combinedData.map((data, index) => {
+      {searchedData && searchedData.length > 0 ? (
+        searchedData.map((data, index) => {
           return (
             <Link
               className="no-link"

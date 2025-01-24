@@ -32,6 +32,8 @@ export default function AudioBooks() {
     <div className="bg-slate-50 p-6">
       <h1 className="text-center text-4xl font-bold mb-3">Audiobooks</h1>
 
+      <div className="border border-muted-foreground mb-6"></div>
+
       {books &&
         books.map((book, index) => {
           // const averageRating = calculateAverageRating(book.reviews);
