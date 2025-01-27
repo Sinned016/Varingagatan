@@ -230,7 +230,7 @@ export default function Bookinfo() {
           <div className="   flex flex-col md:flex-row pb-16">
             <div className="mr-6 flex-shrink-0">
               <img
-                className="w-full max-w-52"
+                className="w-full max-w-52 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
                 src={audioBookInfo.image}
                 alt=""
               />

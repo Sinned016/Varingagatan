@@ -160,7 +160,11 @@ export default function Bookinfo() {
         <div className="bg-slate-50 p-6">
           <div className="   flex flex-col md:flex-row pb-16">
             <div className="mr-6 flex-shrink-0">
-              <img className=" h-72 md:h-96" src={bookInfo.image} alt="" />
+              <img
+                className=" h-72 md:h-96 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
+                src={bookInfo.image}
+                alt=""
+              />
 
               <a
                 href={bookInfo.linkToPurchase}

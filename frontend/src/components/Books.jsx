@@ -28,44 +28,56 @@ export default function Books() {
     getBooks();
   }, []);
   return (
-    <div className="bg-slate-50 p-6">
-      {/* Maybe change this to another banner */}
-      <h1 className="text-center text-4xl font-bold mb-3">Books</h1>
+    <div className="bg-slate-50 p-6 pb-0">
+      <h1 className="text-center text-4xl font-bold mb-4">Böcker</h1>
 
       <div className="border border-muted-foreground mb-6"></div>
 
-      <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+      <div className="flex flex-wrap -mx-2">
         {books &&
           books.map((book, index) => {
             // const averageRating = calculateAverageRating(book.reviews);
 
             return (
-              <Link className="flex-grow " key={index} to={`/book/${book.id}`}>
-                <div className="flex flex-col gap-2 sm:gap-6 sm:flex-row">
-                  <div className="w-full sm:w-44 h-64 sm:h-72 border flex-shrink-0">
+              <div key={index} className="w-1/2 sm:w-full px-2">
+                <div className="flex flex-col sm:flex-row sm:gap-6 gap-2 sm:mb-6 mb-2 group">
+                  <div className="w-full h-72 sm:w-[150px] sm:h-[225px] flex-shrink-0 shadow-[0_4px_16px_rgba(0,0,0,0.3)] transition-shadow duration-300 group-hover:shadow-[0_6px_24px_rgba(0,0,0,0.5)]">
                     <img
-                      className="w-full h-full object-cover"
+                      className="h-full w-full object-cover"
                       src={book.image}
                       alt=""
                     />
                   </div>
+                  <div>
+                    <Link
+                      className="hover:text-purple-800 cursor-pointer"
+                      to={`/Book/${book.id}`}
+                    >
+                      <p className="text-2xl sm:text-2xl font-semibold ">
+                        {book.title}{" "}
+                        <span
+                          className={
+                            book.secondTitle
+                              ? "hidden sm:inline-block"
+                              : "hidden"
+                          }
+                        >
+                          - {book.secondTitle}
+                        </span>
+                      </p>
+                    </Link>
 
-                  <div className="">
-                    <h2 className="text-2xl sm:text-3xl font-semibold">
-                      {book.title}
-                    </h2>
-
-                    {/* Add emotes here instead of a text like "price:" */}
-
-                    <p className=" font-semibold">{book.secondTitle}</p>
-                    <p className="">{book.author}</p>
-                    <p className="">{book.price} kr</p>
-                    <p className="hidden sm:line-clamp-4 sm:overflow-hidden sm:-webkit-box sm:-webkit-line-clamp-4 sm:-webkit-box-orient-vertical">
+                    <p className="font-semibold sm:hidden">
+                      {book.secondTitle}
+                    </p>
+                    <p>{book.author}</p>
+                    <p className="mb-2">Typ: {book.type}</p>
+                    <p className="hidden sm:line-clamp-5 sm:overflow-hidden sm:-webkit-box sm:-webkit-line-clamp-5 sm:-webkit-box-orient-vertical">
                       {book.description}
                     </p>
                   </div>
                 </div>
-              </Link>
+              </div>
             );
           })}
       </div>

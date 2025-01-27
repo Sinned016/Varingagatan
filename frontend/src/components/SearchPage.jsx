@@ -17,7 +17,7 @@ export default function SearchPage() {
   // Gotta somehow use this to filter the data
   const searchTitle = queryParams.get("title");
 
-  console.log(combinedData);
+  console.log(searchedData);
   console.log(searchTitle);
 
   const navigate = useNavigate();
@@ -44,13 +44,17 @@ export default function SearchPage() {
         }));
 
         // Combine books and audiobooks into a single array
-        const combinedData = [...filteredBooksData, ...filteredAudioBooksData];
+        const finishedCombinedData = [
+          ...filteredBooksData,
+          ...filteredAudioBooksData,
+        ];
 
-        setCombinedData(combinedData);
+        setCombinedData(finishedCombinedData);
 
-        const filteredData = combinedData.filter((data) =>
+        const filteredData = finishedCombinedData.filter((data) =>
           data.title.toLowerCase().includes(searchTitle.toLowerCase())
         );
+
         setSearchedData(filteredData);
       } catch (err) {
         console.error(err);
@@ -72,60 +76,119 @@ export default function SearchPage() {
   }
 
   return (
-    <div className="bg-slate-50 p-6">
-      <h2 className="text-center text-4xl font-bold mb-3">Search</h2>
-      <div className="mb-4">
+    <div className="bg-slate-50 p-6 pb-0">
+      <h1 className="text-center text-4xl font-bold mb-4">Sök bland böcker</h1>
+
+      <div className="border border-muted-foreground mb-6"></div>
+      <div className="mb-6">
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="w-full border rounded-full p-2 bg-slate-300 placeholder-neutral-700"
           type="text"
-          placeholder="Search for a title..."
+          placeholder="Sök bland böcker..."
           onKeyDown={handleSearch}
         />
       </div>
 
-      {searchedData && searchedData.length > 0 ? (
-        searchedData.map((data, index) => {
-          return (
-            <Link
-              className="no-link"
-              key={index}
-              to={
-                data.type === "Book"
-                  ? `/book/${data.id}`
-                  : `/audioBook/${data.id}`
-              }
-            >
-              <div className="books-container">
-                <div className="books-img-container">
-                  <img className="books-img" src={data.image} alt="" />
-                </div>
+      <div className="flex flex-wrap -mx-2">
+        {searchedData && searchedData.length > 0 ? (
+          searchedData.map((data, index) => {
+            return (
+              <div className="w-1/2 sm:w-full px-2" key={index}>
+                {data.type === "Bok" ? (
+                  // Books
+                  <div className="flex flex-col sm:flex-row sm:gap-6 gap-2 sm:mb-6 mb-2">
+                    <div className="w-full h-72 sm:w-[150px] sm:h-[225px] flex-shrink-0">
+                      <img
+                        className="h-full w-full object-cover"
+                        src={data.image}
+                        alt=""
+                      />
+                    </div>
+                    <div>
+                      <Link
+                        className="hover:text-purple-800 cursor-pointer"
+                        to={`/Book/${data.id}`}
+                      >
+                        <p className="text-2xl sm:text-2xl font-semibold ">
+                          {data.title}{" "}
+                          <span
+                            className={
+                              data.secondTitle
+                                ? "hidden sm:inline-block"
+                                : "hidden"
+                            }
+                          >
+                            - {data.secondTitle}
+                          </span>
+                        </p>
+                      </Link>
 
-                <div className="books-container-info">
-                  <h2 className="text-xl mb-2 font-bold">
-                    {data.title} - {data.type}
-                  </h2>
+                      <p className="font-semibold sm:hidden">
+                        {data.secondTitle}
+                      </p>
+                      <p>{data.author}</p>
+                      <p className="mb-2">Typ: {data.type}</p>
+                      <p className="hidden sm:line-clamp-5 sm:overflow-hidden sm:-webkit-box sm:-webkit-line-clamp-5 sm:-webkit-box-orient-vertical">
+                        {data.description}
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  // Audiobooks
+                  <div className="flex flex-col sm:flex-row sm:gap-6 gap-2 sm:mb-6 mb-2">
+                    <div className="w-full h-full sm:w-[150px] sm:h-[150px] flex-shrink-0">
+                      <img
+                        className="h-full w-full object-cover"
+                        src={data.image}
+                        alt=""
+                      />
+                    </div>
+                    <div>
+                      <Link
+                        className="hover:text-purple-800 cursor-pointer"
+                        to={`/Book/${data.id}`}
+                      >
+                        <p className="text-2xl sm:text-2xl font-semibold">
+                          {data.title}{" "}
+                          <span
+                            className={
+                              data.secondTitle
+                                ? "hidden sm:inline-block"
+                                : "hidden"
+                            }
+                          >
+                            - {data.secondTitle}
+                          </span>
+                        </p>
+                      </Link>
 
-                  {/* Add emotes here instead of a text like "price:" */}
-
-                  <p className="mb-2">{data.secondTitle}</p>
-
-                  <p
-                    className={`${data.type === "Book" ? "line-clamp-3" : "line-clamp-2"} text-sm font-light`}
-                  >
-                    {data.description}
-                  </p>
-                </div>
+                      <p className="font-semibold sm:hidden">
+                        {data.secondTitle}
+                      </p>
+                      <p>{data.author}</p>
+                      <p className="mb-2">Typ: {data.type}</p>
+                      <p className="hidden sm:line-clamp-2 sm:overflow-hidden sm:-webkit-box sm:-webkit-line-clamp-2 sm:-webkit-box-orient-vertical">
+                        {data.description}
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
-            </Link>
-          );
-        })
-      ) : (
-        <h2 style={{ marginBottom: "1em", textAlign: "center" }}>
-          No book with that title
-        </h2>
-      )}
+            );
+          })
+        ) : (
+          <div className="w-full">
+            <h2
+              className="text-center "
+              style={{ marginBottom: "1em", textAlign: "center" }}
+            >
+              No book with that title
+            </h2>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
