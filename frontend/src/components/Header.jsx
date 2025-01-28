@@ -1,7 +1,7 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
 import useAuthState from "./useAuthState";
 import {
@@ -20,9 +20,12 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { signedInUser, isAdmin } = useAuthState(); // Use the custom hook to get authentication state
   const navigate = useNavigate();
+  const location = useLocation(); // Access location object
+  const pathname = location.pathname; // Get the current pathname
   const navRef = useRef();
 
   console.log(isAdmin);
+  console.log(pathname);
 
   async function logout() {
     try {
@@ -56,25 +59,53 @@ export default function Header() {
       </h2>
 
       <nav ref={navRef} className="header-nav">
-        <Link to="/" onClick={closeHeader}>
+        <Link
+          className={pathname === "/" && "underline underline-offset-4"}
+          to="/"
+          onClick={closeHeader}
+        >
           <FaHome /> <span className="nav-icon-margin">Hem</span>
         </Link>
 
-        <Link to="/books" onClick={closeHeader}>
+        <Link
+          className={
+            pathname.includes("/books") && "underline underline-offset-4"
+          }
+          to="/books"
+          onClick={closeHeader}
+        >
           <FaBook /> <span className="nav-icon-margin">Böcker</span>
         </Link>
 
-        <Link to="/audioBooks" onClick={closeHeader}>
+        <Link
+          className={
+            pathname.includes("/audioBooks") && "underline underline-offset-4"
+          }
+          to="/audioBooks"
+          onClick={closeHeader}
+        >
           <FaPlayCircle /> <span className="nav-icon-margin">Ljudböcker</span>
         </Link>
 
-        <Link to="/about" onClick={closeHeader}>
+        <Link
+          className={
+            pathname.includes("/about") && "underline underline-offset-4"
+          }
+          to="/about"
+          onClick={closeHeader}
+        >
           <FaInfoCircle />
           <span className="nav-icon-margin">Om</span>
         </Link>
 
         {isAdmin && (
-          <Link to="/admin" onClick={closeHeader}>
+          <Link
+            className={
+              pathname.includes("/admin") && "underline underline-offset-4"
+            }
+            to="/admin"
+            onClick={closeHeader}
+          >
             <RiAdminLine /> <span className="nav-icon-margin">Admin</span>
           </Link>
         )}
