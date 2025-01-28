@@ -13,29 +13,41 @@ export default function Footer() {
         </div> */}
 
         <div className="footer-section">
-          <h2>Follow Me</h2>
-          <Link to="https://www.facebook.com/Varingagardet" target="_blank" rel="noopener noreferrer">
+          <h2>Följ mig</h2>
+          <Link
+            to="https://www.facebook.com/Varingagardet"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Facebook
           </Link>
-          <Link to="https://varingasagan.com/" target="_blank" rel="noopener noreferrer">
+          <Link
+            to="https://varingasagan.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Varingasagan
           </Link>
-          <Link to="https://www.linkedin.com/in/leif-selander-792b7624/" target="_blank" rel="noopener noreferrer">
+          <Link
+            to="https://www.linkedin.com/in/leif-selander-792b7624/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             LinkedIn
           </Link>
         </div>
 
         <div className="footer-section">
-          <h2>Contact</h2>
+          <h2>Kontakt</h2>
           <p>leif.selander@gmail.com</p>
         </div>
 
         <div className="footer-section">
-          <h2>Quick Links</h2>
-          <Link to="/">Home</Link>
-          <Link to="/books">Books</Link>
-          <Link to="/audioBooks">Audiobooks</Link>
-          <Link to="/about">About</Link>
+          <h2>Länkar</h2>
+          <Link to="/">Hem</Link>
+          <Link to="/books">Böcker</Link>
+          <Link to="/audioBooks">Ljudböcker</Link>
+          <Link to="/about">Om</Link>
         </div>
       </div>
 

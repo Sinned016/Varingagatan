@@ -30,9 +30,9 @@ export default function AudioBooks() {
   }, []);
   return (
     <div className="bg-slate-50 p-6 pb-0">
-      <h1 className="text-center text-4xl font-bold mb-4">Ljudböcker</h1>
+      {/* <h1 className="text-center text-4xl font-bold mb-4">Ljudböcker</h1>
 
-      <div className="border border-muted-foreground mb-6"></div>
+      <div className="border border-muted-foreground mb-6"></div> */}
 
       <div className="flex flex-wrap -mx-2">
         {books &&

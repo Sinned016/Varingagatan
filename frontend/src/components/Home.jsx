@@ -9,13 +9,8 @@ import FinishedRating from "./FinishedRating";
 
 export default function Home() {
   const [books, setBooks] = useState();
-  const [newestBooks, setNewestBooks] = useState();
   const [audioBooks, setAudioBooks] = useState();
   const [loading, setLoading] = useState(false);
-
-  const navigate = useNavigate();
-
-  //const { signedInUser, isAdmin } = useAuthState(); // Use the custom hook to get authentication state
 
   useEffect(() => {
     async function getData() {
@@ -40,9 +35,6 @@ export default function Home() {
         }));
         setAudioBooks(filteredAudioBooksData);
 
-        // Filter and set state for newest books
-        const newestBooks = filterBooksForNewest(filteredBooksData);
-        setNewestBooks(newestBooks);
         setLoading(false);
       } catch (err) {
         console.error(err);

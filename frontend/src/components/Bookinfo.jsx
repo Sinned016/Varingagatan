@@ -158,7 +158,7 @@ export default function Bookinfo() {
     <div className="">
       {bookInfo ? (
         <div className="bg-slate-50 p-6">
-          <div className="   flex flex-col md:flex-row pb-16">
+          <div className="flex flex-col md:flex-row pb-10">
             <div className="mr-6 flex-shrink-0">
               <img
                 className=" h-72 md:h-96 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
@@ -171,14 +171,14 @@ export default function Bookinfo() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <button className="mt-5 px-3 py-2 bg-red-500 hover:bg-red-600 rounded text-white w-full">
+                <button className="mt-5 px-3 py-2 bg-red-500 hover:bg-red-600 rounded text-white w-full mb-4">
                   Köp boken
                 </button>
               </a>
             </div>
 
             <div className="flex flex-col flex-grow">
-              <h1 className="text-4xl mb-2 font-semibold">{bookInfo.title}</h1>
+              <h1 className="text-4xl font-semibold">{bookInfo.title}</h1>
               <div className="flex flex-row">
                 <p className="mr-2">{bookInfo.author}</p>
                 <p>{bookInfo.releaseDate}</p>
@@ -248,8 +248,6 @@ export default function Bookinfo() {
                   </div>
                 </div>
               )}
-
-              <div></div>
             </div>
           </div>
 

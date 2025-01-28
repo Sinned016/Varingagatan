@@ -13,12 +13,7 @@ export default function SearchPage() {
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-
-  // Gotta somehow use this to filter the data
   const searchTitle = queryParams.get("title");
-
-  console.log(searchedData);
-  console.log(searchTitle);
 
   const navigate = useNavigate();
 
@@ -77,16 +72,17 @@ export default function SearchPage() {
 
   return (
     <div className="bg-slate-50 p-6 pb-0">
-      <h1 className="text-center text-4xl font-bold mb-4">Sök bland böcker</h1>
+      <h1 className="text-center text-4xl font-bold mb-4">Sök bland titlar</h1>
 
       <div className="border border-muted-foreground mb-6"></div>
-      <div className="mb-6">
+      <div className="mb-6 relative">
+        <FaSearch className="absolute pointer-events-none left-3 top-1/2 -translate-y-1/2 transform " />
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full border rounded-full p-2 bg-slate-300 placeholder-neutral-700"
+          className="w-full border rounded-full p-2 bg-slate-300 placeholder-neutral-700 pl-10 text-base leading-none"
           type="text"
-          placeholder="Sök bland böcker..."
+          placeholder="Sök bland titlar..."
           onKeyDown={handleSearch}
         />
       </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useAuthState from "../useAuthState";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   collection,
   deleteDoc,
@@ -9,14 +9,11 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
-import FinishedRating from "../FinishedRating";
-import { calculateAverageRating } from "../../functions/calculateAverageRating";
 import { FaSearch, FaTrash } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
-import { Box, Button, Modal, Typography } from "@mui/material";
-import AdminAddBook from "./AdminAddBook";
-import AdminAddAudiobook from "./AdminAddAudiobook";
+
+import AdminNav from "./AdminNav";
 
 export default function AdminHome() {
   const navigate = useNavigate();
@@ -25,11 +22,7 @@ export default function AdminHome() {
   const [filteredData, setFilteredData] = useState([]);
   const [trigger, setTrigger] = useState(false);
   const [dataToDelete, setDataToDelete] = useState(null);
-  const [openDeleteData, setOpenDeleteData] = useState(false);
   const [searchData, setSearchData] = useState("");
-  const [openAddNew, setOpenAddNew] = useState(false);
-  const [addBook, setAddBook] = useState(false);
-  const [addAudioBook, setAddAudioBook] = useState(false);
 
   useEffect(() => {
     if (!loading) {
@@ -74,48 +67,6 @@ export default function AdminHome() {
     getData();
   }, [loading, trigger]);
 
-  async function deleteData() {
-    const booksCollectionRef = collection(db, "books");
-    const audioBooksCollectionRef = collection(db, "audioBooks");
-
-    try {
-      // Check if the document exists in the books collection
-      const bookDocRef = doc(booksCollectionRef, dataToDelete);
-      const bookDocSnapshot = await getDoc(bookDocRef);
-
-      if (bookDocSnapshot.exists()) {
-        // Document exists in books collection, delete it
-        await deleteDoc(bookDocRef);
-        console.log(
-          `Document with ID ${dataToDelete} deleted from books collection`
-        );
-        setDataToDelete(null);
-        setOpenDeleteData(false);
-        setTrigger((prev) => !prev);
-        return;
-      }
-
-      // Check if the document exists in the audiobooks collection
-      const audioBookDocRef = doc(audioBooksCollectionRef, dataToDelete);
-      const audioBookDocSnapshot = await getDoc(audioBookDocRef);
-
-      if (audioBookDocSnapshot.exists()) {
-        // Document exists in audiobooks collection, delete it
-        await deleteDoc(audioBookDocRef);
-        console.log(
-          `Document with ID ${dataToDelete} deleted from audiobooks collection`
-        );
-        setDataToDelete(null);
-        setOpenDeleteData(false);
-        setTrigger((prev) => !prev);
-        return;
-      }
-    } catch (err) {
-      setDataToDelete(null);
-      console.error(err);
-    }
-  }
-
   function handleSearch(value) {
     setSearchData(value);
 
@@ -130,214 +81,113 @@ export default function AdminHome() {
     setOpenDeleteData(true);
   }
 
-  function handleCreateData(typeOfData) {
-    if (typeOfData === "book") {
-      console.log(typeOfData);
-      setAddBook(true);
-    } else if (typeOfData === "audiobook") {
-      console.log(typeOfData);
-      setAddAudioBook(true);
-    }
-
-    setOpenAddNew(false);
-  }
-
-  if (loading) {
-    return <div>Loading...</div>; // Show a loading indicator while fetching user data
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
-    <div className="">
-      {/* Maybe change this to another banner */}
-      <h1 className="title pb-2">Admin Page</h1>
+    <div className="bg-slate-50 p-6">
+      <AdminNav />
 
-      <FaPlus
-        className="admin-add"
-        size="30"
-        onClick={() => setOpenAddNew(true)}
-      />
-
-      <div className="search-input-page-container">
-        <FaSearch className="search-icon" />
+      <div className="mb-6 relative">
+        <FaSearch className="absolute pointer-events-none left-3 top-1/2 -translate-y-1/2 transform " />
         <input
-          className="search-input"
+          className="w-full border rounded-full p-2 bg-slate-300 placeholder-neutral-700 pl-10 text-base leading-none"
           value={searchData}
           type="text"
-          placeholder="Search title..."
+          placeholder="Sök efter titel..."
           onChange={(e) => handleSearch(e.target.value)}
         />
       </div>
 
-      {filteredData &&
-        filteredData.map((data, index) => {
-          const averageRating = calculateAverageRating(data.reviews);
-
-          return (
-            <div key={index} className="admin-data-container">
-              {/* Add a Trashcan icon here */}
-              <Link
-                className="books-container"
-                key={index}
-                to={`/admin/${data.type}/${data.id}`}
-              >
-                <div className="books-img-container">
-                  <img className="books-img" src={data.image} alt="" />
-                </div>
-
-                <div className="books-container-info">
-                  <h2 className="h2-title mb-2">
-                    {data.title} - {data.type}
-                  </h2>
-                  <FinishedRating score={averageRating} size={25} />
-
-                  {/* Add emotes here instead of a text like "price:" and "pages:" */}
-                  <div className="books-info" style={{ marginTop: "10px" }}>
+      <div className="flex flex-wrap -mx-2">
+        {filteredData &&
+          filteredData.map((data, index) => {
+            return (
+              <div className="w-1/2 sm:w-full px-2" key={index}>
+                {data.type === "Bok" ? (
+                  // Books
+                  <div className="flex flex-col sm:flex-row sm:gap-6 gap-2 sm:mb-6 mb-2 group">
+                    <div className="w-full h-72 sm:w-[150px] sm:h-[225px] flex-shrink-0 shadow-[0_4px_16px_rgba(0,0,0,0.3)] transition-shadow duration-300 group-hover:shadow-[0_6px_24px_rgba(0,0,0,0.5)]">
+                      <img
+                        className="h-full w-full object-cover"
+                        src={data.image}
+                        alt=""
+                      />
+                    </div>
                     <div>
-                      <p>Author: {data.author}</p>
-                      <p>Language: {data.language}</p>
-                      {data.secondTitle && (
-                        <p>Second Title: {data.secondTitle}</p>
-                      )}
-                    </div>
-                    <div className="books-info-hide">
-                      <p>Price: {data.price} kr</p>
-                      {data.pages && <p>Pages: {data.pages}</p>}
-                      {data.weight && <p>Weight: {data.weight}</p>}
-                      {data.time && <p>Time: {data.time}</p>}
-                      {data.size && <p>Size: {data.size}</p>}
-                    </div>
-                    <div className="books-info-hide">
-                      {data.releaseDate && (
-                        <p>Release Date: {data.releaseDate}</p>
-                      )}
-                      {data.publisher && <p>Publisher: {data.publisher}</p>}
-                      <p>Type: {data.type}</p>
+                      <Link
+                        className="hover:text-purple-800 cursor-pointer"
+                        to={`/admin/${data.type}/${data.id}`}
+                      >
+                        <p className="text-2xl sm:text-2xl font-semibold ">
+                          {data.title}{" "}
+                          <span
+                            className={
+                              data.secondTitle
+                                ? "hidden sm:inline-block"
+                                : "hidden"
+                            }
+                          >
+                            - {data.secondTitle}
+                          </span>
+                        </p>
+                      </Link>
+
+                      <p className="font-semibold sm:hidden">
+                        {data.secondTitle}
+                      </p>
+                      <p>{data.author}</p>
+                      <p className="mb-2">Typ: {data.type}</p>
+                      <p className="hidden sm:line-clamp-5 sm:overflow-hidden sm:-webkit-box sm:-webkit-line-clamp-5 sm:-webkit-box-orient-vertical">
+                        {data.description}
+                      </p>
                     </div>
                   </div>
-                </div>
-              </Link>
+                ) : (
+                  // Audiobooks
+                  <div className="flex flex-col sm:flex-row sm:gap-6 gap-2 sm:mb-6 mb-2">
+                    <div className="w-full h-full sm:w-[150px] sm:h-[150px] flex-shrink-0">
+                      <img
+                        className="h-full w-full object-cover"
+                        src={data.image}
+                        alt=""
+                      />
+                    </div>
+                    <div>
+                      <Link
+                        className="hover:text-purple-800 cursor-pointer"
+                        to={`/admin/${data.type}/${data.id}`}
+                      >
+                        <p className="text-2xl sm:text-2xl font-semibold">
+                          {data.title}{" "}
+                          <span
+                            className={
+                              data.secondTitle
+                                ? "hidden sm:inline-block"
+                                : "hidden"
+                            }
+                          >
+                            - {data.secondTitle}
+                          </span>
+                        </p>
+                      </Link>
 
-              <FaTrash
-                className="admin-delete"
-                size="22"
-                onClick={() => handleDeleteData(data.id)}
-              />
-            </div>
-          );
-        })}
-
-      <div>
-        <Modal open={openDeleteData} onClose={() => setOpenDeleteData(false)}>
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: 400,
-              bgcolor: "#333",
-              boxShadow: 24,
-              p: 4,
-              borderRadius: "1em",
-              overflow: "auto",
-              outline: "none",
-            }}
-          >
-            <h1 className="h3-title text-center">Delete</h1>
-            <p className="modal-text">Are you sure you want to delete this?</p>
-
-            <div className="modal-button-container">
-              <button
-                style={{ marginBottom: ".5em" }}
-                className="modal-button bg-green-500 hover:bg-green-600 active:bg-green-700 text-black"
-                onClick={() => deleteData()}
-              >
-                Yes
-              </button>
-              <button
-                className="modal-button bg-red-500 hover:bg-red-600 active:bg-red-700 text-black"
-                onClick={() => {
-                  setOpenDeleteData(false);
-                  setDataToDelete(null);
-                }}
-              >
-                No
-              </button>
-            </div>
-
-            <FaTimes
-              className="modal-close"
-              size="25"
-              onClick={() => {
-                setOpenDeleteData(false);
-                setDataToDelete(null);
-              }}
-            />
-          </Box>
-        </Modal>
-      </div>
-
-      <div className="admin-add-choice-container">
-        <Modal open={openAddNew} onClose={() => setOpenAddNew(false)}>
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: 400,
-              bgcolor: "#333",
-              boxShadow: 24,
-              p: 4,
-              borderRadius: "1em",
-              overflow: "auto",
-              outline: "none",
-            }}
-          >
-            <div>
-              <h3 className="h3-title text-center">Add new Content</h3>
-              <p className="modal-text">
-                What Type of book do you want to add?
-              </p>
-
-              <div className="modal-button-container">
-                <button
-                  style={{ marginBottom: ".5em" }}
-                  className="w-full rounded-lg p-2 bg-slate-500 hover:bg-slate-600 active:bg-slate-700"
-                  onClick={() => handleCreateData("book")}
-                >
-                  Book
-                </button>
-                <button
-                  className="w-full rounded-lg p-2 bg-slate-500 hover:bg-slate-600 active:bg-slate-700"
-                  onClick={() => handleCreateData("audiobook")}
-                >
-                  Audiobook
-                </button>
+                      <p className="font-semibold sm:hidden">
+                        {data.secondTitle}
+                      </p>
+                      <p>{data.author}</p>
+                      <p className="mb-2">Typ: {data.type}</p>
+                      <p className="hidden sm:line-clamp-2 sm:overflow-hidden sm:-webkit-box sm:-webkit-line-clamp-2 sm:-webkit-box-orient-vertical">
+                        {data.description}
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
-
-              <FaTimes
-                className="modal-close"
-                size="25"
-                onClick={() => {
-                  setOpenAddNew(false);
-                }}
-              />
-            </div>
-          </Box>
-        </Modal>
+            );
+          })}
       </div>
-
-      <AdminAddBook
-        addBook={addBook}
-        setAddBook={setAddBook}
-        setTrigger={setTrigger}
-      />
-      <AdminAddAudiobook
-        addAudioBook={addAudioBook}
-        setAddAudioBook={setAddAudioBook}
-        setTrigger={setTrigger}
-      />
     </div>
   );
 }

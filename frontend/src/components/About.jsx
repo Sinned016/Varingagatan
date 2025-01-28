@@ -2,15 +2,15 @@ import leifSelander from "../assets/pictures/leif-selander-portratt.webp";
 
 export default function About() {
   return (
-    <div className="">
-      <div className="about-container">
-        <div className="about-info">
-          <h1 className="title">Leif Selander</h1>
-          <div className="flex justify-center pb-2">
-            <img className=" w-96 h-96 rounded-lg" src={leifSelander} alt="" />
-          </div>
+    <div className="bg-slate-50 p-6">
+      <div className="flex flex-row gap-6">
+        <div className="flex-shrink-0">
+          <img className=" w-72 h-72 rounded-lg " src={leifSelander} alt="" />
+        </div>
 
-          <h2 className="h2-title">About</h2>
+        <div>
+          <h1 className="text-4xl font-bold mb-2">Leif Selander</h1>
+
           <p className="pb-4">
             Leif Selander är född i Örnsköldsvik och bor nu i Eskilstuna
             tillsammans med sin familj. Intresset för historia föddes tidigt i
@@ -29,40 +29,40 @@ export default function About() {
             vikingar i österled och i väringagardet. Den romerska kejsarens
             elit- och livaktsgarde.
           </p>
-
-          <div className="pb-4">
-            <h2 className="h2-title">More about Leif Selander</h2>
-            <a
-              className="blue-link mb-4"
-              href={`https://www.radioovik.se/leif-selander/`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Semesterprat i Radio Övik
-            </a>
-          </div>
-
-          <div className="flex flex-col">
-            <h2 className="h2-title">Podcasts</h2>
-            <a
-              className="blue-link"
-              href={`https://www.ilikeradio.se/podcasts/var-blodiga-historia/18406/`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Vår blodiga historia
-            </a>
-
-            <a
-              className="blue-link"
-              href={`https://mariasbokhylla.wordpress.com/2018/03/30/forfattarintervju-leif-selander/`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Författarintervju - Leif Selander
-            </a>
-          </div>
         </div>
+      </div>
+
+      <div className="pb-4">
+        <h2 className="text-xl font-bold">Mer om Leif Selander</h2>
+        <a
+          className="text-purple-800 font-bold hover:underline mb-4"
+          href={`https://www.radioovik.se/leif-selander/`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Semesterprat i Radio Övik
+        </a>
+      </div>
+
+      <div className="flex flex-col">
+        <h2 className="text-xl font-bold">Podcasts</h2>
+        <a
+          className="text-purple-800 font-bold hover:underline"
+          href={`https://www.ilikeradio.se/podcasts/var-blodiga-historia/18406/`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Vår blodiga historia
+        </a>
+
+        <a
+          className="text-purple-800 font-bold hover:underline"
+          href={`https://mariasbokhylla.wordpress.com/2018/03/30/forfattarintervju-leif-selander/`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Författarintervju - Leif Selander
+        </a>
       </div>
     </div>
   );

@@ -57,20 +57,20 @@ export default function Header() {
 
       <nav ref={navRef} className="header-nav">
         <Link to="/" onClick={closeHeader}>
-          <FaHome /> <span className="nav-icon-margin">Home</span>
+          <FaHome /> <span className="nav-icon-margin">Hem</span>
         </Link>
 
         <Link to="/books" onClick={closeHeader}>
-          <FaBook /> <span className="nav-icon-margin">Books</span>
+          <FaBook /> <span className="nav-icon-margin">Böcker</span>
         </Link>
 
         <Link to="/audioBooks" onClick={closeHeader}>
-          <FaPlayCircle /> <span className="nav-icon-margin">Audiobooks</span>
+          <FaPlayCircle /> <span className="nav-icon-margin">Ljudböcker</span>
         </Link>
 
         <Link to="/about" onClick={closeHeader}>
           <FaInfoCircle />
-          <span className="nav-icon-margin">About</span>
+          <span className="nav-icon-margin">Om</span>
         </Link>
 
         {isAdmin && (
@@ -81,20 +81,20 @@ export default function Header() {
 
         {signedInUser ? (
           <button className="nav-logout" onClick={logout}>
-            <CiLogout /> <span className="nav-icon-margin">Logout</span>
+            <CiLogout /> <span className="nav-icon-margin">Logga ut</span>
           </button>
         ) : (
           <Link to="/login" className="nav-login" onClick={closeHeader}>
-            <CiLogin /> <span className="nav-icon-margin">Login</span>
+            <CiLogin /> <span className="nav-icon-margin">Logga in</span>
           </Link>
         )}
 
         <div className="search-container">
           <FaSearch className="search-icon" />
           <input
-            className="search-input"
+            className="search-input text-base leading-none"
             type="text"
-            placeholder="Search title..."
+            placeholder="Sök bland titlar..."
             onKeyDown={handleSearch}
           />
         </div>

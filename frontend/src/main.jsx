@@ -23,6 +23,8 @@ import SearchPage from "./components/SearchPage.jsx";
 import About from "./components/About.jsx";
 import AdminHome from "./components/Admin/AdminHome.jsx";
 import AdminEdit from "./components/Admin/AdminEdit.jsx";
+import AdminAddBook from "./components/Admin/AdminAddBook.jsx";
+import AdminAddAudiobook from "./components/Admin/AdminAddAudiobook.jsx";
 
 export const pages = [
   { path: "/login", label: "Login", element: <Login /> },
@@ -35,7 +37,21 @@ export const pages = [
   { path: "/books/search", label: "Search", element: <SearchPage /> },
   { path: "/about", label: "About", element: <About /> },
   { path: "/admin", label: "Admin", element: <AdminHome /> },
-  { path: "/admin/:type/:id", label: "Admin data", element: <AdminEdit /> },
+  {
+    path: "/admin/:type/:id",
+    label: "Admin edit title",
+    element: <AdminEdit />,
+  },
+  {
+    path: "/admin/add-book",
+    label: "Admin add book",
+    element: <AdminAddBook />,
+  },
+  {
+    path: "/admin/add-audiobook",
+    label: "Admin add audiobook",
+    element: <AdminAddAudiobook />,
+  },
 ];
 
 const router = createBrowserRouter([
