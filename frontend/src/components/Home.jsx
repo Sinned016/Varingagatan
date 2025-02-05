@@ -52,8 +52,9 @@ export default function Home() {
         alt="Picture of Leif Selander"
       />
 
+      {/* Add bg-slate-50 here if I want side borders and a background of that color instead of nothing */}
       <>
-        <div className="bg-slate-50 p-4 sm:mb-4 sm:mt-4">
+        <div className="p-4 sm:p-0 sm:mb-4 sm:mt-4">
           <h2 className="text-center text-3xl font-bold mb-4">Böcker</h2>
 
           <div className="flex justify-center flex-wrap">
@@ -89,7 +90,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="bg-zinc-50 p-4">
+        <div className="p-4 sm:p-0 sm:pb-6">
           <h2 className="text-center text-3xl font-bold mb-4">Ljudböcker</h2>
 
           <div className="flex justify-center flex-wrap">

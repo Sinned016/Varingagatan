@@ -14,6 +14,7 @@ import { FaPlus } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 
 import AdminNav from "./AdminNav";
+import { Ellipsis } from "lucide-react";
 
 export default function AdminHome() {
   const navigate = useNavigate();
@@ -21,7 +22,6 @@ export default function AdminHome() {
   const [allData, setAllData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [trigger, setTrigger] = useState(false);
-  const [dataToDelete, setDataToDelete] = useState(null);
   const [searchData, setSearchData] = useState("");
 
   useEffect(() => {
@@ -76,17 +76,8 @@ export default function AdminHome() {
     setFilteredData(filtered);
   }
 
-  async function handleDeleteData(dataId) {
-    setDataToDelete(dataId);
-    setOpenDeleteData(true);
-  }
-
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
-
   return (
-    <div className="bg-slate-50 p-6">
+    <div className=" p-6 sm:p-0 sm:pt-6">
       <AdminNav />
 
       <div className="mb-6 relative">
@@ -99,6 +90,8 @@ export default function AdminHome() {
           onChange={(e) => handleSearch(e.target.value)}
         />
       </div>
+
+      {/* <h1 className="text-3xl font-bold mb-6">Alla titlar</h1> */}
 
       <div className="flex flex-wrap -mx-2">
         {filteredData &&
@@ -117,7 +110,7 @@ export default function AdminHome() {
                     </div>
                     <div>
                       <Link
-                        className="hover:text-purple-800 cursor-pointer"
+                        className="hover:text-purple-800 cursor-pointer transform duration-200"
                         to={`/admin/${data.type}/${data.id}`}
                       >
                         <p className="text-2xl sm:text-2xl font-semibold ">
@@ -146,7 +139,7 @@ export default function AdminHome() {
                   </div>
                 ) : (
                   // Audiobooks
-                  <div className="flex flex-col sm:flex-row sm:gap-6 gap-2 sm:mb-6 mb-2">
+                  <div className="flex flex-col sm:flex-row sm:gap-6 gap-2 sm:mb-6 mb-2 relative">
                     <div className="w-full h-full sm:w-[150px] sm:h-[150px] flex-shrink-0">
                       <img
                         className="h-full w-full object-cover"

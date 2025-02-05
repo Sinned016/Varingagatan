@@ -10,17 +10,17 @@ export default function AdminNav() {
     {
       label: "Alla titlar",
       path: "/admin",
-      icon: <LibraryBig size={24} />,
+      icon: <LibraryBig size={28} />,
     },
     {
       label: "Lägg till bok",
       path: "/admin/add-book",
-      icon: <BookText size={24} />,
+      icon: <BookText size={28} />,
     },
     {
       label: "Lägg till ljudbok",
       path: "/admin/add-audiobook",
-      icon: <BookHeadphones size={24} />,
+      icon: <BookHeadphones size={28} />,
     },
   ];
 
@@ -35,7 +35,7 @@ export default function AdminNav() {
                 className="flex flex-col justify-center items-center gap-1 relative"
               >
                 {link.icon}
-                <p className="text-sm font-bold">{link.label}</p>
+
                 {pathname === link.path ? (
                   <motion.div
                     className="h-[2px] w-full rounded-full absolute bg-primary z-0 left-0 -bottom-1"

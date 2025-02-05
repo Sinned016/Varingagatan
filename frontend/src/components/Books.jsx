@@ -28,7 +28,7 @@ export default function Books() {
     getBooks();
   }, []);
   return (
-    <div className="bg-slate-50 p-6 pb-0">
+    <div className="p-6 sm:p-0 sm:pt-6">
       {/* <h1 className="text-center text-4xl font-bold mb-4">Böcker</h1>
 
       <div className="border border-muted-foreground mb-6"></div> */}
@@ -50,7 +50,7 @@ export default function Books() {
                   </div>
                   <div>
                     <Link
-                      className="hover:text-purple-800 cursor-pointer"
+                      className="hover:text-purple-800 cursor-pointer transform duration-200"
                       to={`/Book/${book.id}`}
                     >
                       <p className="text-2xl sm:text-2xl font-semibold ">

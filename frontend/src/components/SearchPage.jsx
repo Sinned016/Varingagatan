@@ -57,7 +57,7 @@ export default function SearchPage() {
     }
 
     getData();
-  }, []);
+  }, [searchTitle]);
 
   function handleSearch(e) {
     if (e.key === "Enter") {

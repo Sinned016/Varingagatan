@@ -19,6 +19,7 @@ import { RiAdminLine } from "react-icons/ri";
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { signedInUser, isAdmin } = useAuthState(); // Use the custom hook to get authentication state
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const location = useLocation(); // Access location object
   const pathname = location.pathname; // Get the current pathname
@@ -40,12 +41,11 @@ export default function Header() {
     setMenuOpen(false);
   }
 
-  function handleSearch(e) {
-    const title = e.target.value;
-    if (e.key === "Enter") {
-      setMenuOpen(false);
-      navigate(`books/search?title=${title}`);
-    }
+  function handleSearch() {
+    setMenuOpen(false);
+    navigate(`books/search?title=${search}`);
+
+    setSearch("");
   }
 
   function showNavBar() {
@@ -126,7 +126,13 @@ export default function Header() {
             className="search-input text-base leading-none"
             type="text"
             placeholder="Sök bland titlar..."
-            onKeyDown={handleSearch}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}
           />
         </div>
 

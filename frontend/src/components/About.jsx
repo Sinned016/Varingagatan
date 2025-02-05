@@ -2,8 +2,8 @@ import leifSelander from "../assets/pictures/leif-selander-portratt.webp";
 
 export default function About() {
   return (
-    <div className="bg-slate-50 p-6">
-      <div className="flex flex-row gap-6">
+    <div className="p-6 sm:p-0 sm:pt-6">
+      <div className="flex flex-col sm:flex-row gap-6 mb-2">
         <div className="flex-shrink-0">
           <img className=" w-72 h-72 rounded-lg " src={leifSelander} alt="" />
         </div>
@@ -35,7 +35,7 @@ export default function About() {
       <div className="pb-4">
         <h2 className="text-xl font-bold">Mer om Leif Selander</h2>
         <a
-          className="text-purple-800 font-bold hover:underline mb-4"
+          className="text-purple-800 font-bold hover:underline mb-4 transform duration-300"
           href={`https://www.radioovik.se/leif-selander/`}
           target="_blank"
           rel="noopener noreferrer"
@@ -47,7 +47,7 @@ export default function About() {
       <div className="flex flex-col">
         <h2 className="text-xl font-bold">Podcasts</h2>
         <a
-          className="text-purple-800 font-bold hover:underline"
+          className="text-purple-800 font-bold hover:underline transform duration-300"
           href={`https://www.ilikeradio.se/podcasts/var-blodiga-historia/18406/`}
           target="_blank"
           rel="noopener noreferrer"
@@ -56,7 +56,7 @@ export default function About() {
         </a>
 
         <a
-          className="text-purple-800 font-bold hover:underline"
+          className="text-purple-800 font-bold hover:underline transform duration-300"
           href={`https://mariasbokhylla.wordpress.com/2018/03/30/forfattarintervju-leif-selander/`}
           target="_blank"
           rel="noopener noreferrer"

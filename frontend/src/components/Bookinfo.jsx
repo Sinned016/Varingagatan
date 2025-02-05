@@ -19,7 +19,7 @@ import FinishedRating from "./FinishedRating";
 import { calculateAverageRating } from "../functions/calculateAverageRating";
 import { FaTimes, FaTrash } from "react-icons/fa";
 import { formatDistance, subDays } from "date-fns";
-import { Trash } from "lucide-react";
+import { CircleUserRound, Trash } from "lucide-react";
 import Review from "./Review";
 
 export default function Bookinfo() {
@@ -157,7 +157,7 @@ export default function Bookinfo() {
   return (
     <div className="">
       {bookInfo ? (
-        <div className="bg-slate-50 p-6">
+        <div className=" p-6 sm:p-0 sm:pt-6">
           <div className="flex flex-col md:flex-row pb-10">
             <div className="mr-6 flex-shrink-0">
               <img
@@ -171,7 +171,7 @@ export default function Bookinfo() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <button className="mt-5 px-3 py-2 bg-red-500 hover:bg-red-600 rounded text-white w-full mb-4">
+                <button className="mt-5 px-3 py-2 bg-red-500 hover:bg-red-600 rounded text-white w-full mb-4 transform duration-300">
                   Köp boken
                 </button>
               </a>
@@ -267,11 +267,14 @@ export default function Bookinfo() {
               {bookInfo.reviews.slice(0, displayedReviews).map((review, i) => {
                 return (
                   <div
-                    className="border p-4 rounded-lg mb-4 border-muted-foreground bg-slate-100 relative"
+                    className="border p-4 rounded-lg mb-4 border-muted-foreground bg-slate-50 relative"
                     key={i}
                   >
                     <div className="flex gap-4 mb-2">
-                      <div className="w-11 h-11 rounded-full bg-zinc-400"></div>
+                      {/* <div className="w-11 h-11 rounded-full bg-zinc-400"></div> */}
+                      <div>
+                        <CircleUserRound size={42} />
+                      </div>
                       <div>
                         <p>{review.email}</p>
                         <div className="flex flex-row gap-2">
@@ -384,13 +387,13 @@ export default function Bookinfo() {
 
                   <div className="modal-button-container">
                     <button
-                      className="mb-2 modal-button rounded-lg bg-red-500 hover:bg-red-600 text-white"
+                      className="mb-2 modal-button rounded-lg bg-red-500 hover:bg-red-600 text-white transform duration-300"
                       onClick={deleteReview}
                     >
                       Ta bort
                     </button>
                     <button
-                      className="modal-button rounded-lg bg-zinc-500 hover:bg-zinc-600 text-white"
+                      className="modal-button rounded-lg bg-zinc-500 hover:bg-zinc-600 text-white transform duration-300"
                       onClick={() => {
                         setOpenDeleteReview(false);
                         setReviewIdToDelete(null);
