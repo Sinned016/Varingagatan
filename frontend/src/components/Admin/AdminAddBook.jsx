@@ -74,7 +74,7 @@ export default function AdminAddBook() {
     <div className="p-6 sm:p-0 sm:pt-6">
       <AdminNav />
 
-      <div className="flex flex-col gap-2 mb-6 bg-slate-50 border border-slate-500 p-6 rounded-xl">
+      <div className="flex flex-col gap-2 mb-6 bg-slate-50 border border-neutral-600 p-6 rounded-xl">
         <h1 className="text-3xl font-bold">Lägg till bok</h1>
         <div className="flex flex-row justify-evenly gap-4">
           <div className="flex flex-col w-full">
@@ -85,12 +85,11 @@ export default function AdminAddBook() {
             <input
               className={
                 errors.title
-                  ? "p-1 border rounded-xl w-full border-red-500"
-                  : "p-1 border rounded-xl w-full "
+                  ? "p-1 border rounded-lg w-full border-red-500"
+                  : "p-1 border rounded-lg w-full border-neutral-600"
               }
               name="title"
               type="text"
-              placeholder="Titel..."
               value={formValues.title}
               onChange={(e) => handleChange(e)}
             />
@@ -101,10 +100,9 @@ export default function AdminAddBook() {
               Andratitel
             </label>
             <input
-              className="p-1 border rounded-xl w-full "
+              className="p-1 border rounded-lg w-full border-neutral-600"
               name="secondTitle"
               type="text"
-              placeholder="Andratitel..."
               value={formValues.secondTitle}
               onChange={(e) => handleChange(e)}
             />
@@ -119,12 +117,11 @@ export default function AdminAddBook() {
             <input
               className={
                 errors.author
-                  ? "p-1 border rounded-xl w-full border-red-500"
-                  : "p-1 border rounded-xl w-full "
+                  ? "p-1 border rounded-lg w-full border-red-500"
+                  : "p-1 border rounded-lg w-full border-neutral-600"
               }
               name="author"
               type="text"
-              placeholder="Författare..."
               value={formValues.author}
               onChange={(e) => handleChange(e)}
             />
@@ -137,12 +134,11 @@ export default function AdminAddBook() {
             <input
               className={
                 errors.language
-                  ? "p-1 border rounded-xl w-full border-red-500"
-                  : "p-1 border rounded-xl w-full "
+                  ? "p-1 border rounded-lg w-full border-red-500"
+                  : "p-1 border rounded-lg w-full border-neutral-600"
               }
               name="language"
               type="text"
-              placeholder="Språk..."
               value={formValues.language}
               onChange={(e) => handleChange(e)}
             />
@@ -156,12 +152,11 @@ export default function AdminAddBook() {
           <textarea
             className={
               errors.description
-                ? "p-1 border rounded-xl w-full border-red-500"
-                : "p-1 border rounded-xl w-full "
+                ? "p-1 border rounded-lg w-full border-red-500"
+                : "p-1 border rounded-lg w-full border-neutral-600"
             }
             name="description"
             type="text"
-            placeholder="Beskrivning..."
             value={formValues.description}
             onChange={(e) => handleChange(e)}
           />
@@ -175,12 +170,11 @@ export default function AdminAddBook() {
             <input
               className={
                 errors.price
-                  ? "p-1 border rounded-xl w-full border-red-500"
-                  : "p-1 border rounded-xl w-full "
+                  ? "p-1 border rounded-lg w-full border-red-500"
+                  : "p-1 border rounded-lg w-full border-neutral-600"
               }
               name="price"
               type="text"
-              placeholder="Pris..."
               value={formValues.price}
               onChange={(e) => handleChange(e)}
             />
@@ -191,10 +185,9 @@ export default function AdminAddBook() {
               Utgivningsdatum (YYYY-MM-DD)
             </label>
             <input
-              className="p-1 border rounded-xl w-full "
+              className="p-1 border rounded-lg w-full border-neutral-600"
               name="releaseDate"
               type="text"
-              placeholder="Utgivningsdatum..."
               value={formValues.releaseDate}
               onChange={(e) => handleChange(e)}
             />
@@ -209,12 +202,11 @@ export default function AdminAddBook() {
             <input
               className={
                 errors.pages
-                  ? "p-1 border rounded-xl w-full border-red-500"
-                  : "p-1 border rounded-xl w-full "
+                  ? "p-1 border rounded-lg w-full border-red-500"
+                  : "p-1 border rounded-lg w-full border-neutral-600"
               }
               name="pages"
               type="text"
-              placeholder="Sidor..."
               value={formValues.pages}
               onChange={(e) => handleChange(e)}
             />
@@ -225,10 +217,9 @@ export default function AdminAddBook() {
               Vikt
             </label>
             <input
-              className="p-1 border rounded-xl w-full "
+              className="p-1 border rounded-lg w-full border-neutral-600"
               name="weight"
               type="text"
-              placeholder="Vikt..."
               value={formValues.weight}
               onChange={(e) => handleChange(e)}
             />
@@ -241,10 +232,9 @@ export default function AdminAddBook() {
               Förlag
             </label>
             <input
-              className="p-1 border rounded-xl w-full "
+              className="p-1 border rounded-lg w-full border-neutral-600"
               name="publisher"
               type="text"
-              placeholder="Förlag..."
               value={formValues.publisher}
               onChange={(e) => handleChange(e)}
             />
@@ -257,12 +247,11 @@ export default function AdminAddBook() {
             <input
               className={
                 errors.linkToPurchase
-                  ? "p-1 border rounded-xl w-full border-red-500"
-                  : "p-1 border rounded-xl w-full "
+                  ? "p-1 border rounded-lg w-full border-red-500"
+                  : "p-1 border rounded-lg w-full border-neutral-600"
               }
               name="linkToPurchase"
               type="text"
-              placeholder="Länk för att köpa..."
               value={formValues.linkToPurchase}
               onChange={(e) => handleChange(e)}
             />
@@ -276,12 +265,11 @@ export default function AdminAddBook() {
           <input
             className={
               errors.image
-                ? "p-1 border rounded-xl w-full border-red-500"
-                : "p-1 border rounded-xl w-full "
+                ? "p-1 border rounded-lg w-full border-red-500"
+                : "p-1 border rounded-lg w-full border-neutral-600"
             }
             name="image"
             type="text"
-            placeholder="Länk till bild..."
             value={formValues.image}
             onChange={(e) => handleChange(e)}
           />

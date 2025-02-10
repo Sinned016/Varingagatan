@@ -1,5 +1,5 @@
 import { collection, getDocs } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { db } from "../config/firebase";
 import FinishedRating from "./FinishedRating";
@@ -10,6 +10,7 @@ export default function SearchPage() {
   const [combinedData, setCombinedData] = useState([]);
   const [searchedData, setSearchedData] = useState([]);
   const [search, setSearch] = useState("");
+  const inputRef = useRef(null);
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -57,6 +58,10 @@ export default function SearchPage() {
     }
 
     getData();
+
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }, [searchTitle]);
 
   function handleSearch(e) {
@@ -78,9 +83,10 @@ export default function SearchPage() {
       <div className="mb-6 relative">
         <FaSearch className="absolute pointer-events-none left-3 top-1/2 -translate-y-1/2 transform " />
         <input
+          ref={inputRef}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full border rounded-full p-2 bg-slate-300 placeholder-neutral-700 pl-10 text-base leading-none"
+          className="w-full border rounded-full p-2 bg-slate-300 placeholder-neutral-700 pl-10 text-base leading-none focus"
           type="text"
           placeholder="Sök bland titlar..."
           onKeyDown={handleSearch}
@@ -180,7 +186,7 @@ export default function SearchPage() {
               className="text-center "
               style={{ marginBottom: "1em", textAlign: "center" }}
             >
-              No book with that title
+              Ingen data hittades
             </h2>
           </div>
         )}

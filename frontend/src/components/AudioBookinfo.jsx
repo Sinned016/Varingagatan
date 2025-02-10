@@ -345,7 +345,7 @@ export default function Bookinfo() {
                 .map((review, i) => {
                   return (
                     <div
-                      className="border p-4 rounded-lg mb-4 border-muted-foreground bg-slate-50 relative"
+                      className="border border-black p-4 rounded-lg mb-4  bg-slate-50 relative"
                       key={i}
                     >
                       <div className="flex gap-4 mb-2">

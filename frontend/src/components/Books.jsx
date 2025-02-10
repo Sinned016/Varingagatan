@@ -49,11 +49,11 @@ export default function Books() {
                     />
                   </div>
                   <div>
-                    <Link
-                      className="hover:text-purple-800 cursor-pointer transform duration-200"
-                      to={`/Book/${book.id}`}
-                    >
-                      <p className="text-2xl sm:text-2xl font-semibold ">
+                    <p className="text-2xl sm:text-2xl font-semibold ">
+                      <Link
+                        className="hover:text-purple-800 cursor-pointer transform duration-200"
+                        to={`/Book/${book.id}`}
+                      >
                         {book.title}{" "}
                         <span
                           className={
@@ -64,8 +64,8 @@ export default function Books() {
                         >
                           - {book.secondTitle}
                         </span>
-                      </p>
-                    </Link>
+                      </Link>
+                    </p>
 
                     <p className="font-semibold sm:hidden">
                       {book.secondTitle}

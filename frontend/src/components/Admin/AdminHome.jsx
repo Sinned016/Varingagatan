@@ -14,7 +14,7 @@ import { FaPlus } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 
 import AdminNav from "./AdminNav";
-import { Ellipsis } from "lucide-react";
+import { Ellipsis, Settings } from "lucide-react";
 
 export default function AdminHome() {
   const navigate = useNavigate();
@@ -97,7 +97,14 @@ export default function AdminHome() {
         {filteredData &&
           filteredData.map((data, index) => {
             return (
-              <div className="w-1/2 sm:w-full px-2" key={index}>
+              <div className="w-1/2 sm:w-full px-2 relative" key={index}>
+                <Link
+                  className="hover:text-purple-800 cursor-pointer"
+                  to={`/admin/${data.type}/${data.id}`}
+                >
+                  <Settings className="absolute top-1 right-2 hidden sm:block z-10" />
+                </Link>
+
                 {data.type === "Bok" ? (
                   // Books
                   <div className="flex flex-col sm:flex-row sm:gap-6 gap-2 sm:mb-6 mb-2 group">
@@ -109,11 +116,11 @@ export default function AdminHome() {
                       />
                     </div>
                     <div>
-                      <Link
-                        className="hover:text-purple-800 cursor-pointer transform duration-200"
-                        to={`/admin/${data.type}/${data.id}`}
-                      >
-                        <p className="text-2xl sm:text-2xl font-semibold ">
+                      <p className="text-2xl sm:text-2xl font-semibold ">
+                        <Link
+                          className="hover:text-purple-800 cursor-pointer transform duration-200"
+                          to={`/admin/${data.type}/${data.id}`}
+                        >
                           {data.title}{" "}
                           <span
                             className={
@@ -124,8 +131,8 @@ export default function AdminHome() {
                           >
                             - {data.secondTitle}
                           </span>
-                        </p>
-                      </Link>
+                        </Link>
+                      </p>
 
                       <p className="font-semibold sm:hidden">
                         {data.secondTitle}
@@ -148,11 +155,11 @@ export default function AdminHome() {
                       />
                     </div>
                     <div>
-                      <Link
-                        className="hover:text-purple-800 cursor-pointer"
-                        to={`/admin/${data.type}/${data.id}`}
-                      >
-                        <p className="text-2xl sm:text-2xl font-semibold">
+                      <p className="text-2xl sm:text-2xl font-semibold">
+                        <Link
+                          className="hover:text-purple-800 cursor-pointer"
+                          to={`/admin/${data.type}/${data.id}`}
+                        >
                           {data.title}{" "}
                           <span
                             className={
@@ -163,8 +170,8 @@ export default function AdminHome() {
                           >
                             - {data.secondTitle}
                           </span>
-                        </p>
-                      </Link>
+                        </Link>
+                      </p>
 
                       <p className="font-semibold sm:hidden">
                         {data.secondTitle}

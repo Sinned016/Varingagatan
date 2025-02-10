@@ -130,7 +130,7 @@ export default function Review({
                     value={reviewTitle}
                     onChange={(e) => setReviewTitle(e.target.value)}
                     type="text"
-                    className="p-2 border border-black rounded-lg mb-4"
+                    className="p-2 border rounded-lg w-full border-neutral-600 mb-4"
                   />
 
                   <label className="mb-1">Recensions betyg</label>
@@ -148,7 +148,7 @@ export default function Review({
                     onChange={(e) => setReviewContent(e.target.value)}
                     placeholder={"Skriv ditt innehåll här..."}
                     rows={3} // Initial number of rows
-                    className="p-2 border border-black rounded-lg mb-4"
+                    className="p-2 border rounded-lg w-full border-neutral-600 mb-4"
                   />
 
                   <div className="flex gap-2">

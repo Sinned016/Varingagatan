@@ -95,7 +95,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
   return (
     <div>
       {data && (
-        <div className=" bg-slate-50 border border-slate-500 p-6 rounded-xl mb-6">
+        <div className=" bg-slate-50 border border-neutral-600 p-6 rounded-xl mb-6">
           <div className="flex flex-col gap-2 mb-6">
             <h2 className="text-3xl font-bold">Redigera {type}</h2>
 
@@ -106,7 +106,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
                 </label>
                 <input
                   name="title"
-                  className="p-1 border rounded-xl w-full"
+                  className="p-1 border rounded-lg w-full border-neutral-600"
                   type="text"
                   value={data.title}
                   onChange={(e) => handleChange(e)}
@@ -119,7 +119,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
                 </label>
                 <input
                   name="secondTitle"
-                  className="p-1 border rounded-xl w-full"
+                  className="p-1 border rounded-lg w-full border-neutral-600"
                   type="text"
                   value={data.secondTitle}
                   onChange={(e) => handleChange(e)}
@@ -134,7 +134,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
                 </label>
                 <input
                   name="author"
-                  className="p-1 border rounded-xl w-full"
+                  className="p-1 border rounded-lg w-full border-neutral-600"
                   type="text"
                   value={data.author}
                   onChange={(e) => handleChange(e)}
@@ -147,7 +147,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
                 </label>
                 <input
                   name="language"
-                  className="p-1 border rounded-xl w-full"
+                  className="p-1 border rounded-lg w-full border-neutral-600"
                   type="text"
                   value={data.language}
                   onChange={(e) => handleChange(e)}
@@ -161,7 +161,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
               </label>
               <textarea
                 name="description"
-                className="p-1 border rounded-xl w-full"
+                className="p-1 border rounded-lg w-full border-neutral-600"
                 type="text"
                 value={data.description}
                 onChange={(e) => handleChange(e)}
@@ -175,7 +175,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
                 </label>
                 <input
                   name="reader"
-                  className="p-1 border rounded-xl w-full"
+                  className="p-1 border rounded-lg w-full border-neutral-600"
                   type="text"
                   value={data.reader}
                   onChange={(e) => handleChange(e)}
@@ -190,7 +190,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
                 </label>
                 <input
                   name="price"
-                  className="p-1 border rounded-xl w-full"
+                  className="p-1 border rounded-lg w-full border-neutral-600"
                   type="text"
                   value={data.price}
                   onChange={(e) => handleChange(e)}
@@ -203,7 +203,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
                 </label>
                 <input
                   name="releaseDate"
-                  className="p-1 border rounded-xl w-full"
+                  className="p-1 border rounded-lg w-full border-neutral-600"
                   type="text"
                   value={data.releaseDate}
                   onChange={(e) => handleChange(e)}
@@ -219,7 +219,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
                   </label>
                   <input
                     name="time"
-                    className="p-1 border rounded-xl w-full"
+                    className="p-1 border rounded-lg w-full border-neutral-600"
                     type="text"
                     value={data.time}
                     onChange={(e) => handleChange(e)}
@@ -234,7 +234,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
                   </label>
                   <input
                     name="size"
-                    className="p-1 border rounded-xl w-full"
+                    className="p-1 border rounded-lg w-full border-neutral-600"
                     type="text"
                     value={data.size}
                     onChange={(e) => handleChange(e)}
@@ -251,7 +251,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
                   </label>
                   <input
                     name="pages"
-                    className="p-1 border rounded-xl w-full"
+                    className="p-1 border rounded-lg w-full border-neutral-600"
                     type="text"
                     value={data.pages}
                     onChange={(e) => handleChange(e)}
@@ -266,7 +266,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
                   </label>
                   <input
                     name="weight"
-                    className="p-1 border rounded-xl w-full"
+                    className="p-1 border rounded-lg w-full border-neutral-600"
                     type="text"
                     value={data.weight}
                     onChange={(e) => handleChange(e)}
@@ -282,7 +282,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
                 </label>
                 <input
                   name="publisher"
-                  className="p-1 border rounded-xl w-full"
+                  className="p-1 border rounded-lg w-full border-neutral-600"
                   type="text"
                   value={data.publisher}
                   onChange={(e) => handleChange(e)}
@@ -295,7 +295,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
                 </label>
                 <input
                   name="linkToPurchase"
-                  className="p-1 border rounded-xl w-full"
+                  className="p-1 border rounded-lg w-full border-neutral-600"
                   type="text"
                   value={data.linkToPurchase}
                   onChange={(e) => handleChange(e)}
@@ -309,7 +309,7 @@ export default function AdminEditInputs({ data, setData, initalData }) {
               </label>
               <input
                 name="image"
-                className="p-1 border rounded-xl w-full"
+                className="p-1 border rounded-lg w-full border-neutral-600"
                 type="text"
                 value={data.image}
                 onChange={(e) => handleChange(e)}

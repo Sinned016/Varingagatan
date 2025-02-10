@@ -23,7 +23,8 @@
 }
 
 .header-nav a:hover {
-  color: var(--main-clr);
+  /* text-decoration: underline;
+  text-underline-offset: 4px; */
   transition: 0.3s;
 }
 
@@ -74,7 +75,7 @@
   border: none;
   outline: none;
   color: var(--text-clr);
-  display: flex;
+
   align-items: center;
 }
 
@@ -110,7 +111,7 @@
 
 .search-container {
   position: relative;
-  width: 300px;
+  width: 400px;
 }
 
 .search-input {
