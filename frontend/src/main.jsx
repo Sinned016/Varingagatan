@@ -25,6 +25,7 @@ import AdminHome from "./components/Admin/AdminHome.jsx";
 import AdminEdit from "./components/Admin/AdminEdit.jsx";
 import AdminAddBook from "./components/Admin/AdminAddBook.jsx";
 import AdminAddAudiobook from "./components/Admin/AdminAddAudiobook.jsx";
+import { ThemeProvider } from "./components/theme-provider";
 
 export const pages = [
   { path: "/login", label: "Login", element: <Login /> },
@@ -64,6 +65,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>
 );

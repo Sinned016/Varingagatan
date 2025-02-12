@@ -5,9 +5,11 @@ import { getDocs, collection } from "firebase/firestore";
 
 import FinishedRating from "./FinishedRating";
 import { calculateAverageRating } from "../functions/calculateAverageRating";
+import SearchForData from "./SearchForData";
 
 export default function AudioBooks() {
-  const [books, setBooks] = useState();
+  const [audiobooks, setAudiobooks] = useState();
+  const [searchedData, setSearchedData] = useState([]);
 
   useEffect(() => {
     async function getAudioBooks() {
@@ -20,7 +22,8 @@ export default function AudioBooks() {
           id: doc.id,
         }));
         console.log(filteredAudioBooksData);
-        setBooks(filteredAudioBooksData);
+        setAudiobooks(filteredAudioBooksData);
+        setSearchedData(filteredAudioBooksData);
       } catch (err) {
         console.error(err);
       }
@@ -29,14 +32,19 @@ export default function AudioBooks() {
     getAudioBooks();
   }, []);
   return (
-    <div className=" p-6 sm:p-0 sm:pt-6">
+    <div className=" p-6 sm:p-0 sm:pt-6 sm:px-6 xl:px-0">
       {/* <h1 className="text-center text-4xl font-bold mb-4">Ljudböcker</h1>
 
       <div className="border border-muted-foreground mb-6"></div> */}
 
+      <SearchForData
+        originalData={audiobooks}
+        setSearchedData={setSearchedData}
+      />
+
       <div className="flex flex-wrap -mx-2">
-        {books &&
-          books.map((book, index) => {
+        {audiobooks &&
+          searchedData.map((book, index) => {
             // const averageRating = calculateAverageRating(book.reviews);
 
             return (
@@ -52,7 +60,7 @@ export default function AudioBooks() {
                   <div>
                     <p className="text-2xl sm:text-2xl font-semibold">
                       <Link
-                        className="hover:text-purple-800 cursor-pointer transform duration-200"
+                        className="hover:text-primary cursor-pointer transform duration-200"
                         to={`/Audiobook/${book.id}`}
                       >
                         {book.title}{" "}
@@ -71,7 +79,7 @@ export default function AudioBooks() {
                     <p className="font-semibold sm:hidden">
                       {book.secondTitle}
                     </p>
-                    <p>{book.author}</p>
+                    <p className="font-medium">{book.author}</p>
                     <p className="mb-2">Typ: {book.type}</p>
                     <p className="hidden sm:line-clamp-2 sm:overflow-hidden sm:-webkit-box sm:-webkit-line-clamp-2 sm:-webkit-box-orient-vertical">
                       {book.description}

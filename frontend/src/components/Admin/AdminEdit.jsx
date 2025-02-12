@@ -53,7 +53,7 @@ export default function AdminEdit() {
   }, [type, id]);
 
   return (
-    <div className="p-6 sm:p-0 sm:pt-6">
+    <div className="p-6 sm:pt-6 sm:px-6 xl:px-0">
       {data && (
         <div className="flex flex-col sm:flex-row mb-6">
           <div className="mr-6 flex-shrink-0 mb-4 sm:mb-0 sm:pb-10">

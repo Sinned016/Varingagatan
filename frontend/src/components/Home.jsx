@@ -6,6 +6,7 @@ import { filterBooksForNewest } from "../functions/filterBooksForNewest";
 import homeHeader from "../assets/pictures/homeheader.jpg";
 import { calculateAverageRating } from "../functions/calculateAverageRating";
 import FinishedRating from "./FinishedRating";
+import { BookText } from "lucide-react";
 
 export default function Home() {
   const [books, setBooks] = useState();
@@ -53,10 +54,17 @@ export default function Home() {
       />
 
       {/* Add bg-slate-50 here if I want side borders and a background of that color instead of nothing */}
-      <>
+      <div className="sm:px-4 xl:px-0">
         <div className="p-4 sm:p-0 sm:mb-4 sm:mt-4">
           {/* Tycker inte om hur titlarna ser ur här */}
-          <h2 className="text-center text-3xl font-bold mb-4">Böcker</h2>
+          <h2 className="text-center text-3xl font-bold mb-3">
+            <Link
+              className="hover:text-primary duration-300 cursor-pointer"
+              to={"/books"}
+            >
+              Böcker
+            </Link>
+          </h2>
 
           <div className="flex justify-center flex-wrap">
             {books &&
@@ -76,11 +84,11 @@ export default function Home() {
                       </div>
 
                       <div>
-                        <h3 className="text-black text-center font-semibold text-xl">
+                        <h3 className=" text-center font-semibold text-xl">
                           {book.title}
                         </h3>
 
-                        <p className="text-center text-black mb-2 sm:mb-0">
+                        <p className="text-center  mb-2 sm:mb-0 font-medium">
                           {book.author}
                         </p>
                       </div>
@@ -92,7 +100,14 @@ export default function Home() {
         </div>
 
         <div className="p-4 sm:p-0 sm:pb-6">
-          <h2 className="text-center text-3xl font-bold mb-4">Ljudböcker</h2>
+          <h2 className="text-center text-3xl font-bold mb-3 ">
+            <Link
+              className="hover:text-primary duration-300 cursor-pointer"
+              to={"/audioBooks"}
+            >
+              Ljudböcker
+            </Link>
+          </h2>
 
           <div className="flex justify-center flex-wrap">
             {audioBooks &&
@@ -112,11 +127,11 @@ export default function Home() {
                       </div>
 
                       <div>
-                        <h3 className="text-black text-center text-xl font-semibold">
+                        <h3 className=" text-center text-xl font-semibold">
                           {book.title}
                         </h3>
 
-                        <p className="text-center text-black mb-2 sm:mb-0">
+                        <p className="text-center  mb-2 sm:mb-0">
                           {book.author}
                         </p>
                       </div>
@@ -126,7 +141,7 @@ export default function Home() {
               })}
           </div>
         </div>
-      </>
+      </div>
     </div>
   );
 }

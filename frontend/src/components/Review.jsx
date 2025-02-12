@@ -7,6 +7,7 @@ import { arrayUnion, doc, Timestamp, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { Button } from "./ui/button";
 
 export default function Review({
   submitTrigger,
@@ -105,17 +106,17 @@ export default function Review({
     <>
       {signedInUser ? (
         <>
-          <button
+          <Button
             onClick={() => setShowReview(!showReview)}
-            className="p-4 w-full bg-slate-300 hover:bg-slate-400 rounded-lg mb-6 transform duration-300"
+            className="p-6 w-full rounded-lg mb-6 transform duration-300"
           >
             Skriv recension
-          </button>
+          </Button>
 
           <AnimatePresence>
             {showReview && (
               <motion.div
-                className=" border border-black p-4 rounded-lg bg-slate-50 mb-6 "
+                className=" border border-neutral-600  p-4 rounded-lg bg-card mb-6 "
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -130,7 +131,7 @@ export default function Review({
                     value={reviewTitle}
                     onChange={(e) => setReviewTitle(e.target.value)}
                     type="text"
-                    className="p-2 border rounded-lg w-full border-neutral-600 mb-4"
+                    className="p-2 border rounded-lg w-full border-neutral-600 mb-4 bg-card"
                   />
 
                   <label className="mb-1">Recensions betyg</label>
@@ -148,22 +149,22 @@ export default function Review({
                     onChange={(e) => setReviewContent(e.target.value)}
                     placeholder={"Skriv ditt innehåll här..."}
                     rows={3} // Initial number of rows
-                    className="p-2 border rounded-lg w-full border-neutral-600 mb-4"
+                    className="p-2 border rounded-lg w-full border-neutral-600 mb-4 bg-card"
                   />
 
                   <div className="flex gap-2">
-                    <button
+                    <Button
                       className="py-2 px-3 bg-red-500 rounded hover:bg-red-600 text-white transform duration-300"
                       type="submit"
                     >
                       Skicka
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                       className="py-2 px-3 rounded bg-zinc-500 hover:bg-zinc-600 text-white transform duration-300"
                       onClick={handleCancelReview}
                     >
                       Stäng
-                    </button>
+                    </Button>
                   </div>
                 </form>
               </motion.div>
@@ -201,18 +202,18 @@ export default function Review({
               </p>
 
               <div className="modal-button-container">
-                <button
-                  className="mb-2 modal-button rounded-lg bg-green-500 hover:bg-green-600 text-white transform duration-300"
+                <Button
+                  className="mb-2 modal-button rounded-lg bg-green-500 hover:bg-green-600 text-white transform duration-300 w-full"
                   onClick={handleSubmitReview}
                 >
                   Ja
-                </button>
-                <button
-                  className="modal-button rounded-lg bg-zinc-500 hover:bg-zinc-600 text-white transform duration-300"
+                </Button>
+                <Button
+                  className="modal-button rounded-lg bg-zinc-500 hover:bg-zinc-600 text-white transform duration-300 w-full"
                   onClick={() => setOpen(false)}
                 >
                   Nej
-                </button>
+                </Button>
               </div>
 
               <FaTimes

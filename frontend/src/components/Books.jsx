@@ -4,9 +4,12 @@ import { useEffect, useState } from "react";
 import { getDocs, collection } from "firebase/firestore";
 import FinishedRating from "./FinishedRating";
 import { calculateAverageRating } from "../functions/calculateAverageRating";
+import { FaSearch } from "react-icons/fa";
+import SearchForData from "./SearchForData";
 
 export default function Books() {
   const [books, setBooks] = useState();
+  const [searchedData, setSearchedData] = useState([]);
 
   useEffect(() => {
     async function getBooks() {
@@ -20,6 +23,7 @@ export default function Books() {
         }));
         console.log(filteredBooksData);
         setBooks(filteredBooksData);
+        setSearchedData(filteredBooksData);
       } catch (err) {
         console.error(err);
       }
@@ -27,15 +31,18 @@ export default function Books() {
 
     getBooks();
   }, []);
+
   return (
-    <div className="p-6 sm:p-0 sm:pt-6">
+    <div className="p-6 sm:p-0 sm:pt-6 sm:px-6 xl:px-0">
       {/* <h1 className="text-center text-4xl font-bold mb-4">Böcker</h1>
 
       <div className="border border-muted-foreground mb-6"></div> */}
 
+      <SearchForData originalData={books} setSearchedData={setSearchedData} />
+
       <div className="flex flex-wrap -mx-2">
         {books &&
-          books.map((book, index) => {
+          searchedData.map((book, index) => {
             // const averageRating = calculateAverageRating(book.reviews);
 
             return (
@@ -51,7 +58,7 @@ export default function Books() {
                   <div>
                     <p className="text-2xl sm:text-2xl font-semibold ">
                       <Link
-                        className="hover:text-purple-800 cursor-pointer transform duration-200"
+                        className="hover:text-primary cursor-pointer transform duration-200"
                         to={`/Book/${book.id}`}
                       >
                         {book.title}{" "}
@@ -70,7 +77,7 @@ export default function Books() {
                     <p className="font-semibold sm:hidden">
                       {book.secondTitle}
                     </p>
-                    <p>{book.author}</p>
+                    <p className="font-medium">{book.author}</p>
                     <p className="mb-2">Typ: {book.type}</p>
                     <p className="hidden sm:line-clamp-5 sm:overflow-hidden sm:-webkit-box sm:-webkit-line-clamp-5 sm:-webkit-box-orient-vertical">
                       {book.description}

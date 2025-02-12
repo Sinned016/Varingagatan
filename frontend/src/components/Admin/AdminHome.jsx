@@ -15,6 +15,7 @@ import { FaTimes } from "react-icons/fa";
 
 import AdminNav from "./AdminNav";
 import { Ellipsis, Settings } from "lucide-react";
+import SearchForData from "../SearchForData";
 
 export default function AdminHome() {
   const navigate = useNavigate();
@@ -22,7 +23,6 @@ export default function AdminHome() {
   const [allData, setAllData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [trigger, setTrigger] = useState(false);
-  const [searchData, setSearchData] = useState("");
 
   useEffect(() => {
     if (!loading) {
@@ -67,29 +67,11 @@ export default function AdminHome() {
     getData();
   }, [loading, trigger]);
 
-  function handleSearch(value) {
-    setSearchData(value);
-
-    const filtered = allData.filter((data) =>
-      data.title.toLowerCase().includes(value.toLowerCase())
-    );
-    setFilteredData(filtered);
-  }
-
   return (
-    <div className=" p-6 sm:p-0 sm:pt-6">
+    <div className=" p-6  sm:pt-6 sm:px-6 xl:px-0">
       <AdminNav />
 
-      <div className="mb-6 relative">
-        <FaSearch className="absolute pointer-events-none left-3 top-1/2 -translate-y-1/2 transform " />
-        <input
-          className="w-full border rounded-full p-2 bg-slate-300 placeholder-neutral-700 pl-10 text-base leading-none"
-          value={searchData}
-          type="text"
-          placeholder="Sök efter titel..."
-          onChange={(e) => handleSearch(e.target.value)}
-        />
-      </div>
+      <SearchForData originalData={allData} setSearchedData={setFilteredData} />
 
       {/* <h1 className="text-3xl font-bold mb-6">Alla titlar</h1> */}
 
@@ -99,7 +81,7 @@ export default function AdminHome() {
             return (
               <div className="w-1/2 sm:w-full px-2 relative" key={index}>
                 <Link
-                  className="hover:text-purple-800 cursor-pointer"
+                  className="hover:text-primary cursor-pointer"
                   to={`/admin/${data.type}/${data.id}`}
                 >
                   <Settings className="absolute top-1 right-2 hidden sm:block z-10" />
@@ -118,7 +100,7 @@ export default function AdminHome() {
                     <div>
                       <p className="text-2xl sm:text-2xl font-semibold ">
                         <Link
-                          className="hover:text-purple-800 cursor-pointer transform duration-200"
+                          className="hover:text-primary cursor-pointer transform duration-200"
                           to={`/admin/${data.type}/${data.id}`}
                         >
                           {data.title}{" "}
@@ -137,7 +119,7 @@ export default function AdminHome() {
                       <p className="font-semibold sm:hidden">
                         {data.secondTitle}
                       </p>
-                      <p>{data.author}</p>
+                      <p className="font-medium">{data.author}</p>
                       <p className="mb-2">Typ: {data.type}</p>
                       <p className="hidden sm:line-clamp-5 sm:overflow-hidden sm:-webkit-box sm:-webkit-line-clamp-5 sm:-webkit-box-orient-vertical">
                         {data.description}

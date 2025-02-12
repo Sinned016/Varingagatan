@@ -4,6 +4,8 @@ import { addContentToDatabase } from "../../functions/addContentToDatabase";
 import AdminNav from "./AdminNav";
 import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../ui/button";
+import { BookText } from "lucide-react";
 
 export default function AdminAddBook() {
   const initialFormValues = {
@@ -71,11 +73,14 @@ export default function AdminAddBook() {
   }
 
   return (
-    <div className="p-6 sm:p-0 sm:pt-6">
+    <div className="p-6 sm:pt-6 sm:px-6 xl:px-0">
       <AdminNav />
 
-      <div className="flex flex-col gap-2 mb-6 bg-slate-50 border border-neutral-600 p-6 rounded-xl">
-        <h1 className="text-3xl font-bold">Lägg till bok</h1>
+      <div className="flex flex-col gap-2 mb-6 bg-card border border-neutral-600 p-6 rounded-xl">
+        <div className="flex flex-row gap-4 items-center ">
+          <h1 className="text-3xl font-bold">Lägg till bok</h1>
+          <BookText size={28} />
+        </div>
         <div className="flex flex-row justify-evenly gap-4">
           <div className="flex flex-col w-full">
             <label htmlFor="" className="font-bold">
@@ -85,8 +90,8 @@ export default function AdminAddBook() {
             <input
               className={
                 errors.title
-                  ? "p-1 border rounded-lg w-full border-red-500"
-                  : "p-1 border rounded-lg w-full border-neutral-600"
+                  ? "p-1 border rounded-lg w-full bg-card border-red-500"
+                  : "p-1 border rounded-lg w-full bg-card border-neutral-600"
               }
               name="title"
               type="text"
@@ -100,7 +105,7 @@ export default function AdminAddBook() {
               Andratitel
             </label>
             <input
-              className="p-1 border rounded-lg w-full border-neutral-600"
+              className="p-1 border rounded-lg w-full bg-card border-neutral-600"
               name="secondTitle"
               type="text"
               value={formValues.secondTitle}
@@ -117,8 +122,8 @@ export default function AdminAddBook() {
             <input
               className={
                 errors.author
-                  ? "p-1 border rounded-lg w-full border-red-500"
-                  : "p-1 border rounded-lg w-full border-neutral-600"
+                  ? "p-1 border rounded-lg w-full bg-card border-red-500"
+                  : "p-1 border rounded-lg w-full bg-card border-neutral-600"
               }
               name="author"
               type="text"
@@ -134,8 +139,8 @@ export default function AdminAddBook() {
             <input
               className={
                 errors.language
-                  ? "p-1 border rounded-lg w-full border-red-500"
-                  : "p-1 border rounded-lg w-full border-neutral-600"
+                  ? "p-1 border rounded-lg w-full bg-card border-red-500"
+                  : "p-1 border rounded-lg w-full bg-card border-neutral-600"
               }
               name="language"
               type="text"
@@ -152,8 +157,8 @@ export default function AdminAddBook() {
           <textarea
             className={
               errors.description
-                ? "p-1 border rounded-lg w-full border-red-500"
-                : "p-1 border rounded-lg w-full border-neutral-600"
+                ? "p-1 border rounded-lg w-full bg-card border-red-500"
+                : "p-1 border rounded-lg w-full bg-card border-neutral-600"
             }
             name="description"
             type="text"
@@ -170,8 +175,8 @@ export default function AdminAddBook() {
             <input
               className={
                 errors.price
-                  ? "p-1 border rounded-lg w-full border-red-500"
-                  : "p-1 border rounded-lg w-full border-neutral-600"
+                  ? "p-1 border rounded-lg w-full bg-card border-red-500"
+                  : "p-1 border rounded-lg w-full bg-card border-neutral-600"
               }
               name="price"
               type="text"
@@ -185,7 +190,7 @@ export default function AdminAddBook() {
               Utgivningsdatum (YYYY-MM-DD)
             </label>
             <input
-              className="p-1 border rounded-lg w-full border-neutral-600"
+              className="p-1 border rounded-lg w-full bg-card border-neutral-600"
               name="releaseDate"
               type="text"
               value={formValues.releaseDate}
@@ -202,8 +207,8 @@ export default function AdminAddBook() {
             <input
               className={
                 errors.pages
-                  ? "p-1 border rounded-lg w-full border-red-500"
-                  : "p-1 border rounded-lg w-full border-neutral-600"
+                  ? "p-1 border rounded-lg w-full bg-card border-red-500"
+                  : "p-1 border rounded-lg w-full bg-card border-neutral-600"
               }
               name="pages"
               type="text"
@@ -217,7 +222,7 @@ export default function AdminAddBook() {
               Vikt
             </label>
             <input
-              className="p-1 border rounded-lg w-full border-neutral-600"
+              className="p-1 border rounded-lg w-full bg-card border-neutral-600"
               name="weight"
               type="text"
               value={formValues.weight}
@@ -232,7 +237,7 @@ export default function AdminAddBook() {
               Förlag
             </label>
             <input
-              className="p-1 border rounded-lg w-full border-neutral-600"
+              className="p-1 border rounded-lg w-full bg-card border-neutral-600"
               name="publisher"
               type="text"
               value={formValues.publisher}
@@ -247,8 +252,8 @@ export default function AdminAddBook() {
             <input
               className={
                 errors.linkToPurchase
-                  ? "p-1 border rounded-lg w-full border-red-500"
-                  : "p-1 border rounded-lg w-full border-neutral-600"
+                  ? "p-1 border rounded-lg w-full bg-card border-red-500"
+                  : "p-1 border rounded-lg w-full bg-card border-neutral-600"
               }
               name="linkToPurchase"
               type="text"
@@ -265,8 +270,8 @@ export default function AdminAddBook() {
           <input
             className={
               errors.image
-                ? "p-1 border rounded-lg w-full border-red-500"
-                : "p-1 border rounded-lg w-full border-neutral-600"
+                ? "p-1 border rounded-lg w-full bg-card border-red-500"
+                : "p-1 border rounded-lg w-full bg-card border-neutral-600"
             }
             name="image"
             type="text"
@@ -276,13 +281,13 @@ export default function AdminAddBook() {
         </div>
 
         <div className="flex gap-2 mt-6">
-          <button
+          <Button
             onClick={() => setOpenAddBook(true)}
             className="py-2 px-3 bg-green-500 rounded hover:bg-green-600 text-white transform duration-300"
           >
             Lägg till
-          </button>
-          <button
+          </Button>
+          <Button
             className="py-2 px-3 bg-zinc-500 rounded hover:bg-zinc-600 text-white transform duration-300"
             onClick={() => {
               setFormValues(initialFormValues);
@@ -290,7 +295,7 @@ export default function AdminAddBook() {
             }}
           >
             Nollställ
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -318,20 +323,20 @@ export default function AdminAddBook() {
               </p>
 
               <div className="modal-button-container">
-                <button
+                <Button
                   onClick={() => handleAddBook()}
-                  className="mb-2 modal-button rounded-lg bg-green-500 hover:bg-green-600 text-white transform duration-300"
+                  className="mb-2 modal-button rounded-lg bg-green-500 hover:bg-green-600 text-white transform duration-300 w-full"
                 >
                   Lägg till
-                </button>
-                <button
-                  className="modal-button rounded-lg bg-zinc-500 hover:bg-zinc-600 text-white transform duration-300"
+                </Button>
+                <Button
+                  className="modal-button rounded-lg bg-zinc-500 hover:bg-zinc-600 text-white transform duration-300 w-full"
                   onClick={() => {
                     setOpenAddBook(false);
                   }}
                 >
                   Nej
-                </button>
+                </Button>
               </div>
 
               <FaTimes

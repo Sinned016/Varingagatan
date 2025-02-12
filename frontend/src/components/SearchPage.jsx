@@ -5,6 +5,7 @@ import { db } from "../config/firebase";
 import FinishedRating from "./FinishedRating";
 import { calculateAverageRating } from "../functions/calculateAverageRating";
 import { FaSearch } from "react-icons/fa";
+import SearchForData from "./SearchForData";
 
 export default function SearchPage() {
   const [combinedData, setCombinedData] = useState([]);
@@ -76,22 +77,16 @@ export default function SearchPage() {
   }
 
   return (
-    <div className="bg-slate-50 p-6 pb-0">
+    <div className=" p-6 pb-0">
       <h1 className="text-center text-4xl font-bold mb-4">Sök bland titlar</h1>
 
       <div className="border border-muted-foreground mb-6"></div>
-      <div className="mb-6 relative">
-        <FaSearch className="absolute pointer-events-none left-3 top-1/2 -translate-y-1/2 transform " />
-        <input
-          ref={inputRef}
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full border rounded-full p-2 bg-slate-300 placeholder-neutral-700 pl-10 text-base leading-none focus"
-          type="text"
-          placeholder="Sök bland titlar..."
-          onKeyDown={handleSearch}
-        />
-      </div>
+
+      <SearchForData
+        originalData={combinedData}
+        setSearchedData={setSearchedData}
+        inputRef={inputRef}
+      />
 
       <div className="flex flex-wrap -mx-2">
         {searchedData && searchedData.length > 0 ? (

@@ -4,12 +4,12 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="bg-slate-50 ">
+    <div className=" bg-background text-foreground">
       <header>
         <Header />
       </header>
       {/* Add px-6 and bg color here if you want borders on the side */}
-      <main className=" mx-auto max-w-6xl sm:min-h-screen flex flex-col">
+      <main className=" mx-auto max-w-6xl  sm:min-h-screen flex flex-col">
         <Outlet />
       </main>
 

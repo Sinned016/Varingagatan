@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { db } from "../config/firebase";
 import useAuthState from "./useAuthState";
-import { Button, Modal, Box, Typography } from "@mui/material";
+import { Modal, Box, Typography } from "@mui/material";
 import likeWhite from "../assets/icons/likeWhite.png";
 import likeRed from "../assets/icons/likeRed.png";
 import StarRating from "./StarRating";
@@ -20,6 +20,7 @@ import { FaTimes, FaTrash } from "react-icons/fa";
 import Review from "./Review";
 import { CircleUserRound, Trash } from "lucide-react";
 import { formatDistance, subDays } from "date-fns";
+import { Button } from "./ui/button";
 
 export default function Bookinfo() {
   let { id } = useParams();
@@ -224,7 +225,7 @@ export default function Bookinfo() {
   }
 
   return (
-    <div className="">
+    <div className="sm:px-6 xl:px-0">
       {audioBookInfo ? (
         <div className=" p-6 sm:p-0 sm:pt-6">
           <div className="flex flex-col md:flex-row pb-10">
@@ -240,9 +241,9 @@ export default function Bookinfo() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <button className="mt-5 px-3 py-2 bg-red-500 hover:bg-red-600 rounded text-white w-full mb-4 transform duration-300">
+                <Button className="mt-5 px-3 py-2 rounded text-white w-full mb-4 transform duration-300">
                   Köp ljudboken
-                </button>
+                </Button>
               </a>
             </div>
 
@@ -345,7 +346,7 @@ export default function Bookinfo() {
                 .map((review, i) => {
                   return (
                     <div
-                      className="border border-black p-4 rounded-lg mb-4  bg-slate-50 relative"
+                      className="border border-neutral-600 p-4 rounded-lg mb-4 bg-card relative"
                       key={i}
                     >
                       <div className="flex gap-4 mb-2">
