@@ -53,7 +53,7 @@ export default function Header() {
           isAdmin={isAdmin}
         />
 
-        <div className="flex flex-row items-center gap-4 block xl:hidden">
+        <div className="flex flex-row items-center gap-4 xl:hidden">
           <ToggleMode />
 
           <HeaderPhone
