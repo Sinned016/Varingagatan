@@ -39,8 +39,8 @@ export default function Header() {
     <div className=" p-6 z-50 bg-card backdrop-blur-lg shadow-md  dark:border-neutral-700">
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         <h2 className="text-2xl ">
-          <Link className="" to="/">
-            Väringasagan
+          <Link className="font-bold" to="/">
+            VÄRINGASAGAN
           </Link>
         </h2>
 

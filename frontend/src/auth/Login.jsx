@@ -52,9 +52,9 @@ export default function Login() {
   }
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center ">
       <form
-        className=" border p-6 border-neutral-500 rounded-xl mt-20 w-full bg-card shadow-lg"
+        className=" border p-6 border-neutral-500 rounded-xl mt-10 w-full bg-card shadow-lg"
         onSubmit={handleLogin}
       >
         <h1 className="font-bold text-2xl mb-4 text-center">Välkommen!</h1>

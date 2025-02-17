@@ -80,7 +80,7 @@ export default function Register() {
   return (
     <div className="flex justify-center items-center">
       <form
-        className="border p-6 border-neutral-500 rounded-xl mt-20 w-full bg-card shadow-lg"
+        className="border p-6 border-neutral-500 rounded-xl mt-10 w-full bg-card shadow-lg"
         onSubmit={handleRegister}
       >
         <h1 className="text-center text-2xl font-bold mb-4">
@@ -179,7 +179,7 @@ export default function Register() {
           className="px-4 py-2 rounded-full bg-primary w-full text-white hover:bg-red-500 duration-200"
           type="submit"
         >
-          Register
+          Registrera
         </button>
 
         <p className="text-sm text-center pt-6">
