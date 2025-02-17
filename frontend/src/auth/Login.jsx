@@ -53,42 +53,41 @@ export default function Login() {
 
   return (
     <div className="flex justify-center items-center ">
-      <form
-        className=" border p-6 border-neutral-500 rounded-xl mt-10 w-full bg-card shadow-lg"
-        onSubmit={handleLogin}
-      >
-        <h1 className="font-bold text-2xl mb-4 text-center">Välkommen!</h1>
+      <div className=" border p-6 border-neutral-500 rounded-xl mt-10 w-full bg-card shadow-lg">
+        <form onSubmit={handleLogin}>
+          <h1 className="font-bold text-2xl mb-4 text-center">Välkommen!</h1>
 
-        <div>
-          <p className="text-red-500">{formError}</p>
-        </div>
+          <div>
+            <p className="text-red-500">{formError}</p>
+          </div>
 
-        <div className="mb-4">
-          <p className="font-bold text-sm mb-2 text-secondary-foreground">
-            Email
-          </p>
-          <input
-            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500 "
-            required
-            type="email"
-            placeholder="placeholder@gmail.com"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
+          <div className="mb-4">
+            <p className="font-bold text-sm mb-2 text-secondary-foreground">
+              Email
+            </p>
+            <input
+              className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500 "
+              required
+              type="email"
+              placeholder="placeholder@gmail.com"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-        <div className="mb-8">
-          <p className="font-bold text-sm mb-2 text-secondary-foreground">
-            Lösenord
-          </p>
-          <input
-            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
-            required
-            type="password"
-            placeholder="********"
-            minLength={8}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+          <div className="mb-8">
+            <p className="font-bold text-sm mb-2 text-secondary-foreground">
+              Lösenord
+            </p>
+            <input
+              className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+              required
+              type="password"
+              placeholder="********"
+              minLength={8}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+        </form>
 
         <button
           type="submit"
@@ -116,7 +115,7 @@ export default function Login() {
             Skapa nytt konto
           </Link>
         </p>
-      </form>
+      </div>
     </div>
   );
 }

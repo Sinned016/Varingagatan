@@ -79,101 +79,102 @@ export default function Register() {
 
   return (
     <div className="flex justify-center items-center">
-      <form
-        className="border p-6 border-neutral-500 rounded-xl mt-10 w-full bg-card shadow-lg"
-        onSubmit={handleRegister}
-      >
-        <h1 className="text-center text-2xl font-bold mb-4">
-          Skapa nytt konto!
-        </h1>
+      <div className="border p-6 border-neutral-500 rounded-xl mt-10 w-full bg-card shadow-lg">
+        <form onSubmit={handleRegister}>
+          <h1 className="text-center text-2xl font-bold mb-4">
+            Skapa nytt konto!
+          </h1>
 
-        <div className="text-red-500">
-          <p>{formError}</p>
-        </div>
+          <div className="text-red-500">
+            <p>{formError}</p>
+          </div>
 
-        <div className="mb-4">
-          <p className="font-bold text-sm mb-2 text-secondary-foreground">
-            Email
-          </p>
-          <input
-            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
-            {...formDefaults("email", "Email", { type: "email" })}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
+          <div className="mb-4">
+            <p className="font-bold text-sm mb-2 text-secondary-foreground">
+              Email
+            </p>
+            <input
+              className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+              {...formDefaults("email", "Email", { type: "email" })}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-        <div className="mb-4">
-          <p className="font-bold text-sm mb-2 text-secondary-foreground">
-            Användarnamn
-          </p>
-          <input
-            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
-            {...formDefaults("användarnamn", "Användarnamn")}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
+          <div className="mb-4">
+            <p className="font-bold text-sm mb-2 text-secondary-foreground">
+              Användarnamn
+            </p>
+            <input
+              className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+              {...formDefaults("användarnamn", "Användarnamn")}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
 
-        <div className="mb-4">
-          <p className="font-bold text-sm mb-2 text-secondary-foreground">
-            Telefonnummer
-          </p>
-          <input
-            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
-            {...formDefaults("telefonnummer", "Telefonnummer", { type: "tel" })}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-        </div>
+          <div className="mb-4">
+            <p className="font-bold text-sm mb-2 text-secondary-foreground">
+              Telefonnummer
+            </p>
+            <input
+              className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+              {...formDefaults("telefonnummer", "Telefonnummer", {
+                type: "tel",
+              })}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+          </div>
 
-        <div className="mb-4">
-          <p className="font-bold text-sm mb-2 text-secondary-foreground">
-            Land
-          </p>
-          <input
-            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
-            {...formDefaults("land", "Land")}
-            onChange={(e) => setCountry(e.target.value)}
-          />
-        </div>
+          <div className="mb-4">
+            <p className="font-bold text-sm mb-2 text-secondary-foreground">
+              Land
+            </p>
+            <input
+              className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+              {...formDefaults("land", "Land")}
+              onChange={(e) => setCountry(e.target.value)}
+            />
+          </div>
 
-        <div className="mb-4">
-          <p className="font-bold text-sm mb-2 text-secondary-foreground">
-            Ålder
-          </p>
-          <input
-            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
-            {...formDefaults("ålder", "Ålder", { type: "number" })}
-            onChange={(e) => setAge(e.target.value)}
-          />
-        </div>
+          <div className="mb-4">
+            <p className="font-bold text-sm mb-2 text-secondary-foreground">
+              Ålder
+            </p>
+            <input
+              className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+              {...formDefaults("ålder", "Ålder", { type: "number" })}
+              onChange={(e) => setAge(e.target.value)}
+            />
+          </div>
 
-        <p className="text-red-500">{passwordFormError}</p>
+          <p className="text-red-500">{passwordFormError}</p>
 
-        <div className="mb-4">
-          <p className="font-bold text-sm mb-2 text-secondary-foreground">
-            Lösenord
-          </p>
-          <input
-            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
-            {...formDefaults("lösenord", "Välj ett lösenord", {
-              minLength: 8,
-              type: "password",
-            })}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+          <div className="mb-4">
+            <p className="font-bold text-sm mb-2 text-secondary-foreground">
+              Lösenord
+            </p>
+            <input
+              className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+              {...formDefaults("lösenord", "Välj ett lösenord", {
+                minLength: 8,
+                type: "password",
+              })}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
 
-        <div className="mb-8">
-          <select
-            {...formDefaults("HowDidYouhear", "", { required: false })}
-            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
-            onChange={(e) => setHowDidYouhear(e.target.value)}
-          >
-            <option value=""> Hur hörde du om oss?</option>
-            <option>Från en vän</option>
-            <option>På sociala media</option>
-            <option>Något annat</option>
-          </select>
-        </div>
+          <div className="mb-8">
+            <select
+              {...formDefaults("HowDidYouhear", "", { required: false })}
+              className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+              onChange={(e) => setHowDidYouhear(e.target.value)}
+            >
+              <option value=""> Hur hörde du om oss?</option>
+              <option>Från en vän</option>
+              <option>På sociala media</option>
+              <option>Något annat</option>
+            </select>
+          </div>
+        </form>
 
         <button
           className="px-4 py-2 rounded-full bg-primary w-full text-white hover:bg-red-500 duration-200"
@@ -191,7 +192,7 @@ export default function Register() {
             Logga in
           </Link>
         </p>
-      </form>
+      </div>
     </div>
   );
 }
