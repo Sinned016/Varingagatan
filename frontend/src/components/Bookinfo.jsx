@@ -172,7 +172,7 @@ export default function Bookinfo() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button className="mt-5 px-3 py-2 rounded text-white w-full mb-4 transform duration-300">
+                <Button className="mt-5 px-3 py-2 rounded text-white w-full mb-4 transform duration-200 hover:bg-red-500">
                   Köp boken
                 </Button>
               </a>

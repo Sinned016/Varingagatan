@@ -7,6 +7,7 @@ import { Box, Trash2 } from "lucide-react";
 import AdminEditInputs from "./AdminEditInputs";
 import { Modal } from "@mui/material";
 import { FaTimes } from "react-icons/fa";
+import { Button } from "../ui/button";
 
 export default function AdminEdit() {
   let { type, id } = useParams();
@@ -72,9 +73,9 @@ export default function AdminEdit() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className="mt-5 px-3 py-2 bg-red-500 hover:bg-red-600 rounded text-white w-full mb-4 transform duration-300">
+              <Button className="mt-5 px-3 py-2  duration-200 hover:bg-red-500 rounded text-white w-full mb-4 ">
                 Köp {type === "Bok" ? "boken" : "ljudboken"}
-              </button>
+              </Button>
             </a>
           </div>
 

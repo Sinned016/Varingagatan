@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, googleProvider } from "../config/firebase";
-import { onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
+import { Button } from "@/components/ui/button";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -22,7 +29,6 @@ export default function Login() {
       }
     } catch (e) {
       console.error(e);
-      console.log(e);
       if (e.code === "auth/invalid-credential") {
         setFormError("Try again or create an account");
       } else {
@@ -46,57 +52,71 @@ export default function Login() {
   }
 
   return (
-    <div className="register-container">
-      <div className="register-wrapper">
-        <form onSubmit={handleLogin}>
-          <h1 className="title">Sign In</h1>
+    <div className="flex justify-center items-center">
+      <form
+        className=" border p-6 border-neutral-500 rounded-xl mt-20 w-full bg-card shadow-lg"
+        onSubmit={handleLogin}
+      >
+        <h1 className="font-bold text-2xl mb-4 text-center">Välkommen!</h1>
 
-          <div className="error-box">
-            <p>{formError}</p>
-          </div>
+        <div>
+          <p className="text-red-500">{formError}</p>
+        </div>
 
-          <div className="input-box">
-            <input required type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-            <i className="bx bxs-user"></i>
-          </div>
+        <div className="mb-4">
+          <p className="font-bold text-sm mb-2 text-secondary-foreground">
+            Email
+          </p>
+          <input
+            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500 "
+            required
+            type="email"
+            placeholder="placeholder@gmail.com"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
 
-          <div className="input-box">
-            <input
-              required
-              type="password"
-              placeholder="Password"
-              minLength={8}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <i className="bx bxs-lock-alt"></i>
-          </div>
+        <div className="mb-8">
+          <p className="font-bold text-sm mb-2 text-secondary-foreground">
+            Lösenord
+          </p>
+          <input
+            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+            required
+            type="password"
+            placeholder="********"
+            minLength={8}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
 
-          <div className="remember-forgot">
-            {/* Dont know how to get this to work rn, might continue in the future  */}
-            {/* <div>
-                <input type="checkbox" onChange={() => setRememberMe(!rememberMe)}></input>
-                <label>Remember me</label>
-              </div> */}
-            <div></div>
+        <button
+          type="submit"
+          className="px-4 py-2 rounded-full bg-primary w-full text-white mb-4 hover:bg-red-500 duration-200"
+        >
+          Logga in
+        </button>
 
-            <a href="">Forgot password?</a>
-          </div>
+        <div className="">
+          <Button
+            variant={"outline"}
+            className="flex gap-4 w-full bg-card border border-neutral-500 rounded-full"
+            onClick={signInWithGoogle}
+          >
+            <p>Logga in med Google</p>
+            <FcGoogle className="w-5 h-5" />
+          </Button>
+        </div>
 
-          <button type="submit" className="register-btn">
-            Login
-          </button>
-
-          <div className="register-link">
-            <p>
-              Dont have an account? <Link to={"/register"}>Sign Up</Link>
-            </p>
-          </div>
-
-          <div className="google-box">
-            <button onClick={signInWithGoogle}>Sign In with google</button>
-          </div>
-        </form>
-      </div>
+        <p className="text-sm text-center pt-6">
+          <Link
+            className="hover:underline underline-offset-2 text-primary font-bold"
+            to={"/register"}
+          >
+            Skapa nytt konto
+          </Link>
+        </p>
+      </form>
     </div>
   );
 }

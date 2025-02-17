@@ -36,7 +36,7 @@ export default function Header() {
   }
 
   return (
-    <div className=" p-6 z-50 backdrop-blur-sm shadow-md dark:border-b dark:border-neutral-700">
+    <div className=" p-6 z-50 bg-card backdrop-blur-lg shadow-md  dark:border-neutral-700">
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         <h2 className="text-2xl ">
           <Link className="" to="/">

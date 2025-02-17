@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <div className="padding-[20px] text-center border-t border-neutral-600">
+    <div className="p-3 text-center border-neutral-600 bg-card">
       <div className="flex flex-wrap justify-around my-[20px]">
         {/* <div className="footer-section">
           <h2>About Us</h2>
@@ -12,8 +12,8 @@ export default function Footer() {
           </p>
         </div> */}
 
-        <div className="footer-section">
-          <h2 className="mb-2">Följ mig</h2>
+        <div className="footer-section ">
+          <h2 className="mb-2 font-bold text-lg">Följ mig</h2>
           <Link
             className="text-black/70 dark:text-white/70 hover:text-primary dark:hover:text-primary duration-200 block text-sm"
             to="https://www.facebook.com/Varingagardet"
@@ -41,14 +41,14 @@ export default function Footer() {
         </div>
 
         <div className="footer-section">
-          <h2 className="mb-2">Kontakt</h2>
+          <h2 className="mb-2 font-bold text-lg">Kontakt</h2>
           <p className="text-black/70 dark:text-white/70 block text-sm">
             leif.selander@gmail.com
           </p>
         </div>
 
         <div className="footer-section ">
-          <h2 className="mb-2">Länkar</h2>
+          <h2 className="mb-2 font-bold text-lg">Länkar</h2>
           <Link
             className="text-black/70 dark:text-white/70 hover:text-primary dark:hover:text-primary duration-200 block text-sm"
             to="/"

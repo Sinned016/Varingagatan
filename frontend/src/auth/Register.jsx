@@ -19,8 +19,14 @@ export default function Register() {
   async function handleRegister(e) {
     e.preventDefault();
 
-    if (!/\d/.test(password) || !/[A-Z]/.test(password) || !/[a-z]/.test(password)) {
-      setPasswordFormError("Password must contain at least one digit, one uppercase letter, and one lowercase letter.");
+    if (
+      !/\d/.test(password) ||
+      !/[A-Z]/.test(password) ||
+      !/[a-z]/.test(password)
+    ) {
+      setPasswordFormError(
+        "Password must contain at least one digit, one uppercase letter, and one lowercase letter."
+      );
       return;
     }
 
@@ -35,7 +41,11 @@ export default function Register() {
 
     try {
       // Creating the user.
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
       // Creating a collection with the user and more information inside of it.
       const usersCollectionRef = collection(db, "users");
@@ -68,70 +78,120 @@ export default function Register() {
   }
 
   return (
-    <div className="register-container">
-      <div className="register-wrapper">
-        <form onSubmit={handleRegister}>
-          <h1 className="title">Sign Up</h1>
+    <div className="flex justify-center items-center">
+      <form
+        className="border p-6 border-neutral-500 rounded-xl mt-20 w-full bg-card shadow-lg"
+        onSubmit={handleRegister}
+      >
+        <h1 className="text-center text-2xl font-bold mb-4">
+          Skapa nytt konto!
+        </h1>
 
-          <div className="error-box">
-            <p>{formError}</p>
-          </div>
-          <div className="input-box">
-            <input {...formDefaults("email", "Email", { type: "email" })} onChange={(e) => setEmail(e.target.value)} />
-          </div>
+        <div className="text-red-500">
+          <p>{formError}</p>
+        </div>
 
-          <div className="input-box">
-            <input {...formDefaults("username", "Username")} onChange={(e) => setUsername(e.target.value)} />
-          </div>
+        <div className="mb-4">
+          <p className="font-bold text-sm mb-2 text-secondary-foreground">
+            Email
+          </p>
+          <input
+            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+            {...formDefaults("email", "Email", { type: "email" })}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
 
-          <div className="input-box">
-            <input
-              {...formDefaults("phoneNumber", "Phone Number", { type: "tel" })}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-            />
-          </div>
+        <div className="mb-4">
+          <p className="font-bold text-sm mb-2 text-secondary-foreground">
+            Användarnamn
+          </p>
+          <input
+            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+            {...formDefaults("användarnamn", "Användarnamn")}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
 
-          <div className="input-box">
-            <input {...formDefaults("country", "Country")} onChange={(e) => setCountry(e.target.value)} />
-          </div>
+        <div className="mb-4">
+          <p className="font-bold text-sm mb-2 text-secondary-foreground">
+            Telefonnummer
+          </p>
+          <input
+            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+            {...formDefaults("telefonnummer", "Telefonnummer", { type: "tel" })}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+          />
+        </div>
 
-          <div className="input-box">
-            <input {...formDefaults("age", "Age", { type: "number" })} onChange={(e) => setAge(e.target.value)} />
-          </div>
+        <div className="mb-4">
+          <p className="font-bold text-sm mb-2 text-secondary-foreground">
+            Land
+          </p>
+          <input
+            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+            {...formDefaults("land", "Land")}
+            onChange={(e) => setCountry(e.target.value)}
+          />
+        </div>
 
-          <p className="password-error">{passwordFormError}</p>
+        <div className="mb-4">
+          <p className="font-bold text-sm mb-2 text-secondary-foreground">
+            Ålder
+          </p>
+          <input
+            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+            {...formDefaults("ålder", "Ålder", { type: "number" })}
+            onChange={(e) => setAge(e.target.value)}
+          />
+        </div>
 
-          <div className="input-box">
-            <input
-              {...formDefaults("password", "Choose a password", { minLength: 8, type: "password" })}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+        <p className="text-red-500">{passwordFormError}</p>
 
-          <div className="select-box">
-            <select
-              {...formDefaults("HowDidYouhear", "", { required: false })}
-              className="register-select"
-              onChange={(e) => setHowDidYouhear(e.target.value)}
-            >
-              <option value=""> How did you hear about us?</option>
-              <option>From a friend</option>
-              <option>On an internet forum</option>
-              <option>Somewhere else</option>
-            </select>
-          </div>
+        <div className="mb-4">
+          <p className="font-bold text-sm mb-2 text-secondary-foreground">
+            Lösenord
+          </p>
+          <input
+            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+            {...formDefaults("lösenord", "Välj ett lösenord", {
+              minLength: 8,
+              type: "password",
+            })}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
 
-          <button className="register-btn" type="submit">
-            Register
-          </button>
+        <div className="mb-8">
+          <select
+            {...formDefaults("HowDidYouhear", "", { required: false })}
+            className="py-2 px-3 w-full rounded-xl bg-card border border-neutral-500"
+            onChange={(e) => setHowDidYouhear(e.target.value)}
+          >
+            <option value=""> Hur hörde du om oss?</option>
+            <option>Från en vän</option>
+            <option>På sociala media</option>
+            <option>Något annat</option>
+          </select>
+        </div>
 
-          <div className="register-link">
-            <p>
-              Already have an account? <Link to={"/login"}>Sign in</Link>
-            </p>
-          </div>
-        </form>
-      </div>
+        <button
+          className="px-4 py-2 rounded-full bg-primary w-full text-white hover:bg-red-500 duration-200"
+          type="submit"
+        >
+          Register
+        </button>
+
+        <p className="text-sm text-center pt-6">
+          Har du redan ett konto?{" "}
+          <Link
+            className="hover:underline underline-offset-2 text-primary font-bold"
+            to={"/login"}
+          >
+            Logga in
+          </Link>
+        </p>
+      </form>
     </div>
   );
 }

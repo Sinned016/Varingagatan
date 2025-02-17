@@ -54,19 +54,20 @@ export default function Home() {
       />
 
       {/* Add bg-slate-50 here if I want side borders and a background of that color instead of nothing */}
-      <div className="sm:px-4 xl:px-0">
-        <div className="p-4 sm:p-0 sm:mb-4 sm:mt-4">
-          {/* Tycker inte om hur titlarna ser ur här */}
-          <h2 className="text-center text-3xl font-bold mb-3">
-            <Link
-              className="hover:text-primary duration-300 cursor-pointer"
-              to={"/books"}
-            >
-              Böcker
-            </Link>
-          </h2>
+      <div className="sm:px-4 xl:px-0 ">
+        <div className="p-4 sm:p-0 sm:pb-4 sm:pt-4 ">
+          <div className="flex justify-between items-center mt-8 mb-4 ">
+            <h2 className="text-2xl font-bold">Upptäck episka berättelser</h2>
 
-          <div className="flex justify-center flex-wrap">
+            <Link
+              to="/books"
+              class="px-4 py-2 bg-primary text-white rounded-lg shadow hover:bg-red-500 duration-200"
+            >
+              Se alla böcker
+            </Link>
+          </div>
+
+          <div className="flex justify-center flex-wrap ">
             {books &&
               books.slice(0, 6).map((book) => {
                 return (
@@ -100,14 +101,18 @@ export default function Home() {
         </div>
 
         <div className="p-4 sm:p-0 sm:pb-6">
-          <h2 className="text-center text-3xl font-bold mb-3 ">
+          <div className="flex justify-between items-center mt-8 mb-4">
+            <h2 className="text-2xl font-bold">
+              Lyssna på historien komma till liv
+            </h2>
+
             <Link
-              className="hover:text-primary duration-300 cursor-pointer"
-              to={"/audioBooks"}
+              to="/audioBooks"
+              class="px-4 py-2 bg-primary text-white rounded-lg shadow hover:bg-red-500 duration-200"
             >
-              Ljudböcker
+              Se alla ljudböcker
             </Link>
-          </h2>
+          </div>
 
           <div className="flex justify-center flex-wrap">
             {audioBooks &&

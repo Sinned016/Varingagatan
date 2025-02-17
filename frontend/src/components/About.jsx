@@ -5,13 +5,17 @@ export default function About() {
     <div className="p-6 sm:pt-6 sm:px-6 xl:px-0">
       <div className="flex flex-col sm:flex-row gap-6 mb-2">
         <div className="flex-shrink-0">
-          <img className=" w-72 h-72 rounded-lg " src={leifSelander} alt="" />
+          <img
+            className="w-full sm:w-72 h-auto rounded-lg object-cover"
+            src={leifSelander}
+            alt=""
+          />
         </div>
 
         <div>
           <h1 className="text-4xl font-bold mb-2">Leif Selander</h1>
 
-          <p className="pb-4">
+          <p className="pb-4 leading-relaxed">
             Leif Selander är född i Örnsköldsvik och bor nu i Eskilstuna
             tillsammans med sin familj. Intresset för historia föddes tidigt i
             hans liv. Historia, religion, konst och gymnastik tillhörde de ämnen

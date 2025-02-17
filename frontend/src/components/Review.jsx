@@ -108,7 +108,7 @@ export default function Review({
         <>
           <Button
             onClick={() => setShowReview(!showReview)}
-            className="p-6 w-full rounded-lg mb-6 transform duration-300"
+            className="p-6 w-full rounded-lg mb-6 transform duration-200 hover:bg-red-500"
           >
             Skriv recension
           </Button>
