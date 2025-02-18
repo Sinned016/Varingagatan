@@ -16,6 +16,7 @@ import { FaTimes } from "react-icons/fa";
 import AdminNav from "./AdminNav";
 import { Ellipsis, Settings } from "lucide-react";
 import SearchForData from "../SearchForData";
+import { sortDataDescending } from "@/functions/sortDataDescending";
 
 export default function AdminHome() {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ export default function AdminHome() {
           ...doc.data(),
           id: doc.id,
         }));
+        const sortedBooks = sortDataDescending(filteredBooksData);
 
         // Fetch audiobooks
         const audioBooksData = await getDocs(audioBooksCollectionRef);
@@ -53,9 +55,10 @@ export default function AdminHome() {
           ...doc.data(),
           id: doc.id,
         }));
+        const sortedAudioBooks = sortDataDescending(filteredAudioBooksData);
 
         // Combine books and audiobooks into a single array
-        const combinedData = [...filteredBooksData, ...filteredAudioBooksData];
+        const combinedData = [...sortedBooks, ...sortedAudioBooks];
 
         setAllData(combinedData);
         setFilteredData(combinedData);

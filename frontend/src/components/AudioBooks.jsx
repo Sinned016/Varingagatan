@@ -6,6 +6,7 @@ import { getDocs, collection } from "firebase/firestore";
 import FinishedRating from "./FinishedRating";
 import { calculateAverageRating } from "../functions/calculateAverageRating";
 import SearchForData from "./SearchForData";
+import { sortDataDescending } from "@/functions/sortDataDescending";
 
 export default function AudioBooks() {
   const [audiobooks, setAudiobooks] = useState();
@@ -21,9 +22,9 @@ export default function AudioBooks() {
           ...doc.data(),
           id: doc.id,
         }));
-        console.log(filteredAudioBooksData);
-        setAudiobooks(filteredAudioBooksData);
-        setSearchedData(filteredAudioBooksData);
+        const sortedAudioBooks = sortDataDescending(filteredAudioBooksData);
+        setAudiobooks(sortedAudioBooks);
+        setSearchedData(sortedAudioBooks);
       } catch (err) {
         console.error(err);
       }

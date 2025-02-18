@@ -6,6 +6,7 @@ import FinishedRating from "./FinishedRating";
 import { calculateAverageRating } from "../functions/calculateAverageRating";
 import { FaSearch } from "react-icons/fa";
 import SearchForData from "./SearchForData";
+import { sortDataDescending } from "@/functions/sortDataDescending";
 
 export default function Books() {
   const [books, setBooks] = useState();
@@ -21,9 +22,9 @@ export default function Books() {
           ...doc.data(),
           id: doc.id,
         }));
-        console.log(filteredBooksData);
-        setBooks(filteredBooksData);
-        setSearchedData(filteredBooksData);
+        const sortedBooks = sortDataDescending(filteredBooksData);
+        setBooks(sortedBooks);
+        setSearchedData(sortedBooks);
       } catch (err) {
         console.error(err);
       }

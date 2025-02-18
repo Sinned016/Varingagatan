@@ -7,6 +7,7 @@ import homeHeader from "../assets/pictures/homeheader.jpg";
 import { calculateAverageRating } from "../functions/calculateAverageRating";
 import FinishedRating from "./FinishedRating";
 import { BookText } from "lucide-react";
+import { sortDataDescending } from "@/functions/sortDataDescending";
 
 export default function Home() {
   const [books, setBooks] = useState();
@@ -26,7 +27,8 @@ export default function Home() {
           ...doc.data(),
           id: doc.id,
         }));
-        setBooks(filteredBooksData);
+        const sortedBooks = sortDataDescending(filteredBooksData);
+        setBooks(sortedBooks);
 
         // Fetch audiobooks
         const audioBooksData = await getDocs(audioBooksCollectionRef);
@@ -34,7 +36,8 @@ export default function Home() {
           ...doc.data(),
           id: doc.id,
         }));
-        setAudioBooks(filteredAudioBooksData);
+        const sortedAudioBooks = sortDataDescending(filteredAudioBooksData);
+        setAudioBooks(sortedAudioBooks);
 
         setLoading(false);
       } catch (err) {
