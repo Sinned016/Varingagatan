@@ -59,12 +59,14 @@ export default function Home() {
       {/* Add bg-slate-50 here if I want side borders and a background of that color instead of nothing */}
       <div className="sm:px-4 xl:px-0 ">
         <div className="p-4 sm:p-0 sm:pb-4 sm:pt-4 ">
-          <div className="flex justify-between items-center mt-8 mb-4 ">
-            <h2 className="text-2xl font-bold">Upptäck episka berättelser</h2>
+          <div className="flex justify-center sm:justify-between items-center mt-8 mb-4 ">
+            <h2 className="text-2xl font-bold cursor-pointer hover:text-primary duration-200">
+              <Link to="/books">Upptäck episka berättelser</Link>
+            </h2>
 
             <Link
               to="/books"
-              class="px-4 py-2 bg-primary text-white rounded-lg shadow hover:bg-red-500 duration-200"
+              class="px-4 py-2 bg-primary text-white rounded-lg shadow hover:bg-red-500 duration-200 hidden sm:block"
             >
               Se alla böcker
             </Link>
@@ -104,14 +106,14 @@ export default function Home() {
         </div>
 
         <div className="p-4 sm:p-0 sm:pb-6">
-          <div className="flex justify-between items-center mt-8 mb-4">
-            <h2 className="text-2xl font-bold">
-              Lyssna på historien komma till liv
+          <div className="flex justify-center sm:justify-between items-center mt-8 mb-4 flex-1">
+            <h2 className="text-2xl font-bold cursor-pointer hover:text-primary duration-200">
+              <Link to="/audioBooks">Lyssna på historien komma till liv</Link>
             </h2>
 
             <Link
               to="/audioBooks"
-              class="px-4 py-2 bg-primary text-white rounded-lg shadow hover:bg-red-500 duration-200"
+              class="px-4 py-2 bg-primary text-white rounded-lg shadow hover:bg-red-500 duration-200 hidden sm:block"
             >
               Se alla ljudböcker
             </Link>

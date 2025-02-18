@@ -93,6 +93,27 @@ export default function HeaderPhone({
             </DropdownMenuItem>
           </Link>
         )}
+
+        {signedInUser ? (
+          <DropdownMenuItem
+            className="py-2 font-medium cursor-pointer"
+            onClick={logout}
+          >
+            Logga ut
+          </DropdownMenuItem>
+        ) : (
+          <Link
+            className={
+              pathname.includes("/login") &&
+              "underline underline-offset-4 text-primary"
+            }
+            to="/login"
+          >
+            <DropdownMenuItem className="py-2 font-medium cursor-pointer">
+              Logga in
+            </DropdownMenuItem>
+          </Link>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );
