@@ -1,18 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 const ThemeProviderContext = createContext({
-  theme: "system",
+  theme: "light",
   setTheme: () => null,
 });
 
-export function ThemeProvider({
-  children,
-  defaultTheme = "system",
-  storageKey = "vite-ui-theme",
-}) {
-  const [theme, setTheme] = useState(
-    () => localStorage.getItem(storageKey) || defaultTheme
-  );
+export function ThemeProvider({ children, storageKey = "vite-ui-theme" }) {
+  const [theme, setTheme] = useState(() => {
+    // Get stored theme or default to "light" if not set
+    return localStorage.getItem(storageKey) || "light";
+  });
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -30,16 +27,14 @@ export function ThemeProvider({
     root.classList.add(theme);
   }, [theme]);
 
-  const value = {
-    theme,
-    setTheme: (newTheme) => {
-      localStorage.setItem(storageKey, newTheme);
-      setTheme(newTheme);
-    },
+  // Function to update theme and save to localStorage
+  const changeTheme = (newTheme) => {
+    localStorage.setItem(storageKey, newTheme);
+    setTheme(newTheme);
   };
 
   return (
-    <ThemeProviderContext.Provider value={value}>
+    <ThemeProviderContext.Provider value={{ theme, setTheme: changeTheme }}>
       {children}
     </ThemeProviderContext.Provider>
   );
